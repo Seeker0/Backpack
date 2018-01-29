@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Kalam");
-@import url("https://fonts.googleapis.com/css?family=Lato|Supermercado+One");
 @import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
 
 body {
@@ -11,7 +10,6 @@ body {
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 150px;
   float: right;
 }
@@ -30,33 +28,36 @@ body {
   float: left;
 }
 
-#welcome {
-  font-family: "Supermercado One", cursive;
-  color: black;
+.modal-form {
+  font-family: "Kalam", cursive;
+}
+
+.extraPadding {
+  padding: 15px;
 }
 
 #welcome-body {
   font-family: "Kalam", cursive;
   color: black;
+  font-size: 24px;
 }
 
 .App-intro {
   font-size: large;
 }
 
-.btn,
+/* .btn,
 .btn:hover {
   border: black solid 2px;
   border-radius: 15px;
-}
+} */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#not-found {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 100%;
 }
 
 footer {

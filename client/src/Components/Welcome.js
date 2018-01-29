@@ -62,17 +62,16 @@ class Welcome extends PureComponent {
           </Row>
         </header>
         <Container>
-          <h1 id="welcome">Welcome to Backpack!</h1>
           <p id="welcome-body">
-            The best way to collect and save all your videos, photos, websites,
-            articles, and more in one place that you can carry with you wherever
-            you go. Easily share everything you care about with all your friends
-            through e-mail and all your social media.
+            The best way to collect and organize all the videos, photos, music,
+            websites, and articles you find online in one place that you can
+            carry with you wherever you go. Easily share or collaborate with
+            friends, family, or coworkers.
           </p>
-          <Button color="primary" size="lg">
+          <Button color="primary" size="lg" onClick={this.toggleSignUp}>
             Sign Up
           </Button>{" "}
-          <Button color="success" size="lg">
+          <Button color="success" size="lg" onClick={this.toggleLogin}>
             Log In
           </Button>
         </Container>
@@ -82,8 +81,12 @@ class Welcome extends PureComponent {
             Backpack graphic designed by Natkacheva / Freepik
           </a>
         </footer>
-        <Modal isOpen={this.state.modalLogin} toggle={this.toggleLogin}>
-          <ModalHeader>Login</ModalHeader>
+        <Modal
+          className="modal-form"
+          isOpen={this.state.modalLogin}
+          toggle={this.toggleLogin}
+        >
+          <ModalHeader toggle={this.toggleLogin}>Login</ModalHeader>
           <Form>
             <FormGroup className="extraPadding">
               <Label for="username">Username: </Label>
@@ -110,8 +113,12 @@ class Welcome extends PureComponent {
           </ModalFooter>
         </Modal>
 
-        <Modal isOpen={this.state.modalSignUp} toggle={this.toggleSignUp}>
-          <ModalHeader>Sign Up</ModalHeader>
+        <Modal
+          className="modal-form"
+          isOpen={this.state.modalSignUp}
+          toggle={this.toggleSignUp}
+        >
+          <ModalHeader toggle={this.toggleSignUp}>Sign Up</ModalHeader>
           <Form>
             <FormGroup className="extraPadding">
               <Label for="fname">First Name:</Label>
