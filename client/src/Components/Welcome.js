@@ -16,6 +16,9 @@ import {
   ModalFooter
 } from "reactstrap";
 
+import Login from "./Login";
+import SignUp from "./SignUp";
+
 class Welcome extends PureComponent {
   constructor(props) {
     super(props);
@@ -81,7 +84,9 @@ class Welcome extends PureComponent {
             Backpack graphic designed by Natkacheva / Freepik
           </a>
         </footer>
-        <Modal
+        <Login isOpen={this.state.modalLogin} toggle={this.toggleLogin} />
+        <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
+        {/* <Modal
           className="modal-form"
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
@@ -111,9 +116,9 @@ class Welcome extends PureComponent {
               Cancel
             </Button>
           </ModalFooter>
-        </Modal>
+        </Modal> */}
 
-        <Modal
+        {/* <Modal
           className="modal-form"
           isOpen={this.state.modalSignUp}
           toggle={this.toggleSignUp}
@@ -159,7 +164,7 @@ class Welcome extends PureComponent {
               Cancel
             </Button>
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
