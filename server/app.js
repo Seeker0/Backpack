@@ -86,6 +86,13 @@ app.use(morganToolkit());
 // ----------------------------------------
 // Routes
 // ----------------------------------------
+
+const { users, pockets, items } = require('./routers');
+
+app.use('/users', users);
+app.use('/pockets', pockets);
+app.use('/items', items);
+
 app.use('/', (req, res) => {
   req.flash('Hi!');
   res.render('welcome/index');
