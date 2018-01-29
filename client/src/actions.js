@@ -1,11 +1,11 @@
 export const GET__REQUEST = "GET__REQUEST";
 export const GET__SUCCESS = "GET__SUCCESS";
 export const GET__FAILURE = "GET__FAILURE";
-export const GET__POCKET = "GET__POCKET";
-export const CREATE__POCKET = "CREATE__POCKET";
-export const DELETE__POCKET = "DELETE__POCKET";
-export const ADDTO__POCKET = "ADDTO__POCKET";
-export const DELETEFROM__POCKET = "DELETEFROM__POCKET";
+export const GET__POUCH = "GET__POUCH";
+export const CREATE__POUCH = "CREATE__POUCH";
+export const DELETE__POUCH = "DELETE__POUCH";
+export const ADDTO__POUCH = "ADDTO__POUCH";
+export const DELETEFROM__POUCH = "DELETEFROM__POUCH";
 
 export function getRequest() {
   return {
@@ -13,15 +13,15 @@ export function getRequest() {
   };
 }
 
-export function deletePocket(id) {
+export function deletePouch(id) {
   return {
-    type: DELETE__POCKET,
+    type: DELETE__POUCH,
     id
   };
 }
-export function createPocket(data) {
+export function createPouch(data) {
   return {
-    type: CREATE__POCKET,
+    type: CREATE__POUCH,
     data
   };
 }
@@ -39,32 +39,32 @@ export function getFailure(error) {
   };
 }
 
-export function getPocket(data) {
+export function getPouch(data) {
   return {
-    type: GET__POCKET,
+    type: GET__POUCH,
     data
   };
 }
 
-export function addToPocket(data) {
+export function addToPouch(data) {
   return {
-    type: ADDTO__POCKET,
+    type: ADDTO__POUCH,
     data
   };
 }
 
-export function deleteFromPocket(data) {
+export function deleteFromPouch(data) {
   return {
-    type: DELETEFROM__POCKET,
+    type: DELETEFROM__POUCH,
     data
   };
 }
 
-export function getOnePocket(id) {
+export function getOnePouch(id) {
   return dispatch => {
     dispatch(getRequest());
 
-    fetch(`/pocket/${id}`)
+    fetch(`/pouch/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -73,7 +73,7 @@ export function getOnePocket(id) {
         return response.json();
       })
       .then(json => {
-        dispatch(getPocket(json));
+        dispatch(getPouch(json));
       })
       .catch(error => {
         dispatch(getFailure(error));
@@ -106,7 +106,7 @@ export function onSubmitAdd(e) {
         return response.json();
       })
       .then(json => {
-        dispatch(addToPocket(json));
+        dispatch(addToPouch(json));
       })
       .catch(error => {
         dispatch(getFailure(error));
@@ -121,7 +121,7 @@ export function onSubmit(e) {
   return dispatch => {
     dispatch(getRequest());
 
-    fetch(`/pocket/delete/${id}`, {
+    fetch(`/pouch/delete/${id}`, {
       method: "DELETE",
       body: JSON.stringify(id)
     })
@@ -148,7 +148,7 @@ export function onSubmitDelete(e) {
   return dispatch => {
     dispatch(getRequest());
 
-    fetch(`/pocket/delete/${id}/${linkId}`, {
+    fetch(`/pouch/delete/${id}/${linkId}`, {
       method: "DELETE",
       body: JSON.stringify(id)
     })
@@ -160,18 +160,18 @@ export function onSubmitDelete(e) {
         return response.json();
       })
       .then(json => {
-        dispatch(deleteFromPocket(json));
+        dispatch(deleteFromPouch(json));
       })
       .catch(error => {
         dispatch(getFailure(error));
       });
   };
 }
-export function getInitialPockets() {
+export function getInitialPouches() {
   return dispatch => {
     dispatch(getRequest());
 
-    fetch("/api/pockets")
+    fetch("/api/pouches")
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -188,14 +188,14 @@ export function getInitialPockets() {
   };
 }
 
-export function createAPocket(data) {
+export function createAPouch(data) {
   var myHeaders = new Headers();
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
     dispatch(getRequest());
 
-    fetch("/newpocket", {
+    fetch("/newPouch", {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -210,7 +210,7 @@ export function createAPocket(data) {
         return response.json();
       })
       .then(json => {
-        dispatch(getOnePocket(json.id));
+        dispatch(getOnePouch(json.id));
       })
       .catch(error => {
         dispatch(getFailure(error));
