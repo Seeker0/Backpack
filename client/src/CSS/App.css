@@ -33,21 +33,31 @@ body {
 #welcome {
   font-family: "Supermercado One", cursive;
   color: black;
+  font-size: 50px;
 }
 
 #welcome-body {
   font-family: "Kalam", cursive;
   color: black;
+  font-size: 24px;
 }
 
 .App-intro {
   font-size: large;
 }
 
-.btn,
+/* .btn,
 .btn:hover {
   border: black solid 2px;
   border-radius: 15px;
+} */
+
+#not-found {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 100%;
 }
 
 @keyframes App-logo-spin {
