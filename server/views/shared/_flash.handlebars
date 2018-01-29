@@ -1,0 +1,11 @@
+
+{{#each getMessages as |messages key| }}
+  {{#each messages as |message| }}
+    <div class="alert alert-{{ bootstrapAlertClassFor key }} alert-dismissible text-center" role="alert" style="border-radius: 0;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {{ message }}
+    </div>
+  {{/each }}
+{{/each }}
