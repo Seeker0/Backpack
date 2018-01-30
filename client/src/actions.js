@@ -1,9 +1,11 @@
 export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
 export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
+
 export const GET_POUCH_REQUEST = "GET_POUCH_REQUEST";
 export const GET_POUCH_SUCCESS = "GET_POUCH_SUCCESS";
 export const GET_POUCH_FAILURE = "GET_POUCH_FAILURE";
+
 export const NEW_POUCH_REQUEST = "NEW_POUCH_REQUEST";
 export const NEW_POUCH_SUCCESS = "NEW_POUCH_SUCCESS";
 export const NEW_POUCH_FAILURE = "NEW_POUCH_FAILURE";
@@ -12,12 +14,18 @@ export const UPDATE_POUCH_REQUEST = "UPDATE_POUCH_REQUEST";
 export const UPDATE_POUCH_SUCCESS = "UPDATE_POUCH_SUCCESS";
 export const UPDATE_POUCH_FAILURE = "UPDATE_POUCH_FAILURE";
 
+export const SET_CURRENT_POUCH_SUCCESS = "SET_CURRENT_POUCH_SUCCESS";
+export const SET_CURRENT_POUCH_REQUEST = "SET_CURRENT_POUCH_REQUEST";
+export const SET_CURRENT_POUCH_FAILURE = "SET_CURRENT_POUCH_FAILURE";
+
 export const DELETE_POUCH_REQUEST = "DELETE_POUCH_REQUEST";
 export const DELETE_POUCH_SUCCESS = "DELETE_POUCH_SUCCESS";
 export const DELETE_POUCH_FAILURE = "DELETE_POUCH_FAILURE";
+
 export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
 export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
 export const NEW_ITEM_FAILURE = "NEW_ITEM_FAILURE";
+
 export const DELETE_ITEM_REQUEST = "DELETE_ITEM_REQUEST";
 export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
 export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
@@ -37,10 +45,6 @@ export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 export const USER_DELETE_REQUEST = "USER_DELETE_REQUEST";
 export const USER_DELETE_SUCCESS = "USER_DELETE_SUCCESS";
 export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
-
-export const GET_ITEM_LIST_SUCCESS = "GET_ITEM_LIST_SUCCESS";
-export const GET_ITEM_LIST_FAILURE = "GET_ITEM_LIST_FAILURE";
-export const GET_ITEM_LIST_REQUEST = "GET_ITEM_LIST_REQUEST";
 
 export const GET_ITEM_SUCCESS = "GET_ITEM_SUCCESS";
 export const GET_ITEM_FAILURE = "GET_ITEM_FAILURE";
@@ -205,22 +209,22 @@ export function deleteItemRequest() {
   };
 }
 
-export function getItemListRequest() {
+export function setCurrentPouchRequest() {
   return {
-    type: GET_ITEM_LIST_REQUEST
+    type: SET_CURRENT_POUCH_REQUEST
   };
 }
 
-export function getItemListSuccess(data) {
+export function setCurrentPouchSuccess(data) {
   return {
-    type: GET_ITEM_LIST_SUCCESS,
+    type: SET_CURRENT_POUCH_SUCCESS,
     data
   };
 }
 
-export function getItemListFailure(error) {
+export function setCurrentPouchFailure(error) {
   return {
-    type: GET_ITEM_LIST_FAILURE,
+    type: SET_CURRENT_POUCH_FAILURE,
     error
   };
 }
@@ -387,6 +391,7 @@ export function newPouch(data) {
       })
       .then(json => {
         dispatch(newPouchSuccess(json));
+        dispatch(getUserPouches());
       })
       .catch(error => {
         dispatch(getFailure(error));
@@ -418,6 +423,8 @@ export function updatePouch(data) {
       })
       .then(json => {
         dispatch(updatePouchSuccess(json));
+        dispatch(getUserPouches());
+        dispatch(setCurrentPouch(json));
       })
       .catch(error => {
         dispatch(updateFailure(error));
@@ -447,10 +454,10 @@ export function deleteUser(data) {
   };
 }
 
-export function getItemList(data) {
+export function setCurrentPouch(data) {
   let pouchId = data.pouchId;
   return dispatch => {
-    dispatch(getItemListRequest());
+    dispatch(setCurrentPouchRequest());
 
     fetch(`/items/list/${pouchId}`, {
       mode: "cors"
@@ -460,10 +467,16 @@ export function getItemList(data) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
 
-        dispatch(getItemListSuccess(data));
+        return response.json();
+      })
+      .then(json => {
+        //data is a list of items
+        //pouchId
+        let data = { items: json, pouchId };
+        dispatch(setCurrentPouchSuccess(data));
       })
       .catch(error => {
-        dispatch(getItemListFailure(error));
+        dispatch(setCurrentPouchFailure(error));
       });
   };
 }
