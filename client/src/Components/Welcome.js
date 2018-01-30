@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 
 import logo from "../images/logo.png";
 
+import LoginContainer from "../Containers/LoginContainer";
+
 import {
   Button,
   Container,
@@ -84,7 +86,10 @@ class Welcome extends PureComponent {
             Backpack graphic designed by Natkacheva / Freepik
           </a>
         </footer>
-        <Login isOpen={this.state.modalLogin} toggle={this.toggleLogin} />
+        <LoginContainer
+          isOpen={this.state.modalLogin}
+          toggle={this.toggleLogin}
+        />
         <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
         {/* <Modal
           className="modal-form"

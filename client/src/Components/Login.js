@@ -11,11 +11,23 @@ import {
   ModalFooter
 } from "reactstrap";
 
-const Login = ({ isOpen, toggle }) => {
+import ErrorMessage from "../Components/ErrorMessage";
+import SuccessMessage from "../Components/SuccessMessage";
+
+const Login = ({
+  isOpen,
+  toggle,
+  onChangeInput,
+  onSubmit,
+  success,
+  errors
+}) => {
   return (
     <Modal className="modal-form" isOpen={isOpen} toggle={toggle}>
       <ModalHeader>Login</ModalHeader>
       <Form>
+        <SuccessMessage success={success} />
+        <ErrorMessage errors={errors} />
         <FormGroup className="extraPadding">
           <Label for="username">Username: </Label>
           <Input
