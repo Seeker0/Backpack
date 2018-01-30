@@ -6,6 +6,7 @@ import LoginContainer from "../Containers/LoginContainer";
 import SignUp from "./SignUp";
 
 import { Button, Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -56,42 +57,45 @@ class Welcome extends PureComponent {
               <div className="center">
                 <Row>
                   <Col xs="12">
-                    <p id="action-text1">Start packing your backpack!</p>
+                    <p id="action-text">Start packing your backpack!</p>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs="3">
+                  <Col xs="12">
                     <Button
                       color="primary"
                       size="lg"
                       onClick={this.toggleSignUp}
-                      className="button-font-right button"
+                      className="button"
                     >
                       Sign Up
-                    </Button>
-                  </Col>
-                  <Col xs="3">
-                    <Button
-                      color="info"
-                      size="lg"
-                      onClick={this.toggleLogin}
-                      className="button-font-right button"
-                    >
-                      Learn More
-                    </Button>
-                  </Col>
-                  <Col xs="3">
-                    <i className="fas fa-map-signs" />
-                  </Col>
-                  <Col xs="3">
+                    </Button>{" "}
+                    <i className="fas fa-map-signs" />{" "}
                     <Button
                       color="success"
                       size="lg"
                       onClick={this.toggleLogin}
-                      className="button-font-left button"
+                      className="button"
                     >
                       Log In
                     </Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs="12">
+                    <Link
+                      activeClassName="active"
+                      className="btn btn-info btn-lg"
+                      exact
+                      to="/learn"
+                    >
+                      {/* <Button
+                    color="info"
+                    size="lg"
+                    className="button-font-right button"
+                  > */}
+                      Learn More
+                    </Link>
                   </Col>
                 </Row>
               </div>
@@ -103,15 +107,13 @@ class Welcome extends PureComponent {
           toggle={this.toggleLogin}
         />
         <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
-        <Container>
-          <footer>
-            <p>
-              &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam
-              Langenfeld, Lakshmi Maduri, & Austin Smith <br />Left backpack
-              graphic designed by Natkacheva / Freepik
-            </p>
-          </footer>
-        </Container>
+        <footer>
+          <p>
+            &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,
+            Lakshmi Maduri, & Austin Smith <br />Left backpack graphic designed
+            by Natkacheva / Freepik
+          </p>
+        </footer>
       </div>
     );
   }

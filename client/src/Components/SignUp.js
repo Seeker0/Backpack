@@ -17,15 +17,6 @@ const SignUp = ({ isOpen, toggle }) => {
       <ModalHeader>Sign Up</ModalHeader>
       <Form>
         <FormGroup className="extra-padding">
-          <Label for="fname">First Name:</Label>
-          <Input
-            type="fname"
-            name="fname"
-            id="fname"
-            placeholder="first name"
-          />
-          <Label for="lname">Last Name:</Label>
-          <Input type="lname" name="lname" id="lname" placeholder="last name" />
           <Label for="email">Email:</Label>
           <Input type="email" name="email" id="email" placeholder="email" />
           <Label for="username">Username:</Label>

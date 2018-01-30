@@ -7,7 +7,7 @@ import SignUp from "./SignUp";
 
 import { Button, Container, Row, Col } from "reactstrap";
 
-class Welcome extends PureComponent {
+class Learn extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,7 +101,7 @@ class Welcome extends PureComponent {
               <div className="center">
                 <Row>
                   <Col xs="12">
-                    <p id="action-text1">Start packing your backpack!</p>
+                    <p id="action-text">Start packing your backpack!</p>
                   </Col>
                 </Row>
                 <Row>
@@ -186,18 +186,9 @@ class Welcome extends PureComponent {
           toggle={this.toggleLogin}
         />
         <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
-        <Container>
-          <footer>
-            <p>
-              &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam
-              Langenfeld, Lakshmi Maduri, & Austin Smith <br />Left backpack
-              graphic designed by Natkacheva / Freepik
-            </p>
-          </footer>
-        </Container>
       </div>
     );
   }
 }
 
-export default Welcome;
+export default Learn;

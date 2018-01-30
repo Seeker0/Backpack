@@ -46,6 +46,7 @@ body {
 
 .button {
   font-family: "Kalam", cursive;
+  margin-bottom: 40px;
 }
 
 .center {
@@ -68,26 +69,13 @@ body {
   text-align: left;
 }
 
-#action-text1 {
-  font-family: "Kalam", cursive;
-  color: black;
-  font-size: 40px;
-  padding-top: 30px;
-  padding-bottom: 0;
-  text-align: center;
-}
 #action-text {
   font-family: "Kalam", cursive;
   color: black;
   font-size: 40px;
+  padding-top: 15pxx;
+  padding-bottom: 0;
   text-align: center;
-}
-
-#or {
-  font-family: "Kalam", cursive;
-  color: black;
-  font-size: 20px;
-  text-align: right;
 }
 
 .left-padding {
@@ -119,10 +107,20 @@ ul {
   height: 100%;
 }
 
-footer {
+/* footer {
   padding-top: 50px;
   width: 100%;
   color: black;
   text-align: center;
-  border-top: 1px solid black;
+  margin-top:
+} */
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: black;
+  text-align: center;
 }
