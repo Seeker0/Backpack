@@ -567,16 +567,16 @@ return dispatch => {
 
     return fetch('/users/authenticate', requestOptions)
         .then(response => {
-            if (!response.ok) { 
+            if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
 
             return response.json();
         })
         .then(user => {
-        
+
             if (user && user.token) {
-              
+
                 localStorage.setItem('user', JSON.stringify(user));
             }
 
