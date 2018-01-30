@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 
 import mainHeader from "../images/header.png";
 
-import LoginContainer from "../Containers/LoginContainer";
-import SignUp from "./SignUp";
+import { LoginContainer } from "../Containers";
+import { SignUp } from "/";
 
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -83,12 +83,7 @@ class Welcome extends PureComponent {
                 </Row>
                 <Row>
                   <Col xs="12">
-                    <Link
-                      activeClassName="active"
-                      className="btn btn-info btn-lg"
-                      exact
-                      to="/learn"
-                    >
+                    <Link className="btn btn-info btn-lg" to="/learn">
                       {/* <Button
                     color="info"
                     size="lg"

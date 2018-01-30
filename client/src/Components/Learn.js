@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 
 import mainHeader from "../images/header.png";
 
-import LoginContainer from "../Containers/LoginContainer";
-import SignUp from "./SignUp";
+import { LoginContainer } from "../Containers";
+import { SignUp } from "/";
 
 import { Button, Container, Row, Col } from "reactstrap";
 
@@ -49,53 +49,51 @@ class Learn extends PureComponent {
             <Col lg={{ size: 4, offset: 1 }} xs="6">
               <p id="welcome-body">
                 The easiest way to keep track of everything you find online:
-                <ul>
-                  <li>
-                    <i className="fas fa-caret-right" /> videos{" "}
-                    <i className="fab fa-youtube" />{" "}
-                    <i className="fab fa-vimeo" /> <i className="fas fa-film" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> music{" "}
-                    <i className="fab fa-soundcloud" />{" "}
-                    <i className="fas fa-headphones" />{" "}
-                    <i className="fas fa-music" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> articles{" "}
-                    <i className="fas fa-newspaper" />{" "}
-                    <i className="fab fa-medium" />{" "}
-                    <i className="fab fa-wordpress" />{" "}
-                    <i className="fab fa-wikipedia-w" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> products{" "}
-                    <i className="fab fa-amazon" />{" "}
-                    <i className="fab fa-etsy" />{" "}
-                    <i className="fab fa-pinterest" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> photos{" "}
-                    <i className="fas fa-image" />{" "}
-                    <i className="fas fa-camera-retro" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> reviews{" "}
-                    <i className="fab fa-yelp" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> books{" "}
-                    <i className="fas fa-book" />
-                  </li>
-                  <li>
-                    <i className="fas fa-caret-right" /> sites{" "}
-                    <i className="fab fa-chrome" />{" "}
-                    <i className="fab fa-firefox" />{" "}
-                    <i className="fab fa-safari" />{" "}
-                    <i className="fab fa-edge" />
-                  </li>
-                </ul>
               </p>
+              <ul id="welcome-list">
+                <li>
+                  <i className="fas fa-caret-right" /> videos{" "}
+                  <i className="fab fa-youtube" />{" "}
+                  <i className="fab fa-vimeo" /> <i className="fas fa-film" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> music{" "}
+                  <i className="fab fa-soundcloud" />{" "}
+                  <i className="fas fa-headphones" />{" "}
+                  <i className="fas fa-music" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> articles{" "}
+                  <i className="fas fa-newspaper" />{" "}
+                  <i className="fab fa-medium" />{" "}
+                  <i className="fab fa-wordpress" />{" "}
+                  <i className="fab fa-wikipedia-w" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> products{" "}
+                  <i className="fab fa-amazon" /> <i className="fab fa-etsy" />{" "}
+                  <i className="fab fa-pinterest" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> photos{" "}
+                  <i className="fas fa-image" />{" "}
+                  <i className="fas fa-camera-retro" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> reviews{" "}
+                  <i className="fab fa-yelp" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> books{" "}
+                  <i className="fas fa-book" />
+                </li>
+                <li>
+                  <i className="fas fa-caret-right" /> sites{" "}
+                  <i className="fab fa-chrome" />{" "}
+                  <i className="fab fa-firefox" />{" "}
+                  <i className="fab fa-safari" /> <i className="fab fa-edge" />
+                </li>
+              </ul>
             </Col>
             <Col lg={{ size: 6, offset: 1 }} xs="6">
               <div className="center">

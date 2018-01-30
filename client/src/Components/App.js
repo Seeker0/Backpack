@@ -3,16 +3,9 @@ import img404 from "../images/404.jpg";
 import "../CSS/App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import Welcome from "./Welcome";
-import WelcomeContainer from "../Containers/WelcomeContainer";
-import LearnContainer from "../Containers/LearnContainer";
+import { WelcomeContainer, LearnContainer } from "../Containers";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Switch
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends PureComponent {
   render() {

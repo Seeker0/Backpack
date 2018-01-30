@@ -11,8 +11,7 @@ import {
   ModalFooter
 } from "reactstrap";
 
-import ErrorMessage from "../Components/ErrorMessage";
-import SuccessMessage from "../Components/SuccessMessage";
+import { ErrorMessage, SuccessMessage } from "../Components";
 
 const Login = ({
   isOpen,

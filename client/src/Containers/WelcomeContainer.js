@@ -1,8 +1,7 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+//import { bindActionCreators } from "redux";
 
-import Welcome from "../Components/Welcome";
+import { Welcome } from "../Components";
 //import { getBoards, createBoard } from "../actions";
 
 const mapStateToProps = state => {

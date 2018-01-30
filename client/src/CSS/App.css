@@ -69,6 +69,13 @@ body {
   text-align: left;
 }
 
+#welcome-list {
+  font-family: "Kalam", cursive;
+  color: black;
+  font-size: 26px;
+  text-align: left;
+}
+
 #action-text {
   font-family: "Kalam", cursive;
   color: black;
