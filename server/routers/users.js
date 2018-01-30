@@ -28,21 +28,6 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
-  try {
-    let { username, email, password } = req.body;
-    let user = await new User({ username, email, password, pouches: [] });
-    user = await User.save();
-    if (!user) {
-      res.send(500);
-    }
-    res.json(user);
-  } catch (e) {
-    res.status(500);
-    next(e);
-  }
-});
-
 router.delete("/:id", async (req, res, next) => {
   try {
     let user = await User.findById(req.params.id);

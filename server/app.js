@@ -9,9 +9,10 @@ var bluebird = require("bluebird");
 mongoose.Promise = bluebird;
 
 // ----------------------------------------
-// App Variables
+// Model Schemas
 // ----------------------------------------
-app.locals.appName = "My App";
+
+const User = require("./models");
 
 // ----------------------------------------
 // ENV
@@ -84,18 +85,78 @@ const morganToolkit = require("morgan-toolkit")(morgan);
 app.use(morganToolkit());
 
 // ----------------------------------------
+// Passport
+// ----------------------------------------
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+app.use(passport.initialize());
+
+// ----------------------------------------
+// Local Strategy
+// ----------------------------------------
+
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username }, (err, user) => {
+      if (err) return done(err);
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: "Invalid Password!" });
+      }
+      if (!user) {
+        return done(null, false, { message: "Invalid Username!" });
+      }
+      return done(null, user);
+    });
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
+// ----------------------------------------
+// login/logout Middlewares
+// ----------------------------------------
+
+const loggedInOnly = (req, res, next) => {
+  return req.session.passport && req.session.passport.user
+    ? next()
+    : res.json({ message: "Logged In Only" });
+};
+
+const loggedOutOnly = (req, res, next) => {
+  return !req.user ? next() : res.json({ message: "Logged Out Only" });
+};
+
+// ----------------------------------------
 // Routes
 // ----------------------------------------
 
-const { users, pouches, items } = require("./routers");
+const { users, pouches, items, login, logout, register } = require("./routers");
 
-app.use("/users", users);
-app.use("/pouches", pouches);
-app.use("/items", items);
+app.use("/users", loggedInOnly, users);
+app.use("/pouches", loggedInOnly, pouches);
+app.use("/items", loggedInOnly, items);
+app.use("/login", loggedOutOnly, login);
+app.use("/logout", loggedInOnly, logout);
+app.use("/register", loggedOutOnly, register);
 
-app.use("/", (req, res) => {
-  req.flash("Hi!");
-  res.render("welcome/index");
+let currentUser;
+
+app.get("/", loggedInOnly, async (req, res, next) => {
+  try {
+    currentUser = await User.findById(req.session.passport.user);
+    res.json(currentUser);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // ----------------------------------------
