@@ -1,18 +1,19 @@
 import * as Actions from "./actions";
 
 const initialState = {
-  pockets: [],
+  pouches: [],
   isFetching: false,
   error: null,
-  currentPocket: undefined
+  currentpouch: undefined
 };
 
-export function Pockets(state = initialState, action) {
+export function backpack(state = initialState, action) {
+  let index;
   switch (action.type) {
     case Actions.GET__SUCCESS:
       return {
         ...state,
-        pockets: action.data,
+        pouches: action.data,
         isFetching: false
       };
     case Actions.GET__REQUEST:
@@ -21,18 +22,16 @@ export function Pockets(state = initialState, action) {
         isFetching: true,
         error: null
       };
-    case Actions.DELETE__POCKET:
-      let index;
-
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data) {
+    case Actions.DELETE__POUCH:
+      for (var i = 0; i < state.pouches.length; i++) {
+        if (state.pouches[i].id === action.data) {
           index = i;
         }
         return {
           ...state,
-          pockets: [
-            ...state.pockets,
-            state.pockets.slice(0, index).concat(state.pockets.slice(index + 1))
+          pouches: [
+            ...state.pouches,
+            state.pouches.slice(0, index).concat(state.pouches.slice(index + 1))
           ],
           isFetching: false,
           error: null
@@ -45,44 +44,40 @@ export function Pockets(state = initialState, action) {
         isFetching: false,
         error: action.error
       };
-    case Actions.GET__POCKET:
+    case Actions.GET__POUCH:
       return {
         ...state,
 
-        currentPocket: action.data,
+        currentpouch: action.data,
         isFetching: false
       };
-    case Actions.CREATE__POCKET:
+    case Actions.CREATE__POUCH:
       return {
         ...state,
-        pockets: [...state.pockets, action.data],
+        pouches: [...state.pouches, action.data],
         isFetching: false
       };
 
-    case Actions.ADDTO__POCKET:
-      let index;
-
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data.id) {
+    case Actions.ADDTO__POUCH:
+      for (var i = 0; i < state.pouches.length; i++) {
+        if (state.pouches[i].id === action.data.id) {
           index = i;
         }
         return {
           ...state,
-          pockets: [...state.pockets[index].links, action.data.links],
+          pouches: [...state.pouches[index].links, action.data.links],
           isFetching: false
         };
       }
 
-    case Actions.DELETEFROM__POCKET:
-      let index;
-
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data.id) {
+    case Actions.DELETEFROM__POUCH:
+      for (var i = 0; i < state.pouches.length; i++) {
+        if (state.pouches[i].id === action.data.id) {
           index = i;
         }
         return {
           ...state,
-          pockets: [...state.pockets[index].links, action.data.links],
+          pouches: [...state.pouches[index].links, action.data.links],
           isFetching: false
         };
       }

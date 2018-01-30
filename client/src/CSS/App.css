@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css?family=Kalam");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+
+body {
+  background: url(../images/mountains.png);
+  background-size: cover;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 150px;
+  float: right;
+}
+
+.App-header {
+  height: 190px;
+  padding: 20px;
+  color: black;
+  border-bottom: 5px black solid;
+}
+
+.App-title {
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 100px;
+  padding-top: 15px;
+  float: left;
+}
+
+.modal-form {
+  font-family: "Kalam", cursive;
+}
+
+.extraPadding {
+  padding: 15px;
+}
+
+.SignUpPadding {
+  padding: 10px;
+}
+
+#welcome-body {
+  font-family: "Kalam", cursive;
+  color: black;
+  font-size: 24px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+/* .btn,
+.btn:hover {
+  border: black solid 2px;
+  border-radius: 15px;
+} */
+
+#not-found {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 100%;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
