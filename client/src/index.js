@@ -1,8 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import App from "./Components/App";
+import registerServiceWorker from "./registerServiceWorker";
+import "bootstrap/dist/css/bootstrap.css";
+import "./CSS/index.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+
+import { backpack } from "./reducers";
+
+let store = createStore(backpack, applyMiddleware(logger, thunk));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();
