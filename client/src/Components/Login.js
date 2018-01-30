@@ -28,7 +28,7 @@ const Login = ({
       <Form>
         <SuccessMessage success={success} />
         <ErrorMessage errors={errors} />
-        <FormGroup className="extraPadding">
+        <FormGroup className="extra-padding">
           <Label for="username">Username: </Label>
           <Input
             type="text"

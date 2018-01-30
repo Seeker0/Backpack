@@ -2,55 +2,107 @@
 @import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
 
 body {
-  background: url(../images/mountains.png);
-  background-size: cover;
+  background: #908b94 url(../images/mountains.png) no-repeat fixed center top;
+  /* background-size: 100%;
+  background-repeat: no-repeat; */
 }
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 150px;
-  float: right;
+.main-header {
+  height: 170px;
 }
 
 .App-header {
-  height: 190px;
+  height: 240px;
   padding: 20px;
   color: black;
-  border-bottom: 5px black solid;
+  border-bottom: 3px black solid;
 }
 
-.App-title {
+.App-motto {
+  font-family: "Kalam", cursive;
+}
+
+/* .App-title {
   font-family: "Gloria Hallelujah", cursive;
   font-size: 100px;
   padding-top: 15px;
   float: left;
-}
+} */
 
 .modal-form {
   font-family: "Kalam", cursive;
 }
 
-.extraPadding {
+.button-font-right {
+  float: right;
+}
+
+.button-font-left {
+  float: left;
+}
+
+.button {
+  font-family: "Kalam", cursive;
+}
+
+.center {
+  text-align: center;
+}
+
+.fa-map-signs {
+  font-size: 50px;
+}
+
+.extra-padding {
   padding: 15px;
 }
 
 #welcome-body {
   font-family: "Kalam", cursive;
   color: black;
-  font-size: 24px;
+  font-size: 26px;
+  padding-top: 30px;
+  text-align: left;
+}
+
+#action-text1 {
+  font-family: "Kalam", cursive;
+  color: black;
+  font-size: 40px;
+  padding-top: 30px;
+  padding-bottom: 0;
+  text-align: center;
+}
+#action-text {
+  font-family: "Kalam", cursive;
+  color: black;
+  font-size: 40px;
+  text-align: center;
+}
+
+.left-padding {
+  padding-left: 20px;
+}
+
+#list1 {
+  font-family: "Kalam", cursive;
+  color: black;
+  font-size: 22px;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
 }
 
 .App-intro {
   font-size: large;
 }
-
-/* .btn,
-.btn:hover {
-  border: black solid 2px;
-  border-radius: 15px;
-} */
 
 #not-found {
   display: block;
@@ -61,10 +113,9 @@ body {
 }
 
 footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
+  padding-top: 50px;
+  width: 100%;
+  color: black;
   text-align: center;
+  border-top: 1px solid black;
 }

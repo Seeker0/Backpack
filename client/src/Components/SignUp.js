@@ -16,7 +16,7 @@ const SignUp = ({ isOpen, toggle }) => {
     <Modal className="modal-form" isOpen={isOpen} toggle={toggle}>
       <ModalHeader>Sign Up</ModalHeader>
       <Form>
-        <FormGroup className="extraPadding">
+        <FormGroup className="extra-padding">
           <Label for="fname">First Name:</Label>
           <Input
             type="fname"
