@@ -1,20 +1,12 @@
 import React, { PureComponent } from "react";
 
-import logo from "../images/logo.png";
+import mainHeader from "../images/header.png";
 
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Modal,
-  ModalHeader,
-  ModalFooter
-} from "reactstrap";
+import { LoginContainer } from "../Containers";
+import { SignUp } from "/";
+
+import { Button, Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -51,115 +43,72 @@ class Welcome extends PureComponent {
       <div className="App">
         <header className="App-header">
           <Row>
-            <Col xs="4" />
-            <Col xs="1">
-              <img src={logo} className="App-logo" alt="logo" />
+            <Col lg={{ size: 6, offset: 3 }}>
+              <img src={mainHeader} className="main-header" alt="logo" />
+              <h3 className="App-motto">
+                Equipping you for all your digital treks.
+              </h3>
             </Col>
-            <Col xs="4">
-              <h1 className="App-title">Backpack</h1>
-            </Col>
-            <Col xs="3" />
           </Row>
         </header>
         <Container>
-          <p id="welcome-body">
-            The best way to collect and organize all the videos, photos, music,
-            websites, and articles you find online in one place that you can
-            carry with you wherever you go. Easily share or collaborate with
-            friends, family, or coworkers.
-          </p>
-          <Button color="primary" size="lg" onClick={this.toggleSignUp}>
-            Sign Up
-          </Button>{" "}
-          <Button color="success" size="lg" onClick={this.toggleLogin}>
-            Log In
-          </Button>
+          <Row>
+            <Col xs="12">
+              <div className="center">
+                <Row>
+                  <Col xs="12">
+                    <p id="action-text">Start packing your backpack!</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs="12">
+                    <Button
+                      color="primary"
+                      size="lg"
+                      onClick={this.toggleSignUp}
+                      className="button"
+                    >
+                      Sign Up
+                    </Button>{" "}
+                    <i className="fas fa-map-signs" />{" "}
+                    <Button
+                      color="success"
+                      size="lg"
+                      onClick={this.toggleLogin}
+                      className="button"
+                    >
+                      Log In
+                    </Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs="12">
+                    <Link className="btn btn-info btn-lg" to="/learn">
+                      {/* <Button
+                    color="info"
+                    size="lg"
+                    className="button-font-right button"
+                  > */}
+                      Learn More
+                    </Link>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          </Row>
         </Container>
-        <footer>
-          <p>&#169; Backpack (Jeff, Sam, Lakshmi, Elias, Austin)</p>
-          <a href="http://www.freepik.com">
-            Backpack graphic designed by Natkacheva / Freepik
-          </a>
-        </footer>
-        <Modal
-          className="modal-form"
+        <LoginContainer
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
-        >
-          <ModalHeader toggle={this.toggleLogin}>Login</ModalHeader>
-          <Form>
-            <FormGroup className="extraPadding">
-              <Label for="username">Username: </Label>
-              <Input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="enter your username here"
-              />
-              <Label for="password">Password: </Label>
-              <Input
-                type="text"
-                name="password"
-                id="password"
-                placeholder="enter your password here"
-              />
-            </FormGroup>
-          </Form>
-          <ModalFooter>
-            <Button color="success">Login</Button>{" "}
-            <Button color="secondary" onClick={this.toggleLogin}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
-
-        <Modal
-          className="modal-form"
-          isOpen={this.state.modalSignUp}
-          toggle={this.toggleSignUp}
-        >
-          <ModalHeader toggle={this.toggleSignUp}>Sign Up</ModalHeader>
-          <Form>
-            <FormGroup className="extraPadding">
-              <Label for="fname">First Name:</Label>
-              <Input
-                type="fname"
-                name="fname"
-                id="fname"
-                placeholder="first name"
-              />
-              <Label for="lname">Last Name:</Label>
-              <Input
-                type="lname"
-                name="lname"
-                id="lname"
-                placeholder="last name"
-              />
-              <Label for="email">Email:</Label>
-              <Input type="email" name="email" id="email" placeholder="email" />
-              <Label for="username">Username:</Label>
-              <Input
-                type="username"
-                name="username"
-                id="username"
-                placeholder="username"
-              />
-              <Label for="password">Password:</Label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password"
-              />
-            </FormGroup>
-          </Form>
-          <ModalFooter>
-            <Button color="primary">Sign Up</Button>{" "}
-            <Button color="secondary" onClick={this.toggleSignUp}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
+        />
+        <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
+        <footer>
+          <p>
+            &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,
+            Lakshmi Maduri, & Austin Smith <br />Left backpack graphic designed
+            by Natkacheva / Freepik
+          </p>
+        </footer>
       </div>
     );
   }
