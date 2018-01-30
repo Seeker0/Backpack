@@ -24,6 +24,20 @@ const ErrorMessage = ({ errors }) => {
     );
   }
 
+  if (errors.type === "email") {
+    return (
+      <Alert color="danger">The email should be of the form abc@xyz.com</Alert>
+    );
+  }
+
+  if (errors.type === "fname") {
+    return <Alert color="danger">The first name cannot be empty!</Alert>;
+  }
+
+  if (errors.type === "lname") {
+    return <Alert color="danger">The lname cannot be empty!</Alert>;
+  }
+
   return <Alert color="danger">Oops, looks like you have some errors...</Alert>;
 };
 

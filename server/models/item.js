@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Pocket = require('./pocket');
+let Pouch = require("./pouch");
 
 let ItemSchema = new Schema({
   itemName: String,
@@ -22,5 +22,5 @@ ItemSchema.statics.findOrCreate = async function(query, itemName) {
   }
 };
 
-var Item = mongoose.model('Item', ItemSchema);
+var Item = mongoose.model("Item", ItemSchema);
 module.exports = Item;

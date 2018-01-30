@@ -17,7 +17,7 @@ class LoginContainer extends Component {
     let usernameField = document.getElementById("username").value;
     let passwordField = document.getElementById("password").value;
     if (e.target.name === "username") {
-      if (!usernameField.length >= 6 && usernameField.length > 0) {
+      if (usernameField.length < 6 && usernameField.length > 0) {
         this.setState({
           errors: { type: "username" }
         });
@@ -47,15 +47,20 @@ class LoginContainer extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    if (
-      e.target.username.value.length > 0 &&
-      e.target.password.value.length > 0
-    ) {
+    console.log("State after login: ", this.state);
+    if (!Object.keys(this.state.errors).length) {
       this.formSuccess();
     } else {
       this.formError();
     }
+    // if (
+    //   e.target.username.value.length > 0 &&
+    //   e.target.password.value.length > 0
+    // ) {
+    //   this.formSuccess();
+    // } else {
+    //   this.formError();
+    // }
   };
 
   formSuccess = () => {
