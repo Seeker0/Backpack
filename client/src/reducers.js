@@ -1,4 +1,4 @@
-import * as Actions from "./actions";
+import * as Actions from './actions';
 
 const initialState = {
   pouches: [],
@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export function currentUser(state = initialState, action) {
-
+  let pouch;
   switch (action.type) {
     case Actions.GET_USER_POUCHES_REQUEST:
       //data is list of pouches {_id,name}
@@ -25,7 +25,6 @@ export function currentUser(state = initialState, action) {
         ...state,
 
         isFetching: { ...state.isFetching, pouches: true }
-
       };
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
@@ -35,7 +34,6 @@ export function currentUser(state = initialState, action) {
         isFetching: { ...state.isFetching, pouches: null },
         error: null
       };
-
 
     case Actions.GET_USER_POUCHES_FAILURE:
       return {
@@ -51,7 +49,7 @@ export function currentUser(state = initialState, action) {
       };
 
     case Actions.GET_POUCH_SUCCESS:
-      let pouch = action.data;
+      pouch = action.data;
       return {
         ...state,
         currentPouch: pouch,
@@ -60,7 +58,7 @@ export function currentUser(state = initialState, action) {
       };
 
     case Actions.GET_POUCH_FAILURE:
-      let pouch = action.data;
+      pouch = action.data;
       return {
         ...state,
         isFetching: { ...state.isFetching, pouch: null },
@@ -74,7 +72,7 @@ export function currentUser(state = initialState, action) {
       };
 
     case Actions.NEW_POUCH_SUCCESS:
-      let pouch = action.data;
+      pouch = action.data;
       return {
         ...state,
         currentPouch: pouch,
@@ -83,7 +81,7 @@ export function currentUser(state = initialState, action) {
       };
 
     case Actions.NEW_POUCH_FAILURE:
-      let pouch = action.data;
+      pouch = action.data;
       return {
         ...state,
         isFetching: { ...state.isFetching, newPouch: null },
@@ -103,7 +101,6 @@ export function currentUser(state = initialState, action) {
     case Actions.SET_CURRENT_POUCH_REQUEST:
       return {
         ...state,
-        e,
         error: null,
         isFetching: { ...state.isFetching, items: true }
       };
@@ -114,7 +111,6 @@ export function currentUser(state = initialState, action) {
         error: action.error,
         isFetching: { ...state.isFetching, items: null }
       };
-
 
     case Actions.UPDATE_POUCH_REQUEST:
       return {
@@ -158,15 +154,12 @@ export function currentUser(state = initialState, action) {
         error: action.error
       };
 
-
     case Actions.NEW_ITEM_REQUEST:
-
       return {
         ...state,
         isFetching: { ...state.isFetching, item: true },
         error: null
       };
-
 
     case Actions.NEW_ITEM_SUCCESS:
       return {
@@ -196,13 +189,12 @@ export function currentUser(state = initialState, action) {
         error: null
       };
 
-   case Actions.DELETE_ITEM_FAILURE:
+    case Actions.DELETE_ITEM_FAILURE:
       return {
         ...state,
         isFetching: { ...state.isFetching, item: false },
         error: action.error
-      };   
-
+      };
 
     default:
       return state;
