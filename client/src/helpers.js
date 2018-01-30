@@ -16,6 +16,18 @@ const formConstraints = {
   password: {
     presence: true,
     length: { minimum: 8 }
+  },
+  email: {
+    presence: true,
+    length: { minimum: 7 }
+  },
+  fname: {
+    presence: true,
+    length: { minimum: 2 }
+  },
+  lname: {
+    presence: true,
+    length: { minimum: 2 }
   }
 };
 

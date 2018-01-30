@@ -47,8 +47,8 @@ class LoginContainer extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    if (this.state.errors === {}) {
+    console.log("State after login: ", this.state);
+    if (!Object.keys(this.state.errors).length) {
       this.formSuccess();
     } else {
       this.formError();

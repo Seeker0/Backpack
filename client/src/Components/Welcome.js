@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import logo from "../images/logo.png";
 
 import LoginContainer from "../Containers/LoginContainer";
+import SignUpContainer from "../Containers/SignUpContainer";
 
 import {
   Button,
@@ -90,7 +91,10 @@ class Welcome extends PureComponent {
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
         />
-        <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
+        <SignUpContainer
+          isOpen={this.state.modalSignUp}
+          toggle={this.toggleSignUp}
+        />
         {/* <Modal
           className="modal-form"
           isOpen={this.state.modalLogin}

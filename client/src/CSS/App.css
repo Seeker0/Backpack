@@ -36,6 +36,10 @@ body {
   padding: 15px;
 }
 
+.SignUpPadding {
+  padding: 10px;
+}
+
 #welcome-body {
   font-family: "Kalam", cursive;
   color: black;
