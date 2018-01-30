@@ -1,0 +1,13 @@
+{
+  "development": {
+    "database": "pockets_development",
+    "host": "localhost"
+  },
+  "test": {
+    "database": "pockets_test",
+    "host": "localhost"
+  },
+  "production": {
+    "use_env_variable": "MONGODB_URI"
+  }
+}

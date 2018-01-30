@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^4.0.0",
@@ -19,9 +21,13 @@
     "express-flash-messages": "^0.1.1",
     "express-handlebars": "^3.0.0",
     "express-method-override-get-post-support": "^1.0.1",
+    "faker": "^4.1.0",
     "load-helpers": "^1.0.1",
     "lodash": "^4.17.4",
     "method-override": "^2.3.10",
+    "mongoose": "^5.0.2",
+    "mongoose-unique-validator": "^2.0.0",
+    "mongooseeder": "^2.0.6",
     "morgan": "^1.9.0",
     "morgan-toolkit": "^1.2.2"
   }
