@@ -1,12 +1,11 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 
-import mainHeader from "../images/header.png";
+import mainHeader from '../images/header.png';
 
-import { LoginContainer } from "../Containers";
-import { SignUp } from "/";
+import { LoginContainer, SignUpContainer } from '../Containers';
 
-import { Button, Container, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Button, Container, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -69,8 +68,8 @@ class Welcome extends PureComponent {
                       className="button"
                     >
                       Sign Up
-                    </Button>{" "}
-                    <i className="fas fa-map-signs" />{" "}
+                    </Button>{' '}
+                    <i className="fas fa-map-signs" />{' '}
                     <Button
                       color="success"
                       size="lg"
@@ -84,11 +83,6 @@ class Welcome extends PureComponent {
                 <Row>
                   <Col xs="12">
                     <Link className="btn btn-info btn-lg" to="/learn">
-                      {/* <Button
-                    color="info"
-                    size="lg"
-                    className="button-font-right button"
-                  > */}
                       Learn More
                     </Link>
                   </Col>
@@ -101,12 +95,14 @@ class Welcome extends PureComponent {
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
         />
-        <SignUp isOpen={this.state.modalSignUp} toggle={this.toggleSignUp} />
+        <SignUpContainer
+          isOpen={this.state.modalSignUp}
+          toggle={this.toggleSignUp}
+        />
         <footer>
           <p>
             &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,
-            Lakshmi Maduri, & Austin Smith <br />Left backpack graphic designed
-            by Natkacheva / Freepik
+            Lakshmi Maduri, & Austin Smith
           </p>
         </footer>
       </div>
