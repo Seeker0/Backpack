@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
-const uniqueValidator = require('mongoose-unique-validator');
+const bcrypt = require("bcrypt");
+const uniqueValidator = require("mongoose-unique-validator");
 
 let UserSchema = new Schema({
-  userName: String,
+  username: String,
   email: String,
   passwordHash: { type: String },
-  pockets: [{ type: Schema.Types.ObjectId, ref: 'Pocket' }]
+  pouches: [{ type: Schema.Types.ObjectId, ref: "Pouch" }]
 });
 
 UserSchema.plugin(uniqueValidator);
@@ -16,7 +16,7 @@ UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 };
 
-UserSchema.virtual('password')
+UserSchema.virtual("password")
   .get(function() {
     return this._password;
   })
@@ -39,5 +39,5 @@ UserSchema.statics.findOrCreate = async function(query, username) {
   }
 };
 
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model("User", UserSchema);
 module.exports = User;
