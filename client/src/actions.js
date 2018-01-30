@@ -1,6 +1,9 @@
+
 export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
 export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
+
+
 
 export const GET_POUCH_REQUEST = "GET_POUCH_REQUEST";
 export const GET_POUCH_SUCCESS = "GET_POUCH_SUCCESS";
@@ -56,6 +59,7 @@ export function userDeleteRequest() {
   };
 }
 
+
 export function userDeleteSuccess() {
   return {
     type: USER_DELETE_SUCCESS
@@ -89,12 +93,14 @@ export function deletePouchFailure(error) {
   };
 }
 
+
 export function newPouchSuccess(data) {
   return {
     type: NEW_POUCH_SUCCESS,
     data
   };
 }
+
 
 export function newPouchFailure(error) {
   return {
@@ -115,6 +121,7 @@ export function updatePouchSuccess(data) {
     data
   };
 }
+
 
 export function updatePouchFailure(error) {
   return {
@@ -254,6 +261,7 @@ export function getPouch(id) {
     dispatch(getPouchRequest());
 
     fetch(`/pouches/${id}`)
+
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -262,7 +270,9 @@ export function getPouch(id) {
         return response.json();
       })
       .then(json => {
+
         dispatch(getPouchSuccess(json));
+
       })
       .catch(error => {
         dispatch(getPouchFailure(error));
@@ -294,8 +304,10 @@ export function newItem(data) {
         return response.json();
       })
       .then(json => {
+
         dispatch(newItemSuccess(json));
         dispatch(setCurrentPouch({pouchId}))
+
       })
       .catch(error => {
         dispatch(newItemFailure(error));
@@ -305,9 +317,11 @@ export function newItem(data) {
 
 export function deleteItem(data) {
   return dispatch => {
+
     dispatch(deleteItemRequest());
     let { itemId, pouchId } = data;
     fetch(`/items/${itemId}`, {
+
       method: "DELETE",
       body: JSON.stringify({ pouchId })
     })
@@ -333,8 +347,10 @@ export function deletePouch(data) {
   return dispatch => {
     dispatch(deletePouchRequest());
 
+
     fetch(`/pouches/${id}`, {
       method: "DELETE"
+
     })
       .then(response => {
         if (!response.ok) {
@@ -344,19 +360,25 @@ export function deletePouch(data) {
         return response.json();
       })
       .then(json => {
+
         dispatch(deletePouchSuccess(json));
         dispatch(getUserPouches());
+
       })
       .catch(error => {
         dispatch(deletePouchFailure(error));
       });
   };
 }
+
 export function getUserPouches() {
+
   return dispatch => {
     dispatch(getUserPouchesRequest());
 
+
     fetch("/pouches/currentUser")
+
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -373,14 +395,18 @@ export function getUserPouches() {
   };
 }
 
+
 export function newPouch(data) {
+
   var myHeaders = new Headers();
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
     dispatch(newPouchRequest());
 
+
     fetch("/pouches", {
+
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -395,8 +421,10 @@ export function newPouch(data) {
         return response.json();
       })
       .then(json => {
+
         dispatch(newPouchSuccess(json));
         dispatch(getUserPouches());
+
       })
       .catch(error => {
         dispatch(getFailure(error));

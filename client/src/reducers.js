@@ -2,6 +2,7 @@ import * as Actions from "./actions";
 
 const initialState = {
   pouches: [],
+
   currentPouch: null,
   currentItems: [],
   isFetching: {
@@ -16,12 +17,15 @@ const initialState = {
 };
 
 export function currentUser(state = initialState, action) {
+
   switch (action.type) {
     case Actions.GET_USER_POUCHES_REQUEST:
       //data is list of pouches {_id,name}
       return {
         ...state,
+
         isFetching: { ...state.isFetching, pouches: true }
+
       };
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
@@ -31,6 +35,7 @@ export function currentUser(state = initialState, action) {
         isFetching: { ...state.isFetching, pouches: null },
         error: null
       };
+
 
     case Actions.GET_USER_POUCHES_FAILURE:
       return {
@@ -110,6 +115,7 @@ export function currentUser(state = initialState, action) {
         isFetching: { ...state.isFetching, items: null }
       };
 
+
     case Actions.UPDATE_POUCH_REQUEST:
       return {
         ...state,
@@ -152,12 +158,15 @@ export function currentUser(state = initialState, action) {
         error: action.error
       };
 
+
     case Actions.NEW_ITEM_REQUEST:
+
       return {
         ...state,
         isFetching: { ...state.isFetching, item: true },
         error: null
       };
+
 
     case Actions.NEW_ITEM_SUCCESS:
       return {
@@ -193,6 +202,7 @@ export function currentUser(state = initialState, action) {
         isFetching: { ...state.isFetching, item: false },
         error: action.error
       };   
+
 
     default:
       return state;

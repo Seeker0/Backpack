@@ -18,7 +18,7 @@ class App extends PureComponent {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Welcome} />
+          <Route exact path="/" component={WelcomeContainer} />
           <Route
             render={() => (
               <img id="not-found" src={img404} alt="404 page not found" />
