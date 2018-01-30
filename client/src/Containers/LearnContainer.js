@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 //import { bindActionCreators } from "redux";
 
-import { Welcome } from "../Components";
+import { Learn } from "../Components";
 //import { getBoards, createBoard } from "../actions";
 
 const mapStateToProps = state => {
@@ -21,6 +21,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const WelcomeContainer = connect(mapStateToProps, mapDispatchToProps)(Welcome);
+const LearnContainer = connect(mapStateToProps, mapDispatchToProps)(Learn);
 
-export default WelcomeContainer;
+export default LearnContainer;
