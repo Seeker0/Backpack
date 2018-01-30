@@ -1,91 +1,209 @@
 import * as Actions from "./actions";
 
 const initialState = {
-  pockets: [],
-  isFetching: false,
-  error: null,
-  currentPocket: undefined
+  pouches: [],
+
+  currentPouch: null,
+  currentItems: [],
+  isFetching: {
+    user: null,
+    pouch: null,
+    pouches: null,
+    items: null,
+    item: null,
+    newPouch: null
+  },
+  error: null
 };
 
-export function Pockets(state = initialState, action) {
+export function currentUser(state = initialState, action) {
+
   switch (action.type) {
-    case Actions.GET__SUCCESS:
+    case Actions.GET_USER_POUCHES_REQUEST:
+      //data is list of pouches {_id,name}
       return {
         ...state,
-        pockets: action.data,
-        isFetching: false
+
+        isFetching: { ...state.isFetching, pouches: true }
+
       };
-    case Actions.GET__REQUEST:
+    case Actions.GET_USER_POUCHES_SUCCESS:
+      let pouches = action.data;
       return {
         ...state,
-        isFetching: true,
+        pouches,
+        isFetching: { ...state.isFetching, pouches: null },
         error: null
       };
-    case Actions.DELETE__POCKET:
-      let index;
 
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data) {
-          index = i;
-        }
-        return {
-          ...state,
-          pockets: [
-            ...state.pockets,
-            state.pockets.slice(0, index).concat(state.pockets.slice(index + 1))
-          ],
-          isFetching: false,
-          error: null
-        };
-      }
 
-    case Actions.GET__FAILURE:
+    case Actions.GET_USER_POUCHES_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        isFetching: { ...state.isFetching, pouches: null },
         error: action.error
       };
-    case Actions.GET__POCKET:
+
+    case Actions.GET_POUCH_REQUEST:
       return {
         ...state,
-
-        currentPocket: action.data,
-        isFetching: false
+        isFetching: { ...state.isFetching, pouch: true }
       };
-    case Actions.CREATE__POCKET:
+
+    case Actions.GET_POUCH_SUCCESS:
+      let pouch = action.data;
       return {
         ...state,
-        pockets: [...state.pockets, action.data],
-        isFetching: false
+        currentPouch: pouch,
+        isFetching: { ...state.isFetching, pouch: null },
+        error: null
       };
 
-    case Actions.ADDTO__POCKET:
-      let index;
+    case Actions.GET_POUCH_FAILURE:
+      let pouch = action.data;
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: null },
+        error: action.error
+      };
 
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data.id) {
-          index = i;
-        }
-        return {
-          ...state,
-          pockets: [...state.pockets[index].links, action.data.links],
-          isFetching: false
-        };
-      }
+    case Actions.NEW_POUCH_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, newPouch: true }
+      };
 
-    case Actions.DELETEFROM__POCKET:
-      let index;
+    case Actions.NEW_POUCH_SUCCESS:
+      let pouch = action.data;
+      return {
+        ...state,
+        currentPouch: pouch,
+        isFetching: { ...state.isFetching, newPouch: null },
+        error: null
+      };
 
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data.id) {
-          index = i;
-        }
-        return {
-          ...state,
-          pockets: [...state.pockets[index].links, action.data.links],
-          isFetching: false
-        };
-      }
+    case Actions.NEW_POUCH_FAILURE:
+      let pouch = action.data;
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, newPouch: null },
+        error: action.error
+      };
+
+    case Actions.SET_CURRENT_POUCH_SUCCESS:
+      let pouchId = action.data.pouchId;
+      let items = action.data.items;
+      let currentPouch = state.pouches.find(pouch => pouch._id === pouchId);
+      return {
+        ...state,
+        currentItems: items,
+        currentPouch
+      };
+
+    case Actions.SET_CURRENT_POUCH_REQUEST:
+      return {
+        ...state,
+        e,
+        error: null,
+        isFetching: { ...state.isFetching, items: true }
+      };
+
+    case Actions.SET_CURRENT_POUCH_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isFetching: { ...state.isFetching, items: null }
+      };
+
+
+    case Actions.UPDATE_POUCH_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: true },
+        error: null
+      };
+
+    case Actions.UPDATE_POUCH_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
+        error: null
+      };
+
+    case Actions.UPDATE_POUCH_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
+        error: action.error
+      };
+
+    case Actions.DELETE_POUCH_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: true },
+        error: null
+      };
+
+    case Actions.DELETE_POUCH_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
+        error: null
+      };
+
+    case Actions.DELETE_POUCH_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
+        error: action.error
+      };
+
+
+    case Actions.NEW_ITEM_REQUEST:
+
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: true },
+        error: null
+      };
+
+
+    case Actions.NEW_ITEM_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: null
+      };
+
+    case Actions.NEW_ITEM_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: action.error
+      };
+
+    case Actions.DELETE_ITEM_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: true },
+        error: null
+      };
+
+    case Actions.DELETE_ITEM_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: null
+      };
+
+   case Actions.DELETE_ITEM_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: action.error
+      };   
+
+
     default:
       return state;
   }
