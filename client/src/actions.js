@@ -271,6 +271,8 @@ export function getPouch(id) {
 }
 
 export function newItem(data) {
+  let item = data.item;
+  let pouchId = data.pouchId;
   var myHeaders = new Headers();
 
   myHeaders.append("content-type", "application/json");
@@ -293,6 +295,7 @@ export function newItem(data) {
       })
       .then(json => {
         dispatch(newItemSuccess(json));
+        dispatch(setCurrentPouch({pouchId}))
       })
       .catch(error => {
         dispatch(newItemFailure(error));
@@ -317,6 +320,7 @@ export function deleteItem(data) {
       })
       .then(json => {
         dispatch(deleteItemSuccess(json));
+        dispatch(setCurrentPouch({pouchId})
       })
       .catch(error => {
         dispatch(deleteItemFailure(error));
@@ -341,6 +345,7 @@ export function deletePouch(data) {
       })
       .then(json => {
         dispatch(deletePouchSuccess(json));
+        dispatch(getUserPouches());
       })
       .catch(error => {
         dispatch(deletePouchFailure(error));
@@ -424,7 +429,7 @@ export function updatePouch(data) {
       .then(json => {
         dispatch(updatePouchSuccess(json));
         dispatch(getUserPouches());
-        dispatch(setCurrentPouch(json));
+        dispatch(setCurrentPouch({pouchId:json._id}));
       })
       .catch(error => {
         dispatch(updateFailure(error));

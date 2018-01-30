@@ -110,71 +110,90 @@ export function currentUser(state = initialState, action) {
         isFetching: { ...state.isFetching, items: null }
       };
 
-    case Actions.DELETE__POCKET:
-      let index;
-
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data) {
-          index = i;
-        }
-        return {
-          ...state,
-          pockets: [
-            ...state.pockets,
-            state.pockets.slice(0, index).concat(state.pockets.slice(index + 1))
-          ],
-          isFetching: false,
-          error: null
-        };
-      }
-
-    case Actions.GET__FAILURE:
+    case Actions.UPDATE_POUCH_REQUEST:
       return {
         ...state,
-        isFetching: false,
+        isFetching: { ...state.isFetching, pouch: true },
+        error: null
+      };
+
+    case Actions.UPDATE_POUCH_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
+        error: null
+      };
+
+    case Actions.UPDATE_POUCH_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
         error: action.error
       };
-    case Actions.GET__POCKET:
+
+    case Actions.DELETE_POUCH_REQUEST:
       return {
         ...state,
-
-        currentPocket: action.data,
-        isFetching: false
+        isFetching: { ...state.isFetching, pouch: true },
+        error: null
       };
-    case Actions.CREATE__POCKET:
+
+    case Actions.DELETE_POUCH_SUCCESS:
       return {
         ...state,
-        pockets: [...state.pockets, action.data],
-        isFetching: false
+        isFetching: { ...state.isFetching, pouch: false },
+        error: null
       };
 
-    case Actions.ADDTO__POCKET:
-      let index;
+    case Actions.DELETE_POUCH_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, pouch: false },
+        error: action.error
+      };
 
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data.id) {
-          index = i;
-        }
-        return {
-          ...state,
-          pockets: [...state.pockets[index].links, action.data.links],
-          isFetching: false
-        };
-      }
+    case Actions.NEW_ITEM_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: true },
+        error: null
+      };
 
-    case Actions.DELETEFROM__POCKET:
-      let index;
+    case Actions.NEW_ITEM_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: null
+      };
 
-      for (var i = 0; i < state.pockets.length; i++) {
-        if (state.pockets[i].id === action.data.id) {
-          index = i;
-        }
-        return {
-          ...state,
-          pockets: [...state.pockets[index].links, action.data.links],
-          isFetching: false
-        };
-      }
+    case Actions.NEW_ITEM_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: action.error
+      };
+
+    case Actions.DELETE_ITEM_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: true },
+        error: null
+      };
+
+    case Actions.DELETE_ITEM_SUCCESS:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: null
+      };
+
+   case Actions.DELETE_ITEM_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, item: false },
+        error: action.error
+      };   
+
     default:
       return state;
   }
