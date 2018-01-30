@@ -1,70 +1,147 @@
-export const GET__REQUEST = "GET__REQUEST";
-export const GET__SUCCESS = "GET__SUCCESS";
-export const GET__FAILURE = "GET__FAILURE";
-export const GET__POCKET = "GET__POCKET";
-export const CREATE__POCKET = "CREATE__POCKET";
-export const DELETE__POCKET = "DELETE__POCKET";
-export const ADDTO__POCKET = "ADDTO__POCKET";
-export const DELETEFROM__POCKET = "DELETEFROM__POCKET";
+export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
+export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
+export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
+export const GET_POUCH_REQUEST = "GET_POUCH_REQUEST";
+export const GET_POUCH_SUCCESS = "GET_POUCH_SUCCESS";
+export const GET_POUCH_FAILURE = "GET_POUCH_FAILURE";
+export const NEW_POUCH_REQUEST = "NEW_POUCH_REQUEST";
+export const NEW_POUCH_SUCCESS = "NEW_POUCH_SUCCESS";
+export const NEW_POUCH_FAILURE = "NEW_POUCH_FAILURE";
+export const DELETE_POUCH_REQUEST = "DELETE_POUCH_REQUEST";
+export const DELETE_POUCH_SUCCESS = "DELETE_POUCH_SUCCESS";
+export const DELETE_POUCH_FAILURE = "DELETE_POUCH_FAILURE";
+export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
+export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
+export const NEW_ITEM_FAILURE = "NEW_ITEM_FAILURE";
+export const DELETE_ITEM_REQUEST = "DELETE_ITEM_REQUEST";
+export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
+export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
 
-export function getRequest() {
+export const DELETEFROM_POCKET = "DELETEFROM_POCKET";
+export const REGISTER_REQUEST = "REGISTER_REQUEST";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAILURE = "REGISTER_FAILURE";
+
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
+
+export const USER_DELETE_REQUEST = "USER_DELETE_REQUEST";
+export const USER_DELETE_SUCCESS = "USER_DELETE_SUCCESS";
+export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
+
+export function userDeleteRequest() {
   return {
-    type: GET__REQUEST
+    type: USER_DELETE_REQUEST
   };
 }
 
-export function deletePocket(id) {
+export function userDeleteSuccess() {
   return {
-    type: DELETE__POCKET,
-    id
+    type: USER_DELETE_SUCCESS
   };
 }
-export function createPocket(data) {
+
+export function userDeleteFailure() {
   return {
-    type: CREATE__POCKET,
+    type: USER_DELETE_FAILURE
+  };
+}
+
+
+export function deletePouchSuccess(data) {
+  return {
+    type: DELETE_POUCH_SUCCESS,
     data
   };
 }
-export function getSuccess(data) {
-  return {
-    type: GET__SUCCESS,
-    data
-  };
-}
 
-export function getFailure(error) {
+export function deletePouchFailure(error) {
   return {
-    type: GET__FAILURE,
+    type: DELETE_POUCH_FAILURE,
     error
   };
 }
 
-export function getPocket(data) {
+export function newPouchSuccess(data) {
   return {
-    type: GET__POCKET,
+    type: NEW_POUCH_SUCCESS,
     data
   };
 }
 
-export function addToPocket(data) {
+export function newPouchFailure(error) {
   return {
-    type: ADDTO__POCKET,
+    type: NEW_POUCH_FAILURE,
+    error
+  };
+}
+
+export function getUserPouchesSuccess(data) {
+  return {
+    type: GET_USER_POUCHES_SUCCESS,
     data
   };
 }
 
-export function deleteFromPocket(data) {
+export function getUserPouchesFailure(error) {
   return {
-    type: DELETEFROM__POCKET,
+    type: GET_USER_POUCHES_FAILURE,
+    error
+  };
+}
+
+export function getPouchSuccess(data) {
+  return {
+    type: GET_POUCH_SUCCESS,
     data
   };
 }
 
-export function getOnePocket(id) {
+export function getPouchFailure(error) {
+  return {
+    type: GET_POUCH_FAILURE,
+    error
+  };
+}
+
+export function newItemSuccess(data) {
+  return {
+    type: NEW_ITEM_SUCCESS,
+    data
+  };
+}
+
+export function newItemFailure(error) {
+  return {
+    type: NEW_ITEM_FAILURE,
+    error
+  };
+}
+
+export function deleteItemSuccess(data) {
+  return {
+    type: DELETE_ITEM_SUCCESS,
+    data
+  };
+}
+
+export function deleteItemFailure(error) {
+  return {
+    type: DELETE_ITEM_FAILURE,
+    error
+  };
+}
+
+export function getPouch(id) {
   return dispatch => {
-    dispatch(getRequest());
+    dispatch(getPouchRequest());
 
-    fetch(`/pocket/${id}`)
+    fetch(`/pouches/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -73,25 +150,22 @@ export function getOnePocket(id) {
         return response.json();
       })
       .then(json => {
-        dispatch(getPocket(json));
+        dispatch(getPouchSuccess(json));
       })
       .catch(error => {
-        dispatch(getFailure(error));
+        dispatch(getPouchFailure(error));
       });
   };
 }
 
-export function onSubmitAdd(e) {
-  e.preventDefault();
+export function newItem(data) {
   var myHeaders = new Headers();
-  const id = e.target.elements.id.value;
-  const data = e.target.elements.data.value;
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
-    dispatch(getRequest());
+    dispatch(newItemRequest());
 
-    fetch(`/update/${id}`, {
+    fetch("/items/", {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -106,24 +180,21 @@ export function onSubmitAdd(e) {
         return response.json();
       })
       .then(json => {
-        dispatch(addToPocket(json));
+        dispatch(newItemSuccess(json));
       })
       .catch(error => {
-        dispatch(getFailure(error));
+        dispatch(newItemFailure(error));
       });
   };
 }
 
-export function onSubmit(e) {
-  e.preventDefault();
-  const id = e.target.value;
-
+export function deleteItem(data) {
   return dispatch => {
-    dispatch(getRequest());
-
-    fetch(`/pocket/delete/${id}`, {
+    dispatch(deleteItemRequest());
+    let { itemId, pouchId } = data;
+    fetch(`/items/${itemId}`, {
       method: "DELETE",
-      body: JSON.stringify(id)
+      body: JSON.stringify({ pouchId })
     })
       .then(response => {
         if (!response.ok) {
@@ -133,24 +204,21 @@ export function onSubmit(e) {
         return response.json();
       })
       .then(json => {
-        dispatch(getSuccess(json));
+        dispatch(deleteItemSuccess(json));
       })
       .catch(error => {
-        dispatch(getFailure(error));
+        dispatch(deleteItemFailure(error));
       });
   };
 }
 
-export function onSubmitDelete(e) {
-  e.preventDefault();
-  const id = e.target.elements.id.value;
-  const linkId = e.target.elements.linkid.value;
+export function deletePouch(data) {
+  const id = data.id;
   return dispatch => {
-    dispatch(getRequest());
+    dispatch(deletePouchRequest());
 
-    fetch(`/pocket/delete/${id}/${linkId}`, {
-      method: "DELETE",
-      body: JSON.stringify(id)
+    fetch(`/pouches/${id}`, {
+      method: "DELETE"
     })
       .then(response => {
         if (!response.ok) {
@@ -160,18 +228,18 @@ export function onSubmitDelete(e) {
         return response.json();
       })
       .then(json => {
-        dispatch(deleteFromPocket(json));
+        dispatch(deletePouchSuccess(json));
       })
       .catch(error => {
-        dispatch(getFailure(error));
+        dispatch(deletePouchFailure(error));
       });
   };
 }
-export function getInitialPockets() {
+export function getUserPouches() {
   return dispatch => {
-    dispatch(getRequest());
+    dispatch(getUserPouchesRequest());
 
-    fetch("/api/pockets")
+    fetch("/pouches/currentUser")
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -180,22 +248,22 @@ export function getInitialPockets() {
         return response.json();
       })
       .then(json => {
-        dispatch(getSuccess(json));
+        dispatch(getUserPouchesSuccess(json));
       })
       .catch(error => {
-        dispatch(getFailure(error));
+        dispatch(getUserPouchesFailure(error));
       });
   };
 }
 
-export function createAPocket(data) {
+export function newPouch(data) {
   var myHeaders = new Headers();
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
     dispatch(getRequest());
 
-    fetch("/newpocket", {
+    fetch("/pouches", {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -210,10 +278,81 @@ export function createAPocket(data) {
         return response.json();
       })
       .then(json => {
-        dispatch(getOnePocket(json.id));
+        dispatch(newPouchSuccess(json));
       })
       .catch(error => {
         dispatch(getFailure(error));
       });
   };
 }
+
+export function deleteUser(data) {
+  return dispatch => {
+    dispatch(userDeleteRequest());
+
+    fetch(`/users/${data._id}`, {
+      method: "DELETE",
+      mode: "cors"
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        dispatch(userDeleteSuccess());
+        dispatch(logout());
+      })
+      .catch(error => {
+        dispatch(userDeleteFailure(error));
+      });
+  };
+}
+
+/*export function logout(){
+return dispatch => {
+    dispatch(logoutRequest());
+
+    fetch(`/logout/${data._id}`, {
+      method: "DELETE",
+      mode: "cors"
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        dispatch(userDeleteSuccess());
+        dispatch(logout());
+      })
+      .catch(error => {
+        dispatch(userDeleteFailure(error));
+      });
+  };
+
+
+} */
+/*function login(username, password) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    };
+
+    return fetch('/users/authenticate', requestOptions)
+        .then(response => {
+            if (!response.ok) { 
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(user => {
+        
+            if (user && user.token) {
+              
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+
+            return user;
+        });
+}*/
