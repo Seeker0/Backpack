@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const users = require('./users');
-const pockets = require('./pockets');
-const items = require('./items');
+const users = require("./users");
+const pouches = require("./pouches");
+const items = require("./items");
 
-const Routes = { users, pockets, items };
+const Routes = { users, pouches, items };
 
 module.exports = Routes;

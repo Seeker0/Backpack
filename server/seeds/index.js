@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const mongooseeder = require('mongooseeder');
-const models = require('../models');
+const mongoose = require("mongoose");
+const mongooseeder = require("mongooseeder");
+const models = require("../models");
 
-const mongodbUrl = 'mongodb://localhost/pockets_development';
+const mongodbUrl = "mongodb://localhost/pockets_development";
 
-const { User, Pocket, Item } = require('../models');
+const { User, Pouch, Item } = require("../models");
 
 mongooseeder.seed({
   mongodbUrl: mongodbUrl,
@@ -13,43 +13,43 @@ mongooseeder.seed({
   mongoose: mongoose,
   seeds: () => {
     const users = [];
-    const pockets = [];
+    const pouches = [];
     const items = [];
 
     for (let i = 0; i < 10; i++) {
       const user = new User({
-        userName: `hooligan${i}`,
+        username: `hooligan${i}`,
         email: `${i}is@nobodycares.com`,
         passwordHash: `password${i}`,
-        pockets: []
+        pouches: []
       });
       users.push(user);
     }
 
     for (let i = 0; i < 20; i++) {
       let user = users[i % users.length];
-      const pocket = new Pocket({
+      const pouch = new Pouch({
         ownerId: user._id,
-        pocketName: `pocket${i}`,
+        pouchName: `pouch${i}`,
         itemIds: []
       });
-      user.pockets.push(pocket._id);
-      pockets.push(pocket);
+      user.pouches.push(pouch._id);
+      pouches.push(pouch);
     }
 
     for (let i = 0; i < 40; i++) {
       let user = users[i % users.length];
-      let pocket = pockets[i % pockets.length];
+      let pouch = pouches[i % pouches.length];
       const item = new Item({
         itemName: `item${i}`,
         link: `http://www.item${i}.com`
       });
-      pocket.itemIds.push(item._id);
+      pouch.itemIds.push(item._id);
       items.push(item);
     }
 
     const promises = [];
-    const collections = [users, pockets, items];
+    const collections = [users, pouches, items];
 
     collections.forEach(collection => {
       collection.forEach(model => {

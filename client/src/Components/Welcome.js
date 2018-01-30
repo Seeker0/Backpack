@@ -2,6 +2,9 @@ import React, { PureComponent } from "react";
 
 import logo from "../images/logo.png";
 
+import LoginContainer from "../Containers/LoginContainer";
+import SignUpContainer from "../Containers/SignUpContainer";
+
 import {
   Button,
   Container,
@@ -15,6 +18,9 @@ import {
   ModalHeader,
   ModalFooter
 } from "reactstrap";
+
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -62,17 +68,16 @@ class Welcome extends PureComponent {
           </Row>
         </header>
         <Container>
-          <h1 id="welcome">Welcome to Backpack!</h1>
           <p id="welcome-body">
             The best way to collect and organize all the videos, photos, music,
             websites, and articles you find online in one place that you can
             carry with you wherever you go. Easily share or collaborate with
             friends, family, or coworkers.
           </p>
-          <Button color="primary" size="lg">
+          <Button color="primary" size="lg" onClick={this.toggleSignUp}>
             Sign Up
           </Button>{" "}
-          <Button color="success" size="lg">
+          <Button color="success" size="lg" onClick={this.toggleLogin}>
             Log In
           </Button>
         </Container>
@@ -82,7 +87,19 @@ class Welcome extends PureComponent {
             Backpack graphic designed by Natkacheva / Freepik
           </a>
         </footer>
-        <Modal isOpen={this.state.modalLogin} toggle={this.toggleLogin}>
+        <LoginContainer
+          isOpen={this.state.modalLogin}
+          toggle={this.toggleLogin}
+        />
+        <SignUpContainer
+          isOpen={this.state.modalSignUp}
+          toggle={this.toggleSignUp}
+        />
+        {/* <Modal
+          className="modal-form"
+          isOpen={this.state.modalLogin}
+          toggle={this.toggleLogin}
+        >
           <ModalHeader toggle={this.toggleLogin}>Login</ModalHeader>
           <Form>
             <FormGroup className="extraPadding">
@@ -108,9 +125,13 @@ class Welcome extends PureComponent {
               Cancel
             </Button>
           </ModalFooter>
-        </Modal>
+        </Modal> */}
 
-        <Modal isOpen={this.state.modalSignUp} toggle={this.toggleSignUp}>
+        {/* <Modal
+          className="modal-form"
+          isOpen={this.state.modalSignUp}
+          toggle={this.toggleSignUp}
+        >
           <ModalHeader toggle={this.toggleSignUp}>Sign Up</ModalHeader>
           <Form>
             <FormGroup className="extraPadding">
@@ -152,7 +173,7 @@ class Welcome extends PureComponent {
               Cancel
             </Button>
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }

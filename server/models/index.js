@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 var models = {};
 
 // Load models and attach to models here
-models.User = require('./user');
-models.Pocket = require('./pocket');
-models.Item = require('./item');
+models.User = require("./user");
+models.Pouch = require("./pouch");
+models.Item = require("./item");
 
 module.exports = models;
