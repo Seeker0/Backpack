@@ -10,8 +10,7 @@ import {
   ModalFooter
 } from "reactstrap";
 
-import ErrorMessage from "../Components/ErrorMessage";
-import SuccessMessage from "../Components/SuccessMessage";
+import { ErrorMessage, SuccessMessage } from "../Components";
 import ValidationErrorMessage from "./ValidationErrorMessage";
 import { getColorFromError } from "../helpers";
 import "../index.css";
