@@ -8,4 +8,12 @@ import Dashboard from "./Dashboard";
 
 //state
 
-export { ErrorMessage, SuccessMessage, Login, SignUp, Learn, Welcome };
+export {
+  ErrorMessage,
+  SuccessMessage,
+  Login,
+  SignUp,
+  Learn,
+  Welcome,
+  Dashboard
+};

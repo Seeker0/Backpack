@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Login } from "../Components";
-import { login } from "../actions";
+import actions from "../actions";
+let login = actions.login;
+//console.log(Object.keys(actions));
 
 class LoginContainer extends Component {
   constructor(props) {

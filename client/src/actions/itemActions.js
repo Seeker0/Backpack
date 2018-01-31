@@ -1,4 +1,4 @@
-import setCurrentPouch from "./pouchActions";
+import { setCurrentPouch } from "./pouchActions";
 
 export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
 export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";

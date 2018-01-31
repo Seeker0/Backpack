@@ -4,7 +4,11 @@ const initialState = {
   pouches: [],
 
   currentPouch: null,
-  currentItems: [],
+  currentItems: [
+    { name: "myFavLink1", link: "http://www.google.com" },
+    { name: "myFavLink2", link: "http://www.twitter.com" },
+    { name: "myFavLink3", link: "http://www.linkedin.com" }
+  ],
   isFetching: {
     user: null,
     pouch: null,

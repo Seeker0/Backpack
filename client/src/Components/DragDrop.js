@@ -8,11 +8,7 @@ import { Draggable, Droppable } from "react-drag-and-drop";
 class DragDrop extends Component {
   constructor(props) {
     super(props);
-    this.itemsArray = [
-      { name: "myFavLink1", link: "http://www.google.com" },
-      { name: "myFavLink2", link: "http://www.twitter.com" },
-      { name: "myFavLink3", link: "http://www.linkedin.com" }
-    ];
+    this.itemsArray = props.currentItems;
   }
   render() {
     let draggableItems = this.itemsArray.map(item => {
