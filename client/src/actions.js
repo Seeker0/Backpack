@@ -1,9 +1,6 @@
-
 export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
 export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
-
-
 
 export const GET_POUCH_REQUEST = "GET_POUCH_REQUEST";
 export const GET_POUCH_SUCCESS = "GET_POUCH_SUCCESS";
@@ -53,12 +50,16 @@ export const GET_ITEM_SUCCESS = "GET_ITEM_SUCCESS";
 export const GET_ITEM_FAILURE = "GET_ITEM_FAILURE";
 export const GET_ITEM_REQUEST = "GET_ITEM_REQUEST";
 
+let server =
+  process.env.NODE_ENV === "production"
+    ? "https://app-Name.herokuapp.com"
+    : "http://localhost:3001";
+
 export function userDeleteRequest() {
   return {
     type: USER_DELETE_REQUEST
   };
 }
-
 
 export function userDeleteSuccess() {
   return {
@@ -79,7 +80,7 @@ export function deletePouchSuccess(data) {
   };
 }
 
-export function deletePouchRequest() {
+export function deletePouchRequest(data) {
   return {
     type: DELETE_POUCH_REQUEST,
     data
@@ -93,14 +94,12 @@ export function deletePouchFailure(error) {
   };
 }
 
-
 export function newPouchSuccess(data) {
   return {
     type: NEW_POUCH_SUCCESS,
     data
   };
 }
-
 
 export function newPouchFailure(error) {
   return {
@@ -121,7 +120,6 @@ export function updatePouchSuccess(data) {
     data
   };
 }
-
 
 export function updatePouchFailure(error) {
   return {
@@ -260,8 +258,7 @@ export function getPouch(id) {
   return dispatch => {
     dispatch(getPouchRequest());
 
-    fetch(`/pouches/${id}`)
-
+    fetch(`/pouches/${id}`, { mode: "cors" })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -270,9 +267,7 @@ export function getPouch(id) {
         return response.json();
       })
       .then(json => {
-
         dispatch(getPouchSuccess(json));
-
       })
       .catch(error => {
         dispatch(getPouchFailure(error));
@@ -289,7 +284,7 @@ export function newItem(data) {
   return dispatch => {
     dispatch(newItemRequest());
 
-    fetch("/items/", {
+    fetch(`${server}/items/`, {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -304,10 +299,8 @@ export function newItem(data) {
         return response.json();
       })
       .then(json => {
-
         dispatch(newItemSuccess(json));
-        dispatch(setCurrentPouch({pouchId}))
-
+        dispatch(setCurrentPouch({ pouchId }));
       })
       .catch(error => {
         dispatch(newItemFailure(error));
@@ -317,13 +310,12 @@ export function newItem(data) {
 
 export function deleteItem(data) {
   return dispatch => {
-
     dispatch(deleteItemRequest());
     let { itemId, pouchId } = data;
-    fetch(`/items/${itemId}`, {
-
+    fetch(`${server}/items/${itemId}`, {
       method: "DELETE",
-      body: JSON.stringify({ pouchId })
+      body: JSON.stringify({ pouchId }),
+      mode: "cors"
     })
       .then(response => {
         if (!response.ok) {
@@ -334,7 +326,7 @@ export function deleteItem(data) {
       })
       .then(json => {
         dispatch(deleteItemSuccess(json));
-        dispatch(setCurrentPouch({pouchId})
+        dispatch(setCurrentPouch({ pouchId }));
       })
       .catch(error => {
         dispatch(deleteItemFailure(error));
@@ -347,10 +339,9 @@ export function deletePouch(data) {
   return dispatch => {
     dispatch(deletePouchRequest());
 
-
-    fetch(`/pouches/${id}`, {
-      method: "DELETE"
-
+    fetch(`${server}/pouches/${id}`, {
+      method: "DELETE",
+      mode: "cors"
     })
       .then(response => {
         if (!response.ok) {
@@ -360,10 +351,8 @@ export function deletePouch(data) {
         return response.json();
       })
       .then(json => {
-
         dispatch(deletePouchSuccess(json));
         dispatch(getUserPouches());
-
       })
       .catch(error => {
         dispatch(deletePouchFailure(error));
@@ -372,13 +361,10 @@ export function deletePouch(data) {
 }
 
 export function getUserPouches() {
-
   return dispatch => {
     dispatch(getUserPouchesRequest());
 
-
-    fetch("/pouches/currentUser")
-
+    fetch(`${server}/pouches/currentUser`, { mode: "cors" })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -395,18 +381,14 @@ export function getUserPouches() {
   };
 }
 
-
 export function newPouch(data) {
-
   var myHeaders = new Headers();
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
     dispatch(newPouchRequest());
 
-
-    fetch("/pouches", {
-
+    fetch(`${server}/pouches`, {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -421,13 +403,11 @@ export function newPouch(data) {
         return response.json();
       })
       .then(json => {
-
         dispatch(newPouchSuccess(json));
         dispatch(getUserPouches());
-
       })
       .catch(error => {
-        dispatch(getFailure(error));
+        dispatch(newPouchFailure(error));
       });
   };
 }
@@ -440,7 +420,7 @@ export function updatePouch(data) {
   return dispatch => {
     dispatch(updatePouchRequest());
 
-    fetch("/pouches", {
+    fetch(`${server}/pouches`, {
       method: "PUT",
       headers: myHeaders,
       mode: "cors",
@@ -457,10 +437,10 @@ export function updatePouch(data) {
       .then(json => {
         dispatch(updatePouchSuccess(json));
         dispatch(getUserPouches());
-        dispatch(setCurrentPouch({pouchId:json._id}));
+        dispatch(setCurrentPouch({ pouchId: json._id }));
       })
       .catch(error => {
-        dispatch(updateFailure(error));
+        dispatch(updatePouchFailure(error));
       });
   };
 }
@@ -469,7 +449,7 @@ export function deleteUser(data) {
   return dispatch => {
     dispatch(userDeleteRequest());
 
-    fetch(`/users/${data._id}`, {
+    fetch(`${server}/users/${data._id}`, {
       method: "DELETE",
       mode: "cors"
     })
@@ -492,7 +472,7 @@ export function setCurrentPouch(data) {
   return dispatch => {
     dispatch(setCurrentPouchRequest());
 
-    fetch(`/items/list/${pouchId}`, {
+    fetch(`${server}/items/list/${pouchId}`, {
       mode: "cors"
     })
       .then(response => {
@@ -519,7 +499,7 @@ export function getItem(data) {
   return dispatch => {
     dispatch(getItemRequest());
 
-    fetch(`/items/${itemId}`, {
+    fetch(`${server}/items/${itemId}`, {
       mode: "cors"
     })
       .then(response => {
@@ -535,11 +515,9 @@ export function getItem(data) {
   };
 }
 
-/*export function logout(){
-return dispatch => {
-    dispatch(logoutRequest());
-
-    fetch(`/logout/${data._id}`, {
+export function logout(data) {
+  return dispatch => {
+    fetch(`${server}/logout/${data._id}`, {
       method: "DELETE",
       mode: "cors"
     })
@@ -555,31 +533,28 @@ return dispatch => {
         dispatch(userDeleteFailure(error));
       });
   };
+}
 
-
-} */
-/*function login(username, password) {
+export function login(username, password) {
+  return dispatch => {
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+      mode: "cors"
     };
 
-    return fetch('/users/authenticate', requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                return Promise.reject(response.statusText);
-            }
-
-            return response.json();
-        })
-        .then(user => {
-
-            if (user && user.token) {
-
-                localStorage.setItem('user', JSON.stringify(user));
-            }
-
-            return user;
-        });
-}*/
+    return fetch(`${server}/login`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        console.log(response);
+        return response.json();
+      })
+      .then(user => {
+        dispatch(getUserPouches(user));
+      })
+      .catch(console.error);
+  };
+}

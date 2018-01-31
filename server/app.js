@@ -95,33 +95,28 @@ app.use(passport.initialize());
 // Routes
 // Local Strategy
 // ----------------------------------------
-app.use('/', (req, res) => {
-  req.flash('Hi!');
-  res.render('welcome/index');
-
-  passport.use(
-    new LocalStrategy((username, password, done) => {
-      User.findOne({ username }, (err, user) => {
-        if (err) return done(err);
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Invalid Password!' });
-        }
-        if (!user) {
-          return done(null, false, { message: 'Invalid Username!' });
-        }
-        return done(null, user);
-      });
-    })
-  );
-
-  passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-      done(err, user);
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username }, (err, user) => {
+      if (err) return done(err);
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Invalid Password!' });
+      }
+      if (!user) {
+        return done(null, false, { message: 'Invalid Username!' });
+      }
+      return done(null, user);
     });
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
   });
 });
 
@@ -181,7 +176,7 @@ app.set('view engine', 'handlebars');
 // ----------------------------------------
 // Server
 // ----------------------------------------
-const port = process.env.PORT || process.argv[2] || 3000;
+const port = process.env.PORT || process.argv[2] || 3001;
 const host = 'localhost';
 
 let args;
