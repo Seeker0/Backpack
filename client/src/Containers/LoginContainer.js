@@ -43,7 +43,6 @@ class LoginContainer extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log('state => ', this.state);
   };
 
   onSubmit = e => {

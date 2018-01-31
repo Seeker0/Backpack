@@ -122,7 +122,6 @@ class SignUpContainer extends Component {
   };
 
   render() {
-    console.log(this.state.errors);
     return (
       <SignUp
         onSubmit={this.onSubmit}
