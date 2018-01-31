@@ -10,7 +10,7 @@ var User = mongoose.model('User');
 
 router.post('/', async (req, res, next) => {
   try {
-    let { fname, lname, username, email, password } = req.body;
+    let { username, email, password } = req.body;
     let user = await new User({
       username,
       email,
