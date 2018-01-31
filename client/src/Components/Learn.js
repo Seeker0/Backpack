@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 
-import mainHeader from "../images/header.png";
-
+import Header from "./Header";
 import { LoginContainer, SignUpContainer } from "../Containers";
 
 import { Button, Container, Row, Col } from "reactstrap";
@@ -33,16 +32,7 @@ class Learn extends PureComponent {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Row>
-            <Col lg={{ size: 6, offset: 3 }}>
-              <img src={mainHeader} className="main-header" alt="logo" />
-              <h3 className="App-motto">
-                Equipping you for all your digital treks.
-              </h3>
-            </Col>
-          </Row>
-        </header>
+        <Header />
         <Container>
           <Row>
             <Col lg={{ size: 4, offset: 1 }} xs="6">

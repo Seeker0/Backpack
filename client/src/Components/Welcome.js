@@ -1,11 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import mainHeader from '../images/header.png';
+import Header from "./Header";
+import { LoginContainer, SignUpContainer } from "../Containers";
 
-import { LoginContainer, SignUpContainer } from '../Containers';
-
-import { Button, Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Button, Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -40,16 +39,7 @@ class Welcome extends PureComponent {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Row>
-            <Col lg={{ size: 6, offset: 3 }}>
-              <img src={mainHeader} className="main-header" alt="logo" />
-              <h3 className="App-motto">
-                Equipping you for all your digital treks.
-              </h3>
-            </Col>
-          </Row>
-        </header>
+        <Header />
         <Container>
           <Row>
             <Col xs="12">
@@ -68,8 +58,8 @@ class Welcome extends PureComponent {
                       className="button"
                     >
                       Sign Up
-                    </Button>{' '}
-                    <i className="fas fa-map-signs" />{' '}
+                    </Button>{" "}
+                    <i className="fas fa-map-signs" />{" "}
                     <Button
                       color="success"
                       size="lg"

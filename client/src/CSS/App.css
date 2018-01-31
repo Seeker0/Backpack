@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Kalam');
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url("https://fonts.googleapis.com/css?family=Kalam");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
 
 body {
   background: #908b94 url(../images/mountains.png) no-repeat fixed center top;
@@ -22,11 +22,11 @@ body {
 }
 
 .App-motto {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
 }
 
 .modal-form {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
 }
 
 .button-font-right {
@@ -38,7 +38,7 @@ body {
 }
 
 .button {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   margin-bottom: 40px;
 }
 
@@ -58,8 +58,50 @@ body {
   padding: 10px;
 }
 
+.navbar-color {
+  /* background-color: #bee1ea; */
+  border-bottom: 2px solid black;
+}
+
+.logo {
+  height: 100px;
+}
+
+.navbar-toggler {
+  background-color: black;
+}
+
+.profile-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.font1 {
+  font-family: "Kalam", cursive;
+}
+
+.links {
+  font-size: 25px;
+  text-align: right;
+  color: black;
+  font-family: "Kalam", cursive;
+}
+
+.links:hover {
+  color: gray !important;
+}
+
+.backpack-icon {
+  height: 25px;
+}
+
+.icon {
+  font-size: 25px;
+  color: black;
+}
+
 #welcome-body {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 26px;
   padding-top: 30px;
@@ -67,14 +109,14 @@ body {
 }
 
 #welcome-list {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 26px;
   text-align: left;
 }
 
 #action-text {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 40px;
   padding-top: 15pxx;
@@ -87,7 +129,7 @@ body {
 }
 
 #list1 {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 22px;
   border-top: 1px solid black;
