@@ -4,6 +4,8 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Learn from "./Learn";
 import Welcome from "./Welcome";
-//import Dashboard from "./Dashboard";
+import Dashboard from "./Dashboard";
+
+//state
 
 export { ErrorMessage, SuccessMessage, Login, SignUp, Learn, Welcome };
