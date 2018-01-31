@@ -1,4 +1,4 @@
-import getUserPouches from "./userActions";
+import { getUserPouches } from "./userActions";
 
 export const GET_POUCH_REQUEST = "GET_POUCH_REQUEST";
 export const GET_POUCH_SUCCESS = "GET_POUCH_SUCCESS";
