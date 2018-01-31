@@ -4,6 +4,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Learn from "./Learn";
 import Welcome from "./Welcome";
+import Logout from "./Logout";
 //import Dashboard from "./Dashboard";
 
-export { ErrorMessage, SuccessMessage, Login, SignUp, Learn, Welcome };
+export { ErrorMessage, SuccessMessage, Login, SignUp, Learn, Welcome, Logout };
