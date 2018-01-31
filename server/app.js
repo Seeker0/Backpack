@@ -141,7 +141,7 @@ const loggedInOnly = (req, res, next) => {
 };
 
 const loggedOutOnly = (req, res, next) => {
-  return !req.user ? next() : res.json({ message: 'Logged Out Only' });
+  return !req.user ? next() : res.json({ message: 'Already logged in' });
 };
 
 // ----------------------------------------

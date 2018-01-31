@@ -1,6 +1,6 @@
-import * as pouchActions from "./pouchActions";
-import * as itemActions from "./itemActions";
-import * as userActions from "./userActions";
+import * as pouchActions from './pouchActions';
+import * as itemActions from './itemActions';
+import * as userActions from './userActions';
 
 let actions = {};
 
