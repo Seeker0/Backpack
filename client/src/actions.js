@@ -528,26 +528,25 @@ export function logout(data) {
   };
 }
 
-function login(username, password) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+export function login(username, password) {
+  return dispatch => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    };
+
+    return fetch('/login', requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        console.log(response);
+        return response.json();
+      })
+      .then(user => {
+        dispatch(getUserPouches(user));
+      })
+      .catch(console.error);
   };
-
-  return fetch('/users/authenticate', requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        return Promise.reject(response.statusText);
-      }
-
-      return response.json();
-    })
-    .then(user => {
-      if (user && user.token) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-
-      return user;
-    });
 }
