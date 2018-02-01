@@ -1,10 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import mainHeader from '../images/header.png';
+import Header from "./Header";
+import { LoginContainer, SignUpContainer } from "../Containers";
 
-import { LoginContainer, SignUpContainer } from '../Containers';
-
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Button, Container, Row, Col } from "reactstrap";
 
 class Learn extends PureComponent {
   constructor(props) {
@@ -33,16 +32,7 @@ class Learn extends PureComponent {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <Row>
-            <Col lg={{ size: 6, offset: 3 }}>
-              <img src={mainHeader} className="main-header" alt="logo" />
-              <h3 className="App-motto">
-                Equipping you for all your digital treks.
-              </h3>
-            </Col>
-          </Row>
-        </header>
+        <Header />
         <Container>
           <Row>
             <Col lg={{ size: 4, offset: 1 }} xs="6">
@@ -51,45 +41,45 @@ class Learn extends PureComponent {
               </p>
               <ul id="welcome-list">
                 <li>
-                  <i className="fas fa-caret-right" /> videos{' '}
-                  <i className="fab fa-youtube" />{' '}
+                  <i className="fas fa-caret-right" /> videos{" "}
+                  <i className="fab fa-youtube" />{" "}
                   <i className="fab fa-vimeo" /> <i className="fas fa-film" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> music{' '}
-                  <i className="fab fa-soundcloud" />{' '}
-                  <i className="fas fa-headphones" />{' '}
+                  <i className="fas fa-caret-right" /> music{" "}
+                  <i className="fab fa-soundcloud" />{" "}
+                  <i className="fas fa-headphones" />{" "}
                   <i className="fas fa-music" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> articles{' '}
-                  <i className="fas fa-newspaper" />{' '}
-                  <i className="fab fa-medium" />{' '}
-                  <i className="fab fa-wordpress" />{' '}
+                  <i className="fas fa-caret-right" /> articles{" "}
+                  <i className="fas fa-newspaper" />{" "}
+                  <i className="fab fa-medium" />{" "}
+                  <i className="fab fa-wordpress" />{" "}
                   <i className="fab fa-wikipedia-w" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> products{' '}
-                  <i className="fab fa-amazon" /> <i className="fab fa-etsy" />{' '}
+                  <i className="fas fa-caret-right" /> products{" "}
+                  <i className="fab fa-amazon" /> <i className="fab fa-etsy" />{" "}
                   <i className="fab fa-pinterest" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> photos{' '}
-                  <i className="fas fa-image" />{' '}
+                  <i className="fas fa-caret-right" /> photos{" "}
+                  <i className="fas fa-image" />{" "}
                   <i className="fas fa-camera-retro" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> reviews{' '}
+                  <i className="fas fa-caret-right" /> reviews{" "}
                   <i className="fab fa-yelp" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> books{' '}
+                  <i className="fas fa-caret-right" /> books{" "}
                   <i className="fas fa-book" />
                 </li>
                 <li>
-                  <i className="fas fa-caret-right" /> sites{' '}
-                  <i className="fab fa-chrome" />{' '}
-                  <i className="fab fa-firefox" />{' '}
+                  <i className="fas fa-caret-right" /> sites{" "}
+                  <i className="fab fa-chrome" />{" "}
+                  <i className="fab fa-firefox" />{" "}
                   <i className="fab fa-safari" /> <i className="fab fa-edge" />
                 </li>
               </ul>
@@ -133,44 +123,44 @@ class Learn extends PureComponent {
             <Col lg={{ size: 10, offset: 1 }} xs="12">
               <ul id="list1">
                 <li>
-                  <i className="fas fa-archive" />{' '}
+                  <i className="fas fa-archive" />{" "}
                   <i className="fas fa-caret-right" /> Collect and organize
                   items in virtual backpacks that you can carry with you
                   wherever your adventures take you.
                 </li>
                 <li>
-                  <i className="fas fa-share-alt" />{' '}
+                  <i className="fas fa-share-alt" />{" "}
                   <i className="fas fa-caret-right" /> Easily share your
                   collections (pouches) with friends, family, or coworkers using
-                  all your favorite sites. <i className="fab fa-facebook" />{' '}
-                  <i className="fab fa-facebook-messenger" />{' '}
-                  <i className="fab fa-twitter-square" />{' '}
-                  <i className="fab fa-instagram" />{' '}
-                  <i className="fab fa-google-plus-square" />{' '}
-                  <i className="fab fa-reddit-square" />{' '}
-                  <i className="fab fa-snapchat-square" />{' '}
-                  <i className="fab fa-tumblr-square" />{' '}
+                  all your favorite sites. <i className="fab fa-facebook" />{" "}
+                  <i className="fab fa-facebook-messenger" />{" "}
+                  <i className="fab fa-twitter-square" />{" "}
+                  <i className="fab fa-instagram" />{" "}
+                  <i className="fab fa-google-plus-square" />{" "}
+                  <i className="fab fa-reddit-square" />{" "}
+                  <i className="fab fa-snapchat-square" />{" "}
+                  <i className="fab fa-tumblr-square" />{" "}
                 </li>
                 <li>
-                  <i className="fas fa-lock" />{' '}
+                  <i className="fas fa-lock" />{" "}
                   <i className="fas fa-caret-right" /> Choose who you share your
-                  pouches with or keep them private.{' '}
+                  pouches with or keep them private.{" "}
                   <i className="fas fa-user-secret" />
                 </li>
                 <li>
-                  <i className="fas fa-users" />{' '}
+                  <i className="fas fa-users" />{" "}
                   <i className="fas fa-caret-right" /> Great for collaborating
-                  between colleagues for professional or academic projects.{' '}
-                  <i className="fab fa-linkedin" />{' '}
-                  <i className="fab fa-slack" />{' '}
+                  between colleagues for professional or academic projects.{" "}
+                  <i className="fab fa-linkedin" />{" "}
+                  <i className="fab fa-slack" />{" "}
                 </li>
                 <li>
-                  <i className="fas fa-search" />{' '}
+                  <i className="fas fa-search" />{" "}
                   <i className="fas fa-caret-right" /> Fully searchable to put
                   all the pieces together. <i className="fas fa-puzzle-piece" />
                 </li>
                 <li>
-                  <i className="fas fa-lightbulb" />{' '}
+                  <i className="fas fa-lightbulb" />{" "}
                   <i className="fas fa-caret-right" /> Trade ideas and stories
                   to spark conversations. <i className="fas fa-comments" />
                 </li>
