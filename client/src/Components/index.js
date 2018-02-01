@@ -5,6 +5,7 @@ import SignUp from "./SignUp";
 import Learn from "./Learn";
 import Welcome from "./Welcome";
 import Dashboard from "./Dashboard";
+import Logout from "./Logout";
 
 //state
 
@@ -15,5 +16,6 @@ export {
   SignUp,
   Learn,
   Welcome,
-  Dashboard
+  Dashboard,
+  Logout
 };

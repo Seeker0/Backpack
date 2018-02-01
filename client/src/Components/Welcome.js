@@ -1,7 +1,11 @@
 import React, { PureComponent } from "react";
 
 import Header from "./Header";
-import { LoginContainer, SignUpContainer } from "../Containers";
+import {
+  LoginContainer,
+  SignUpContainer,
+  LogoutContainer
+} from "../Containers";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
