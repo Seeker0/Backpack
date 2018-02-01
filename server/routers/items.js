@@ -3,11 +3,12 @@ let router = express.Router();
 let mongoose = require("mongoose");
 var models = require("./../models");
 var Item = mongoose.model("Item");
+var Pouch = mongoose.model("Pouch");
 
 router.get("/list/:pouchId", async (req, res, next) => {
   try {
     let pouchId = req.params.pouchId;
-    let pouch = await Pouch.find({ _id: pouchId });
+    let pouch = await Pouch.findById({ _id: pouchId });
     let items = await Item.find({})
       .where("_id")
       .in(pouch.itemIds);
