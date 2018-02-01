@@ -11,7 +11,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Col
 } from "reactstrap";
 
 class TopNavBar extends PureComponent {
@@ -34,59 +35,71 @@ class TopNavBar extends PureComponent {
     return (
       <div>
         <Navbar className="navbar-border">
-          <NavbarBrand href="/">
-            <img src={logo} alt="logo" className="logo" />
-          </NavbarBrand>
-          <div>
-            <h3 class="font1">
-              <img
-                src={defaultUser}
-                alt="default user"
-                className="profile-icon"
-              />{" "}
-              Welcome, (Username)!
-            </h3>
-          </div>
-          <nav class="navbar navbar-default">
-            <div class="nav nav-justified navbar-nav">
-              <form class="navbar-form navbar-search" role="search">
-                <div class="input-group">
-                  <input type="text" class="form-control" />
-
-                  <div class="input-group-btn">
-                    <button type="button" class="btn btn-search btn-danger">
-                      <span class="fa fa-search" />
-                      <span class="label-icon">Search</span>
-                    </button>
+          <Col xs="2">
+            <NavbarBrand href="/dashboard">
+              <img src={logo} alt="logo" className="logo" />
+            </NavbarBrand>
+          </Col>
+          <Col xs={{ size: 6, offset: 1 }}>
+            <div className="input-group" id="adv-search">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search for snippets"
+              />
+              <div className="input-group-btn">
+                <div className="btn-group" role="group">
+                  <div className="dropdown dropdown-lg">
                     <button
                       type="button"
-                      class="btn btn-danger dropdown-toggle"
+                      class="btn btn-default dropdown-toggle"
                       data-toggle="dropdown"
+                      aria-expanded="false"
                     >
-                      <span class="caret" />
+                      <span className="caret" />
                     </button>
-                    <ul class="dropdown-menu pull-right" role="menu">
-                      <li>
-                        <a href="#">
-                          <span class="glyphicon glyphicon-user" />
-                          <span class="label-icon">Search By Backpack</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <span class="glyphicon glyphicon-book" />
-                          <span class="label-icon">Search By Pouch</span>
-                        </a>
-                      </li>
-                    </ul>
+                    <div
+                      className="dropdown-menu dropdown-menu-right"
+                      role="menu"
+                    >
+                      <form className="form-horizontal" role="form">
+                        <div className="form-group">
+                          <label for="filter">Filter by</label>
+                          <select className="form-control">
+                            <option value="0" selected>
+                              All Pouches
+                            </option>
+                            <option value="1">Pouch1</option>
+                            <option value="2">Pouch2</option>
+                            <option value="3">Pouch3</option>
+                            <option value="4">Pouch4</option>
+                          </select>
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                          <i className="fas fa-search" />
+                        </button>
+                      </form>
+                    </div>
                   </div>
+                  <button type="button" class="btn btn-primary">
+                    <i className="fas fa-search" />
+                  </button>
                 </div>
-              </form>
+              </div>
             </div>
-          </nav>
-          <NavbarToggler onClick={this.toggleNavbar}>
-            <i className="fa fa-bars" />
-          </NavbarToggler>
+          </Col>
+          <Col xs="3">
+            <NavbarToggler onClick={this.toggleNavbar} className="align-right">
+              <h3 className="font1 float-right">
+                <img
+                  src={defaultUser}
+                  alt="default user"
+                  className="profile-icon"
+                />{" "}
+                Username <i className="fa fa-bars" />
+              </h3>
+            </NavbarToggler>
+          </Col>
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>

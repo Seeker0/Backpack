@@ -38,7 +38,6 @@ export function newItemRequest() {
 }
 
 export function newItem(data) {
-  let item = data.item;
   let pouchId = data.pouchId;
   var myHeaders = new Headers();
 
