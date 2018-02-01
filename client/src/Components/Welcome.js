@@ -103,7 +103,6 @@ class Welcome extends PureComponent {
           isOpen={this.state.modalSignUp}
           toggle={this.toggleSignUp}
         />
-        <LogoutContainer />
         <footer>
           <p>
             &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,
