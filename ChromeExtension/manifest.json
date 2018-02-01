@@ -16,7 +16,8 @@
   "permissions": [
     "bookmarks",
     "cookies",
-    "tabs",
+    "activeTab",
+    "contextMenus",
      
       "http://*/*", 
         "https://*/*"
