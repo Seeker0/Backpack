@@ -106,13 +106,16 @@ app.use(passport.session());
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username }, (err, user) => {
+      console.error(err);
+      console.log("THIS WORKS");
       if (err) return done(err);
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: "Invalid Password!" });
-      }
       if (!user) {
         return done(null, false, { message: "Invalid Username!" });
       }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: "Invalid Password!" });
+      }
+
       return done(null, user);
     });
   })
