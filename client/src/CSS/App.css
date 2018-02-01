@@ -58,13 +58,12 @@ body {
   padding: 10px;
 }
 
-.navbar-color {
-  /* background-color: #bee1ea; */
+.navbar-border {
   border-bottom: 2px solid black;
 }
 
 .logo {
-  height: 100px;
+  height: 50px;
 }
 
 .navbar-toggler {

@@ -28,13 +28,10 @@ const Login = ({
   return (
     <Modal className="modal-form" isOpen={isOpen} toggle={toggle}>
       <ModalHeader>Login</ModalHeader>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} className="extra-padding">
         <SuccessMessage success={success} />
         <ErrorMessage errors={errors} />
-        <FormGroup
-          color={getColorFromError(errors.username)}
-          className="extraPadding"
-        >
+        <FormGroup color={getColorFromError(errors.username)}>
           <Label for="username">Username: </Label>
           <Input
             type="text"
@@ -46,10 +43,7 @@ const Login = ({
           />
           <ValidationErrorMessage message={errors.username} />
         </FormGroup>
-        <FormGroup
-          color={getColorFromError(errors.password)}
-          className="extraPadding"
-        >
+        <FormGroup color={getColorFromError(errors.password)}>
           <Label for="password">Password: </Label>
           <Input
             type="text"
