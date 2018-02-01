@@ -18,6 +18,10 @@ export const USER_DELETE_REQUEST = "USER_DELETE_REQUEST";
 export const USER_DELETE_SUCCESS = "USER_DELETE_SUCCESS";
 export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
 
+export const USER_LOOKUPBYID_REQUEST = "USER_LOOKUPBYID_REQUEST";
+export const USER_LOOKUPBYID_SUCCESS = "USER_LOOKUPBYID_SUCCESS";
+export const USER_LOOKUPBYID_FAILURE = "USER_LOOKUPBYID_FAILURE";
+
 let server =
   process.env.NODE_ENV === "production"
     ? "https://app-Name.herokuapp.com"
@@ -126,6 +130,31 @@ export function userDeleteFailure() {
   };
 }
 
+
+export function userLookupByIdRequest() {
+  return {
+    type: USER_LOOKUPBYID_REQUEST,
+    
+  };
+}
+
+export function userLookupByIdSuccess(data) {
+  return {
+    type: USER_LOOKUPBYID_SUCCESS,
+    data
+  };
+}
+
+export function userLookupByIdFailure(error) {
+  return {
+    type: USER_LOOKUPBYID_FAILURE,
+    error
+  };
+}
+
+
+
+
 export function deleteUser(data) {
   return dispatch => {
     dispatch(userDeleteRequest());
@@ -144,6 +173,27 @@ export function deleteUser(data) {
       })
       .catch(error => {
         dispatch(userDeleteFailure(error));
+      });
+  };
+}
+
+export function userLookupById(id) {
+  return dispatch => {
+    dispatch(userLookupByIdRequest());
+
+    fetch(`${server}/user/${id}`, { mode: "cors" })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        return response.json();
+      })
+      .then(json => {
+        dispatch(userLookupByIdSuccess(json));
+      })
+      .catch(error => {
+        dispatch(userLookupByIdFailure(error));
       });
   };
 }

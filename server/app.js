@@ -7,11 +7,12 @@ const app = express();
 var mongoose = require('mongoose');
 var bluebird = require('bluebird');
 mongoose.Promise = bluebird;
+const mongo = require('./mongo')();
 
 // ----------------------------------------
 // Model Schemas
 // ----------------------------------------
-const User = require('./models');
+const { User } = require('./models');
 
 // ----------------------------------------
 // ENV
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
 // ----------------------------------------
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // ----------------------------------------
 // Sessions/Cookies
@@ -84,12 +86,18 @@ const morganToolkit = require('morgan-toolkit')(morgan);
 app.use(morganToolkit());
 
 // ----------------------------------------
+// Cors
+// ----------------------------------------
+const cors = require('cors');
+app.use(cors());
+
+// ----------------------------------------
 // Passport
 // ----------------------------------------
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 app.use(passport.initialize());
+app.use(passport.session());
 
 // ----------------------------------------
 // Routes
@@ -97,7 +105,7 @@ app.use(passport.initialize());
 // ----------------------------------------
 passport.use(
   new LocalStrategy((username, password, done) => {
-    User.findOne({ username }, (err, user) => {
+    User.findOne({ username: username }, (err, user) => {
       if (err) return done(err);
       if (!user.validPassword(password)) {
         return done(null, false, { message: 'Invalid Password!' });
@@ -111,7 +119,8 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  console.log('test string');
+  done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -125,6 +134,7 @@ passport.deserializeUser((id, done) => {
 // ----------------------------------------
 
 const loggedInOnly = (req, res, next) => {
+  console.log(req.body);
   return req.session.passport && req.session.passport.user
     ? next()
     : res.json({ message: 'Logged In Only' });

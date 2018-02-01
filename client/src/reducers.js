@@ -5,6 +5,7 @@ const initialState = {
 
   currentPouch: null,
   currentItems: [],
+  currentUser: null,
   isFetching: {
     user: null,
     pouch: null,
@@ -195,6 +196,30 @@ export function currentUser(state = initialState, action) {
         isFetching: { ...state.isFetching, item: false },
         error: action.error
       };
+
+    case Action.USER_LOOKUPBYID_REQUEST:
+    let user;
+    return {
+      ...state,
+      isFetching: {...state.isFetching, user: true}, 
+      error: null
+    };
+
+ case Action.USER_LOOKUPBYID_SUCCESS:
+     user = action.data;
+    return {
+      ...state,
+      currentUser: user
+      isFetching: {...state.isFetching, user: false}, 
+      error: null
+    };
+    
+     case Action.USER_LOOKUPBYID_FAILURE:
+    return {
+      ...state,
+      isFetching: {...state.isFetching, user: false},
+      error: action.error
+    };
 
     default:
       return state;
