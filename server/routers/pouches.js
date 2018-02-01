@@ -1,12 +1,11 @@
-let express = require('express');
+let express = require("express");
 let router = express.Router();
-let mongoose = require('mongoose');
-var models = require('./../models');
-var Pouch = mongoose.model('Pouch');
+let mongoose = require("mongoose");
+var models = require("./../models");
+var Pouch = mongoose.model("Pouch");
 
-router.get('/:currentUser', async (req, res, next) => {
+router.get("/:currentUser", async (req, res, next) => {
   try {
-    console.log(req.params);
     let pouches = await Pouch.find({ ownerId: req.params.currentUser });
     if (!pouches) {
       res.send(404);
@@ -21,7 +20,7 @@ router.get('/:currentUser', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     let pouch = await Pouch.findOne({ _id: req.params.id });
     if (!pouch) {
@@ -33,7 +32,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     let { name, userId } = req.body;
     let pouch = await Pouch.create({
@@ -50,7 +49,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     var pouchParams = {
       pouchName: req.body.name,
@@ -66,7 +65,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     let pouch = await Pouch.findByIdAndRemove(req.params.id);
     if (!pouch) {

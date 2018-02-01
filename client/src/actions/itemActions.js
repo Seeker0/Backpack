@@ -1,21 +1,21 @@
-import { setCurrentPouch } from './pouchActions';
+import { setCurrentPouch } from "./pouchActions";
 
-export const NEW_ITEM_REQUEST = 'NEW_ITEM_REQUEST';
-export const NEW_ITEM_SUCCESS = 'NEW_ITEM_SUCCESS';
-export const NEW_ITEM_FAILURE = 'NEW_ITEM_FAILURE';
+export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
+export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
+export const NEW_ITEM_FAILURE = "NEW_ITEM_FAILURE";
 
-export const DELETE_ITEM_REQUEST = 'DELETE_ITEM_REQUEST';
-export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
-export const DELETE_ITEM_FAILURE = 'DELETE_ITEM_FAILURE';
+export const DELETE_ITEM_REQUEST = "DELETE_ITEM_REQUEST";
+export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
+export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
 
-export const GET_ITEM_SUCCESS = 'GET_ITEM_SUCCESS';
-export const GET_ITEM_FAILURE = 'GET_ITEM_FAILURE';
-export const GET_ITEM_REQUEST = 'GET_ITEM_REQUEST';
+export const GET_ITEM_SUCCESS = "GET_ITEM_SUCCESS";
+export const GET_ITEM_FAILURE = "GET_ITEM_FAILURE";
+export const GET_ITEM_REQUEST = "GET_ITEM_REQUEST";
 
 let server =
-  process.env.NODE_ENV === 'production'
-    ? 'https://app-Name.herokuapp.com'
-    : 'http://localhost:3001';
+  process.env.NODE_ENV === "production"
+    ? "https://app-Name.herokuapp.com"
+    : "http://localhost:3000";
 
 export function newItemSuccess(data) {
   return {
@@ -42,16 +42,17 @@ export function newItem(data) {
   let pouchId = data.pouchId;
   var myHeaders = new Headers();
 
-  myHeaders.append('content-type', 'application/json');
+  myHeaders.append("content-type", "application/json");
   return dispatch => {
     dispatch(newItemRequest());
 
     fetch(`${server}/items/`, {
-      method: 'POST',
+      method: "POST",
       headers: myHeaders,
-      mode: 'cors',
-      cache: 'default',
-      body: JSON.stringify(data)
+      mode: "cors",
+      cache: "default",
+      body: JSON.stringify(data),
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
@@ -75,9 +76,10 @@ export function deleteItem(data) {
     dispatch(deleteItemRequest());
     let { itemId, pouchId } = data;
     fetch(`${server}/items/${itemId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       body: JSON.stringify({ pouchId }),
-      mode: 'cors'
+      mode: "cors",
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
@@ -142,7 +144,8 @@ export function getItem(data) {
     dispatch(getItemRequest());
 
     fetch(`${server}/items/${itemId}`, {
-      mode: 'cors'
+      mode: "cors",
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {

@@ -1,11 +1,15 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import mainHeader from '../images/header.png';
+import mainHeader from "../images/header.png";
 
-import { LoginContainer, SignUpContainer } from '../Containers';
+import {
+  LoginContainer,
+  SignUpContainer,
+  LogoutContainer
+} from "../Containers";
 
-import { Button, Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Button, Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -68,8 +72,8 @@ class Welcome extends PureComponent {
                       className="button"
                     >
                       Sign Up
-                    </Button>{' '}
-                    <i className="fas fa-map-signs" />{' '}
+                    </Button>{" "}
+                    <i className="fas fa-map-signs" />{" "}
                     <Button
                       color="success"
                       size="lg"
@@ -99,6 +103,7 @@ class Welcome extends PureComponent {
           isOpen={this.state.modalSignUp}
           toggle={this.toggleSignUp}
         />
+        <LogoutContainer />
         <footer>
           <p>
             &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,
