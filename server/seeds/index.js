@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
-const mongooseeder = require("mongooseeder");
-const models = require("../models");
+const mongoose = require('mongoose');
+const mongooseeder = require('mongooseeder');
+const models = require('../models');
 
-const mongodbUrl = "mongodb://localhost/pockets_development";
+const mongodbUrl = 'mongodb://localhost/pockets_development';
 
-const { User, Pouch, Item } = require("../models");
+const { User, Pouch, Item } = require('../models');
 
 mongooseeder.seed({
   mongodbUrl: mongodbUrl,
@@ -20,9 +20,10 @@ mongooseeder.seed({
       const user = new User({
         username: `hooligan${i}`,
         email: `${i}is@nobodycares.com`,
-        passwordHash: `password${i}`,
+        passwordHash: '',
         pouches: []
       });
+      user.set('password', `password${i}`);
       users.push(user);
     }
 
