@@ -6,6 +6,7 @@ import Learn from "./Learn";
 import Welcome from "./Welcome";
 import Dashboard from "./Dashboard";
 import Logout from "./Logout";
+import AddPouch from "./AddPouch";
 
 //state
 
@@ -17,5 +18,6 @@ export {
   Learn,
   Welcome,
   Dashboard,
-  Logout
+  Logout,
+  AddPouch
 };

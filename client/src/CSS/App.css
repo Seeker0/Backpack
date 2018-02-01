@@ -87,6 +87,10 @@ body {
   font-family: "Kalam", cursive;
 }
 
+.links li {
+  text-align: right;
+}
+
 .links:hover {
   color: gray !important;
 }

@@ -87,6 +87,7 @@ class Welcome extends PureComponent {
         <LoginContainer
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
+          {...this.props}
         />
         <SignUpContainer
           isOpen={this.state.modalSignUp}

@@ -5,6 +5,7 @@
 import React, { Component } from "react";
 import { Draggable, Droppable } from "react-drag-and-drop";
 import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
+import AddPouchContainer from "../Containers/AddPouchContainer";
 
 class DragDrop extends Component {
   constructor(props) {
@@ -40,7 +41,10 @@ class DragDrop extends Component {
       <div>
         <div id="pouch-side-bar">
           <p id="pouch-side-bar-title">Your Pouches</p>
-          <div>{droppableItems}</div>
+          <div>
+            {droppableItems}
+            <AddPouchContainer />
+          </div>
         </div>
         <div className="current-pouch-container">
           <Container>

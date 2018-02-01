@@ -125,10 +125,18 @@ export function login(user) {
         return response.json();
       })
       .then(user => {
+        console.log(user);
         dispatch(getUserPouches(user));
         dispatch(setCurrentPouch({ pouchId: user.pouches[0] }));
-      })
-      .catch(console.error);
+        dispatch(loginSuccess(user));
+      });
+  };
+}
+
+export function loginSuccess(data) {
+  return {
+    type: LOGIN_SUCCESS,
+    data
   };
 }
 

@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import logo from "../images/header.png";
 import backpackIcon from "../images/backpack-icon.png";
 import defaultUser from "../images/defaultUser.png";
+import LogoutContainer from "../Containers/LogoutContainer";
 
 import {
   Collapse,
@@ -118,9 +119,7 @@ class TopNavBar extends PureComponent {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="" className="links">
-                  Logout <i className="fa fa-hand-peace icon" />
-                </NavLink>
+                <LogoutContainer className="links" />
               </NavItem>
             </Nav>
           </Collapse>
