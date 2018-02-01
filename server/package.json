@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "seed": "node seeds",
     "seeds": "node seeds"
   },
@@ -25,6 +25,7 @@
     "express-handlebars": "^3.0.0",
     "express-method-override-get-post-support": "^1.0.1",
     "faker": "^4.1.0",
+    "jasmine": "^2.9.0",
     "load-helpers": "^1.0.1",
     "lodash": "^4.17.4",
     "method-override": "^2.3.10",
@@ -33,6 +34,7 @@
     "mongooseeder": "^2.0.6",
     "morgan": "^1.9.0",
     "morgan-toolkit": "^1.2.2",
+    "node-fetch": "^1.7.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   }
