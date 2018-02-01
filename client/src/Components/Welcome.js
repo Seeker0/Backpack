@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 
 import Header from "./Header";
 import { LoginContainer, SignUpContainer } from "../Containers";
-
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -89,6 +88,7 @@ class Welcome extends PureComponent {
           isOpen={this.state.modalSignUp}
           toggle={this.toggleSignUp}
         />
+        <LogoutContainer />
         <footer>
           <p>
             &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,

@@ -1,3 +1,5 @@
+import { setCurrentPouch } from "./pouchActions";
+
 export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
 export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
@@ -21,7 +23,7 @@ export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
 let server =
   process.env.NODE_ENV === "production"
     ? "https://app-Name.herokuapp.com"
-    : "http://localhost:3001";
+    : "http://localhost:3000";
 
 export function getUserPouchesSuccess(data) {
   return {
@@ -43,11 +45,13 @@ export function getUserPouchesRequest() {
   };
 }
 
-export function getUserPouches() {
+export function getUserPouches(user) {
   return dispatch => {
     dispatch(getUserPouchesRequest());
-
-    fetch(`${server}/pouches/currentUser`, { mode: "cors" })
+    fetch(`${server}/pouches/${user._id}`, {
+      mode: "cors",
+      credentials: "same-origin"
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -64,32 +68,52 @@ export function getUserPouches() {
   };
 }
 
-export function logout(data) {
+export function logout() {
   return dispatch => {
-    fetch(`${server}/logout/${data._id}`, {
-      method: "DELETE",
-      mode: "cors"
+    fetch(`${server}/logout`, {
+      method: "GET",
+      mode: "cors",
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
 
-        dispatch(userDeleteSuccess());
-        dispatch(logout());
+        dispatch(logoutSuccess());
       })
       .catch(error => {
-        dispatch(userDeleteFailure(error));
+        dispatch(logoutFailure(error));
       });
   };
 }
 
-export function login(username, password) {
+export function logoutSuccess() {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+}
+
+export function logoutFailure(err) {
+  return {
+    type: LOGOUT_FAILURE,
+    err
+  };
+}
+
+export function logoutRequest() {
+  return {
+    type: LOGOUT_REQUEST
+  };
+}
+
+export function login(user) {
   return dispatch => {
     const requestOptions = {
+      credentials: "same-origin",
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify(user),
       mode: "cors"
     };
 
@@ -98,11 +122,11 @@ export function login(username, password) {
         if (!response.ok) {
           return Promise.reject(response.statusText);
         }
-        console.log(response);
         return response.json();
       })
       .then(user => {
         dispatch(getUserPouches(user));
+        dispatch(setCurrentPouch({ pouchId: user.pouches[0] }));
       })
       .catch(console.error);
   };
@@ -132,7 +156,8 @@ export function deleteUser(data) {
 
     fetch(`${server}/users/${data._id}`, {
       method: "DELETE",
-      mode: "cors"
+      mode: "cors",
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
@@ -144,6 +169,51 @@ export function deleteUser(data) {
       })
       .catch(error => {
         dispatch(userDeleteFailure(error));
+      });
+  };
+}
+
+export function registerSuccess(data) {
+  return {
+    type: REGISTER_SUCCESS,
+    data
+  };
+}
+
+export function registerFailure(error) {
+  return {
+    type: REGISTER_FAILURE,
+    error
+  };
+}
+
+export function registerRequest() {
+  return {
+    type: REGISTER_REQUEST
+  };
+}
+
+export function registerUser(data) {
+  return dispatch => {
+    let { username, email, password } = data;
+    dispatch(registerRequest());
+
+    fetch(`${server}/register`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        dispatch(login(response));
+      })
+      .catch(error => {
+        dispatch(registerFailure(error));
       });
   };
 }

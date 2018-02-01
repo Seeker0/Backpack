@@ -15,7 +15,7 @@ export const GET_ITEM_REQUEST = "GET_ITEM_REQUEST";
 let server =
   process.env.NODE_ENV === "production"
     ? "https://app-Name.herokuapp.com"
-    : "http://localhost:3001";
+    : "http://localhost:3000";
 
 export function newItemSuccess(data) {
   return {
@@ -50,7 +50,8 @@ export function newItem(data) {
       headers: myHeaders,
       mode: "cors",
       cache: "default",
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
@@ -76,7 +77,8 @@ export function deleteItem(data) {
     fetch(`${server}/items/${itemId}`, {
       method: "DELETE",
       body: JSON.stringify({ pouchId }),
-      mode: "cors"
+      mode: "cors",
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
@@ -141,7 +143,8 @@ export function getItem(data) {
     dispatch(getItemRequest());
 
     fetch(`${server}/items/${itemId}`, {
-      mode: "cors"
+      mode: "cors",
+      credentials: "same-origin"
     })
       .then(response => {
         if (!response.ok) {
