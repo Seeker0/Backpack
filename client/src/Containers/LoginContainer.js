@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Login } from '../Components';
-import { login } from '../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Login } from "../Components";
+import { login } from "../actions/userActions";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -9,29 +9,29 @@ class LoginContainer extends Component {
     this.state = {
       success: false,
       errors: {},
-      username: '',
-      password: ''
+      username: "",
+      password: ""
     };
   }
 
   onChangeInput = e => {
-    let usernameField = document.getElementById('username').value;
-    let passwordField = document.getElementById('password').value;
-    if (e.target.name === 'username') {
+    let usernameField = document.getElementById("username").value;
+    let passwordField = document.getElementById("password").value;
+    if (e.target.name === "username") {
       if (usernameField.length < 6 && usernameField.length > 0) {
         this.setState({
-          errors: { type: 'username' }
+          errors: { type: "username" }
         });
       } else {
         this.setState({
           errors: {}
         });
       }
-    } else if (e.target.name === 'password') {
-      if (e.target.name === 'password') {
+    } else if (e.target.name === "password") {
+      if (e.target.name === "password") {
         if (passwordField.length < 8 && passwordField.length > 0) {
           this.setState({
-            errors: { type: 'password' }
+            errors: { type: "password" }
           });
         } else {
           this.setState({
@@ -47,7 +47,7 @@ class LoginContainer extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log('State after login: ', this.state);
+    console.log("State after login: ", this.state);
     if (!Object.keys(this.state.errors).length) {
       let user = {
         username: this.state.username,
@@ -73,10 +73,10 @@ class LoginContainer extends Component {
       {
         success: true,
         errors: {},
-        username: '',
-        password: ''
+        username: "",
+        password: ""
       },
-      () => console.log('Success!')
+      () => console.log("Success!")
     );
   };
 
@@ -84,11 +84,11 @@ class LoginContainer extends Component {
     this.setState(
       {
         success: false,
-        errors: { type: 'No username provided.' },
-        username: '',
-        password: ''
+        errors: { type: "No username provided." },
+        username: "",
+        password: ""
       },
-      () => console.log('Error in your form.')
+      () => console.log("Error in your form.")
     );
   };
 

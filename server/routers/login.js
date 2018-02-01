@@ -15,12 +15,6 @@ const LocalStrategy = require('passport-local').Strategy;
 // Routes for /login
 // ----------------------------------------
 
-// router.post('/', (req, res, next) => {
-//   passport.authenticate('local', (err, user, info) => {
-//     return res.json({ success: true, message: 'User found', user, info });
-//   })(req, res, next);
-// });
-
 router.post('/', passport.authenticate('local'), function(req, res) {
   console.log('callback called');
   // If this function gets called, authentication was successful.

@@ -4,10 +4,10 @@ let mongoose = require("mongoose");
 var models = require("./../models");
 var Pouch = mongoose.model("Pouch");
 
-router.get("/currentUser", async (req, res, next) => {
+router.get("/:currentUser", async (req, res, next) => {
   try {
-    let pouches = await Pouch.find({ ownerId: req.session.user._id });
-    if (!user) {
+    let pouches = await Pouch.find({ ownerId: req.params.currentUser });
+    if (!pouches) {
       res.send(404);
     }
     pouches = pouches.map(pouch => ({
