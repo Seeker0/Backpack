@@ -10,7 +10,10 @@ let loggedOutOnlyMessage = "Already logged in";
 let validUser = { username: "hooligan0", password: "password0" };
 
 const fetchRequest = (url, options) => {
-  return fetch(url, options).then(response => response.json());
+  return fetch(url, options).then(response => {
+    console.log(response.headers);
+    return response.json();
+  });
 };
 
 describe("server", () => {
