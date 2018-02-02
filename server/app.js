@@ -106,8 +106,6 @@ app.use(passport.session());
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username }, (err, user) => {
-      console.error(err);
-      console.log("THIS WORKS");
       if (err) return done(err);
       if (!user) {
         return done(null, false, { message: "Invalid Username!" });
@@ -138,11 +136,11 @@ passport.deserializeUser((id, done) => {
 const loggedInOnly = (req, res, next) => {
   return req.session.passport && req.session.passport.user
     ? next()
-    : res.json({ message: "Logged In Only" });
+    : res.status(401);
 };
 
 const loggedOutOnly = (req, res, next) => {
-  return !req.user ? next() : res.json({ message: "Already logged in" });
+  return !req.user ? next() : res.status(403);
 };
 
 // ----------------------------------------
@@ -158,11 +156,10 @@ app.use("/login", loggedOutOnly, login);
 app.use("/logout", loggedInOnly, logout);
 app.use("/register", loggedOutOnly, register);
 
-let currentUser;
-
-app.get("/", loggedInOnly, async (req, res, next) => {
+app.get("/currentUser", loggedInOnly, async (req, res, next) => {
+  console.log("DID I EVEN GET HERE?");
   try {
-    currentUser = await User.findById(req.session.passport.user);
+    let currentUser = await User.findById(req.session.passport.user);
     res.json(currentUser);
   } catch (err) {
     next(err);
