@@ -5,7 +5,7 @@
   "description": "Remember your media journey",
   "default_locale": "en",
   "background": {
-      "scripts": ["event.js"],
+    "scripts": ["event.js"],
     "persistent": false
   },
   "browser_action": {
@@ -18,9 +18,9 @@
     "cookies",
     "activeTab",
     "contextMenus",
-     
-      "http://*/*", 
-        "https://*/*"
+
+    "http://*/*",
+    "https://*/*"
   ],
   "icons": {
     "16": "logo.png"

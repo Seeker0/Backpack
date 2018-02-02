@@ -1,14 +1,5 @@
-
-
-
-
- chrome.runtime.sendMessage({
-    'title': document.title,
-    'url': "yahoo.com",
-    'summary': window.getSelection().toString()
-})
-
-
-
-
-
+chrome.runtime.sendMessage({
+  title: document.title,
+  url: "yahoo.com",
+  summary: window.getSelection().toString()
+});

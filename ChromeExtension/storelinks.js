@@ -1,5 +1,4 @@
 function onPageDetailsReceived(pageDetails) {
-  //chrome.runtime.getBackgroundPage().console.log(pageDetails);
   document.getElementById("title").value = pageDetails.title;
   document.getElementById("url").value = pageDetails.url;
   document.getElementById("summary").innerText = pageDetails.summary;
@@ -62,20 +61,10 @@ window.addEventListener("load", function(evt) {
     .getElementById("addbookmark")
     .addEventListener("submit", addBookmark);
   // Get the event page
-  //chrome.runtime.getBackgroundPage(function(eventPage) {
-  // Call the getPageInfo function in the event page, passing in
-  // our onPageDetailsReceived function as the callback. This injects
-  // content.js into the current tab's HTML
-  //eventPage.getPageDetails(onPageDetailsReceived);
-  chrome.runtime.onMessage.addListener(onPageDetailsReceived);
-  document.oncontextmenu = e => {
-    //url = e.target.href;
-    console.log(e.target.href);
-    //return url;
-    chrome.runtime.sendMessage({
-      title: document.title,
-      summary: window.getSelection().toString(),
-      url: e.target.href
-    });
-  };
+  chrome.runtime.getBackgroundPage(function(eventPage) {
+    // Call the getPageInfo function in the event page, passing in
+    // our onPageDetailsReceived function as the callback. This injects
+    // content.js into the current tab's HTML
+    eventPage.getPageDetails(onPageDetailsReceived);
+  });
 });
