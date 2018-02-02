@@ -12,6 +12,9 @@ import {
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends PureComponent {
+  componentDidMount() {
+    this.props.getUser();
+  }
   render() {
     return (
       <Router>
