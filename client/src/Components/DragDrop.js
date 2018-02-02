@@ -16,6 +16,7 @@ const DragDrop = props => {
       <Draggable type="item" data={item.link} itemid={item._id}>
         <div className="item-box">
           <h3>{item.name}</h3>
+          <h3>{item.link}</h3>
           <div>
             <DeleteItem />
           </div>

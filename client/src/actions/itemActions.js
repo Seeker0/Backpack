@@ -64,7 +64,7 @@ export function newItem(data) {
       .then(json => {
         dispatch(newItemSuccess(json));
         if (pouchId) {
-          dispatch(setCurrentPouch({ pouchId }));
+          dispatch(setCurrentPouch({ _id: pouchId }));
         } else {
           dispatch(getUser());
         }

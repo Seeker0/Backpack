@@ -42,7 +42,7 @@ class AddPouch extends React.Component {
           toggle={this.toggle}
           className="modal-form"
         >
-          <ModalHeader>New Pouch</ModalHeader>
+          <ModalHeader>New Item</ModalHeader>
           <Form>
             <FormGroup className="extra-padding">
               <Label for="title">Name:</Label>
@@ -82,7 +82,7 @@ class AddPouch extends React.Component {
                 });
               }}
             >
-              Create Pouch
+              Create Item
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel
