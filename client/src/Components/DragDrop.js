@@ -6,7 +6,7 @@ import React, { Component } from "react";
 import { Draggable, Droppable } from "react-drag-and-drop";
 import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
 import AddPouchContainer from "../Containers/AddPouchContainer";
-import DeleteItem from "./DeleteItem";
+import DeleteItemContainer from "../Containers/DeleteItemContainer";
 import DeletePouchContainer from "../Containers/DeletePouchContainer";
 import AddItemContainer from "../Containers/AddItemContainer";
 
@@ -18,7 +18,7 @@ const DragDrop = props => {
           <h3>{item.name}</h3>
           <h3>{item.link}</h3>
           <div>
-            <DeleteItem />
+            <DeleteItemContainer itemid={item._id} />
           </div>
         </div>
       </Draggable>
