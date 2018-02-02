@@ -17,6 +17,7 @@ router.post("/", async (req, res, next) => {
       password,
       pouches: []
     });
+
     await user.save();
     if (!user) {
       res.send(500);

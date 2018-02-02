@@ -212,6 +212,7 @@ footer {
 .pouch:hover {
   background-color: #c98c38;
   font-size: 35px;
+  cursor: pointer;
 }
 
 .pouch-name {
@@ -280,4 +281,15 @@ footer {
 
 #adv-search {
   width: 100%;
+}
+
+#pouch-side-bar {
+  overflow-y: auto;
+  padding-bottom: 500px;
+}
+
+.other-button {
+  text-align: center;
+  padding: 15px;
+  font-family: "Kalam", cursive;
 }

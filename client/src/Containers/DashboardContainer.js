@@ -2,24 +2,29 @@ import { connect } from "react-redux";
 //import { bindActionCreators } from "redux";
 
 import { Dashboard } from "../Components";
+import { setCurrentPouch } from "../actions/pouchActions";
+import { getUser } from "../actions/userActions";
 //import { getBoards, createBoard } from "../actions";
 
 const mapStateToProps = state => {
+  let username = state.user ? state.user.username : null;
   return {
     pouches: state.pouches,
     currentItems: state.currentItems,
-    currentPouch: state.currentPouch
+    currentPouch: state.currentPouch,
+    unsortedItems: state.unsortedItems,
+    username
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    // getBoards: user => {
-    //   dispatch(getBoards(user));
-    // },
-    // createBoard: user => {
-    //   dispatch(createBoard(user.id));
-    // }
+    setCurrentPouch: id => {
+      dispatch(setCurrentPouch({ _id: id }));
+    },
+    getUser: () => {
+      dispatch(getUser());
+    }
   };
 };
 

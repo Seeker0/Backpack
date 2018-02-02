@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import App from "./Components/App";
+import AppContainer from "./Containers/AppContainer";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "./CSS/index.css";
@@ -16,7 +16,7 @@ let store = createStore(currentUser, applyMiddleware(logger, thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById("root")
 );
