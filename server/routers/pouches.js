@@ -6,9 +6,9 @@ var Pouch = mongoose.model("Pouch");
 var User = mongoose.model("User");
 
 router.get("/:userId", async (req, res, next) => {
-  console.log("IM HERE");
   try {
-    let pouches = await Pouch.find({ ownerId: req.params.userId });
+    let user = await User.findById(req.params.userId).populate("pouches");
+    let pouches = user.pouches;
     if (!pouches) {
       res.send(404);
     }
