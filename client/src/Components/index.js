@@ -7,6 +7,7 @@ import Welcome from "./Welcome";
 import Dashboard from "./Dashboard";
 import Logout from "./Logout";
 import AddPouch from "./AddPouch";
+import Search from "./Search";
 
 //state
 
@@ -19,5 +20,6 @@ export {
   Welcome,
   Dashboard,
   Logout,
-  AddPouch
+  AddPouch,
+  Search
 };

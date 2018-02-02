@@ -71,4 +71,14 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+router.post("/items/search", async function(req, res, next) {
+  try {
+    let result = await Items.find({
+      where: { name: { $ilike: `%${req.body.search}%` } }
+    });
+  } catch (e) {
+    res.status(500).send(e.stack);
+  }
+});
+
 module.exports = router;

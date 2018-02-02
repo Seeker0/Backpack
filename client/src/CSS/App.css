@@ -253,7 +253,7 @@ footer {
 .dropdown.dropdown-lg .dropdown-menu {
   margin-top: -1px;
   padding: 6px 20px;
-  min-width: 500px;
+  min-width: 200px;
 }
 .input-group-btn .btn-group {
   display: flex !important;
