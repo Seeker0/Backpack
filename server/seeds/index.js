@@ -41,7 +41,7 @@ mongooseeder.seed({
       const item = new Item({
         name: `item${i}`,
         link: `http://www.item${i}.com`,
-        ownerId: user.user_id
+        ownerId: user._id
       });
       pouch.itemIds.push(item._id);
       items.push(item);

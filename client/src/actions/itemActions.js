@@ -13,6 +13,12 @@ export const GET_ITEM_SUCCESS = "GET_ITEM_SUCCESS";
 export const GET_ITEM_FAILURE = "GET_ITEM_FAILURE";
 export const GET_ITEM_REQUEST = "GET_ITEM_REQUEST";
 
+export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
+export const SEARCH_FAILURE = "SEARCH_FAILURE";
+export const SEARCH_REQUEST = "SEARCH_REQUEST";
+
+const querystring = require('querystring');
+
 let server =
   process.env.NODE_ENV === "production"
     ? "https://app-Name.herokuapp.com"
@@ -161,6 +167,52 @@ export function getItem(data) {
       })
       .catch(error => {
         dispatch(getItemFailure(error));
+      });
+  };
+}
+
+export function searchRequest() {
+  return {
+    type: SEARCH_REQUEST
+  };
+}
+
+export function searchSuccess(data) {
+  return {
+    type: SEARCH_SUCCESS,
+    data
+  };
+}
+
+export function searchFailure(error) {
+  return {
+    type: SEARCH_FAILURE,
+    error
+  };
+}
+
+export function search(data) {
+  let searchData = { name: data};
+  let query = querystring.stringify(searchData);
+  return dispatch => {
+    dispatch(searchRequest());
+
+    fetch(`${server}/items/search/?${query}`, {
+      mode: "cors",
+      credentials: "same-origin",
+      headers: { "content-type": "application/json"}
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+        return response.json()
+      })
+      .then(response => {
+        dispatch(searchSuccess(response));
+      })
+      .catch(error => {
+        dispatch(searchFailure(error));
       });
   };
 }
