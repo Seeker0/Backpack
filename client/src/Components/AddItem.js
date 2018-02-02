@@ -33,9 +33,11 @@ class AddPouch extends React.Component {
   render() {
     return (
       <div>
+        <div className="other-button">
         <Button color="info" size="sm" onClick={this.toggle}>
           New Item
         </Button>
+      </div>
 
         <Modal
           isOpen={this.state.modal}
@@ -43,8 +45,8 @@ class AddPouch extends React.Component {
           className="modal-form"
         >
           <ModalHeader>New Item</ModalHeader>
-          <Form>
-            <FormGroup className="extra-padding">
+          <Form className="extra-padding">
+            <FormGroup>
               <Label for="title">Name:</Label>
               <div>
                 <input

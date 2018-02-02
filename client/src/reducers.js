@@ -199,6 +199,30 @@ export function currentUser(state = initialState, action) {
         error: action.error
       };
 
+    case Actions.SEARCH_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, items: true },
+        error: null
+      };
+
+    case Actions.SEARCH_SUCCESS:
+      items = action.data;
+      return {
+        ...state,
+        currentItems: items,
+        currentPouch: null,
+        isFetching: { ...state.isFetching, items: null },
+        error: null
+      };
+
+    case Actions.SEARCH_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, items: null },
+        error: action.error
+      };
+
     case Actions.LOGIN_SUCCESS:
       return {
         ...state,
