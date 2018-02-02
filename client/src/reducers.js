@@ -29,6 +29,9 @@ export function currentUser(state = initialState, action) {
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
       currentPouch = pouches[0];
+      console.log("POUCHES");
+      console.log(pouches);
+
       return {
         ...state,
         pouches,

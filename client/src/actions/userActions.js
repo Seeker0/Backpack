@@ -50,6 +50,8 @@ export function getUserPouchesRequest() {
 }
 
 export function getUserPouches(user) {
+  console.log("GET USER POUCHES");
+  console.log(user);
   return dispatch => {
     dispatch(getUserPouchesRequest());
     fetch(`${server}/pouches/${user._id}`, {
@@ -65,6 +67,7 @@ export function getUserPouches(user) {
       })
       .then(json => {
         dispatch(getUserPouchesSuccess(json));
+        dispatch(setCurrentPouch({ _id: json[0]._id }));
       })
       .catch(error => {
         dispatch(getUserPouchesFailure(error));
@@ -131,6 +134,7 @@ export function login(user) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
+        //dispatch(setCurrentPouch(user.pouches[0]));
       });
   };
 }
@@ -154,12 +158,9 @@ export function getUser() {
         if (!response.ok) {
           return Promise.reject(response.statusText);
         }
-        console.log("RESPONSE=>", response);
-        console.log("BODY=>", response.body);
         return response.json();
       })
       .then(user => {
-        console.log("USER IS");
         dispatch(getUserPouches(user));
         dispatch(getUserSuccess(user));
       })
