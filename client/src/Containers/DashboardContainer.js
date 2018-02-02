@@ -12,7 +12,6 @@ const mapStateToProps = state => {
     pouches: state.pouches,
     currentItems: state.currentItems,
     currentPouch: state.currentPouch,
-    unsortedItems: state.unsortedItems,
     username
   };
 };

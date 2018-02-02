@@ -44,17 +44,6 @@ const DragDrop = props => {
       <div id="pouch-side-bar">
         <p id="pouch-side-bar-title">Your Pouches</p>
         <div>
-          {props.unsortedItems ? (
-            <Droppable
-              types={["item"]} // <= allowed drop types
-              //onDrop={props.onDrop.bind(this)}
-            >
-              <div className="pouch" onClick={props.getUser}>
-                <h3 className="pouch-name">{props.unsortedItems.name}</h3>
-              </div>
-            </Droppable>
-          ) : null}
-
           {droppableItems}
           <AddPouchContainer />
         </div>
