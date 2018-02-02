@@ -114,6 +114,8 @@ export function logoutRequest() {
 
 export function login(user) {
   return dispatch => {
+    console.log("TRYING TO LOG IN WITH");
+    console.log(user);
     const requestOptions = {
       credentials: "same-origin",
       method: "POST",
@@ -261,7 +263,10 @@ export function registerUser(data) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
 
-        dispatch(login(response));
+        return response.json();
+      })
+      .then(json => {
+        dispatch(login({ username, password }));
       })
       .catch(error => {
         dispatch(registerFailure(error));
