@@ -18,7 +18,6 @@ const Dashboard = ({
         pouches={pouches}
         currentItems={currentItems}
         currentPouch={currentPouch}
-        unsortedItems={unsortedItems}
         setCurrentPouch={setCurrentPouch}
         getUser={getUser}
       />
