@@ -12,7 +12,8 @@ router.get("/:currentUser", async (req, res, next) => {
     }
     pouches = pouches.map(pouch => ({
       _id: pouch._id,
-      name: pouch.pouchName
+      name: pouch.pouchName,
+      ownerId: pouch.ownerId
     }));
     res.json(pouches);
   } catch (e) {
@@ -34,17 +35,19 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    let { name, userId } = req.body;
-    let pouch = await Pouch.create({
-      ownerId: userId,
-      pouchName: name,
+    let { pouchName, ownerId } = req.body;
+    let pouch = await new Pouch({
+      ownerId: ownerId,
+      pouchName: pouchName,
       itemIds: []
     });
+    pouch = await pouch.save();
     if (!pouch) {
       res.send(500);
     }
     res.json(pouch);
   } catch (e) {
+    console.error(e);
     next(e);
   }
 });

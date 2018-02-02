@@ -90,7 +90,9 @@ export function newPouch(data) {
       })
       .then(json => {
         dispatch(newPouchSuccess(json));
-        dispatch(getUserPouches());
+        console.log("JSON");
+        console.log(json);
+        dispatch(getUserPouches({ _id: json.ownerId }));
       })
       .catch(error => {
         dispatch(newPouchFailure(error));

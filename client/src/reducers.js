@@ -20,7 +20,8 @@ const initialState = {
     item: null,
     newPouch: null
   },
-  error: null
+  error: null,
+  user: null
 };
 
 export function currentUser(state = initialState, action) {
@@ -201,6 +202,12 @@ export function currentUser(state = initialState, action) {
         ...state,
         isFetching: { ...state.isFetching, item: false },
         error: action.error
+      };
+
+    case Actions.LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.data
       };
 
     default:
