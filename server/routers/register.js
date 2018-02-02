@@ -15,7 +15,8 @@ router.post("/", async (req, res, next) => {
       username,
       email,
       password,
-      pouches: []
+      pouches: [],
+      unsortedItems: []
     });
 
     await user.save();

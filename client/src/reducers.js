@@ -207,7 +207,7 @@ export function currentUser(state = initialState, action) {
 
     case Actions.LOGIN_SUCCESS:
       unsortedItems = action.data.unsortedItems;
-      if (!unsortedItems.items) {
+      if (!unsortedItems || !unsortedItems.items) {
         currentItems = [];
       } else {
         currentItems = unsortedItems.items;
@@ -221,7 +221,7 @@ export function currentUser(state = initialState, action) {
 
     case Actions.GET_USER_SUCCESS:
       unsortedItems = action.data.unsortedItems;
-      if (!unsortedItems.items) {
+      if (!unsortedItems || !unsortedItems.items) {
         currentItems = [];
       } else {
         currentItems = unsortedItems.items;
