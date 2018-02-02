@@ -25,7 +25,7 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 function onClickHandler(info, tab) {
   var link = info.linkUrl;
   console.log(link);
-  var postUrl = "http://localhost:3001/pouches";
+  var postUrl = "http://localhost:3001/items";
 
   // Set up an asynchronous AJAX POST request
   var xhr = new XMLHttpRequest();

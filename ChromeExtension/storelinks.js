@@ -1,6 +1,6 @@
 function onPageDetailsReceived(pageDetails) {
-  document.getElementById("title").value = pageDetails.title;
-  document.getElementById("url").value = pageDetails.url;
+  document.getElementById("name").value = pageDetails.name;
+  document.getElementById("link").value = pageDetails.link;
   document.getElementById("summary").innerText = pageDetails.summary;
 }
 
@@ -12,20 +12,20 @@ function addBookmark() {
   // Cancel the form submit
   event.preventDefault();
 
-  var postUrl = "http://localhost:3001/pouches";
+  var postUrl = "http://localhost:3001/items";
 
   // Set up an asynchronous AJAX POST request
   var xhr = new XMLHttpRequest();
   xhr.open("POST", postUrl, true);
 
   // Prepare the data to be POSTed by URLEncoding each field's contents
-  var title = encodeURIComponent(document.getElementById("title").value);
-  var url = encodeURIComponent(document.getElementById("url").value);
+  var name = encodeURIComponent(document.getElementById("name").value);
+  var link = encodeURIComponent(document.getElementById("link").value);
   var summary = encodeURIComponent(document.getElementById("summary").value);
   var tags = encodeURIComponent(document.getElementById("tags").value);
 
   var params =
-    "title=" + title + "&url=" + url + "&summary=" + summary + "&tags=" + tags;
+    "name=" + name + "&link=" + link + "&summary=" + summary + "&tags=" + tags;
 
   // Replace any instances of the URLEncoded space char with +
   params = params.replace(/%20/g, "+");
