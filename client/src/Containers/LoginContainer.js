@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Login } from "../Components";
-import { login } from "../actions/userActions";
+import actions from "../actions";
+import { withRouter } from "react-router-dom";
+
+let login = actions.login;
+//console.log(Object.keys(actions));
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -111,14 +115,15 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     login: user => {
       dispatch(login(user));
+      ownProps.history.push("/dashboard");
     }
   };
 };
 
 LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
 
-export default LoginContainer;
+export default withRouter(LoginContainer);

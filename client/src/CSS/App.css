@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Kalam');
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url("https://fonts.googleapis.com/css?family=Kalam");
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
 
 body {
   background: #908b94 url(../images/mountains.png) no-repeat fixed center top;
@@ -22,11 +23,11 @@ body {
 }
 
 .App-motto {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
 }
 
 .modal-form {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
 }
 
 .button-font-right {
@@ -38,7 +39,7 @@ body {
 }
 
 .button {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   margin-bottom: 40px;
 }
 
@@ -54,12 +55,57 @@ body {
   padding: 15px;
 }
 
-.SignUpPadding {
-  padding: 10px;
+.navbar-border {
+  border-bottom: 2px solid black;
+}
+
+.logo {
+  height: 50px;
+}
+
+.navbar-toggler {
+  background-color: black;
+}
+
+.profile-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.font1 {
+  font-family: "Kalam", cursive;
+}
+
+.align-right {
+  float: right;
+}
+
+.links {
+  font-size: 25px;
+  text-align: right;
+  color: black;
+  font-family: "Kalam", cursive;
+}
+
+.links li {
+  text-align: right;
+}
+
+.links:hover {
+  color: gray !important;
+}
+
+.backpack-icon {
+  height: 25px;
+}
+
+.icon {
+  font-size: 25px;
+  color: black;
 }
 
 #welcome-body {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 26px;
   padding-top: 30px;
@@ -67,14 +113,14 @@ body {
 }
 
 #welcome-list {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 26px;
   text-align: left;
 }
 
 #action-text {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 40px;
   padding-top: 15pxx;
@@ -87,7 +133,7 @@ body {
 }
 
 #list1 {
-  font-family: 'Kalam', cursive;
+  font-family: "Kalam", cursive;
   color: black;
   font-size: 22px;
   border-top: 1px solid black;
@@ -111,14 +157,6 @@ ul {
   height: 100%;
 }
 
-/* footer {
-  padding-top: 50px;
-  width: 100%;
-  color: black;
-  text-align: center;
-  margin-top:
-} */
-
 footer {
   position: absolute;
   right: 0;
@@ -127,4 +165,131 @@ footer {
   padding: 1rem;
   color: black;
   text-align: center;
+}
+
+#pouch-side-bar {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  background-color: #7c8ba3;
+  padding-top: 20px;
+  font-family: "Kalam", cursive;
+  text-align: center;
+  border-left: solid black 2px;
+}
+
+#pouch-side-bar-title {
+  font-family: "Indie Flower", cursive;
+  font-weight: bold;
+  font-size: 50px;
+  color: #566a37;
+  text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+}
+
+.current-pouch-container {
+  width: 75%;
+}
+
+.pouch {
+  font-size: 50px;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 70%;
+  height: 120px;
+  background-color: #94651b;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  color: black;
+  border: dashed black 3px;
+  border-top: solid black 3px;
+  box-shadow: 10px 10px 20px;
+}
+
+.pouch:hover .pouch-name,
+.pouch:hover {
+  background-color: #c98c38;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.pouch-name {
+  font-size: 30px;
+  padding-top: 15px;
+}
+
+.box1 {
+  padding-top: 20px;
+  border: solid black 1px;
+}
+
+.item-box {
+  font-family: "Kalam", cursive;
+  text-align: center;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 15px;
+  border: solid black 1px;
+}
+
+#current-pouch-title {
+  font-family: "Indie Flower", cursive;
+  font-weight: bold;
+  font-size: 80px;
+  color: #0072b2;
+  text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+  text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+  #pouch-side-bar {
+    width: 50%;
+  }
+}
+
+.dropdown.dropdown-lg .dropdown-menu {
+  margin-top: -1px;
+  padding: 6px 20px;
+  min-width: 500px;
+}
+.input-group-btn .btn-group {
+  display: flex !important;
+}
+.btn-group .btn {
+  border-radius: 0;
+  margin-left: -1px;
+}
+.btn-group .btn:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+.form-group .form-control:last-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+#adv-search {
+  width: 100%;
+}
+
+#pouch-side-bar {
+  overflow-y: auto;
+  padding-bottom: 500px;
+}
+
+.other-button {
+  text-align: center;
+  padding: 15px;
+  font-family: "Kalam", cursive;
 }

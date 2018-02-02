@@ -35,12 +35,23 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    let { itemName, link } = req.body;
-    let pouch = await Pouch.findById(req.body.pouchId);
-    let item = await new Item({ itemName, link });
+    let { name, link } = req.body;
+    let item = await new Item({ name, link });
+    let user = req.session.passport.user;
+    item.ownerId = user._id;
     item = await Item.save();
-    pouch.itemIds.push(item._id);
-    await pouch.save();
+    if (req.body.pouchId) {
+      let pouch = await Pouch.findById(req.body.pouchId);
+
+      pouch.itemIds.push(item._id);
+      await pouch.save();
+    } else {
+      user = await User.findById(user._id);
+      let unsortedItems = await Pouch.findById(user.pouches[0]);
+      unsortedItems.itemIds.push(item._id);
+      await unsortedItems.save();
+      user = await user.save();
+    }
     res.json(item);
   } catch (e) {
     res.status(500);
