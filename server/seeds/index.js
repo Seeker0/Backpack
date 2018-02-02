@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const mongooseeder = require('mongooseeder');
-const models = require('../models');
+const mongoose = require("mongoose");
+const mongooseeder = require("mongooseeder");
+const models = require("../models");
 
-const mongodbUrl = 'mongodb://localhost/pockets_development';
+const mongodbUrl = "mongodb://localhost/pockets_development";
 
-const { User, Pouch, Item } = require('../models');
+const { User, Pouch, Item } = require("../models");
 
 mongooseeder.seed({
   mongodbUrl: mongodbUrl,
@@ -20,10 +20,11 @@ mongooseeder.seed({
       const user = new User({
         username: `hooligan${i}`,
         email: `${i}is@nobodycares.com`,
-        passwordHash: '',
-        pouches: []
+        passwordHash: "",
+        pouches: [],
+        unsortedItems: { name: "Unsorted Items", itemIds: [] }
       });
-      user.set('password', `password${i}`);
+      user.set("password", `password${i}`);
       users.push(user);
     }
 
@@ -31,7 +32,7 @@ mongooseeder.seed({
       let user = users[i % users.length];
       const pouch = new Pouch({
         ownerId: user._id,
-        pouchName: `pouch${i}`,
+        name: `pouch${i}`,
         itemIds: []
       });
       user.pouches.push(pouch._id);
@@ -42,8 +43,9 @@ mongooseeder.seed({
       let user = users[i % users.length];
       let pouch = pouches[i % pouches.length];
       const item = new Item({
-        itemName: `item${i}`,
-        link: `http://www.item${i}.com`
+        name: `item${i}`,
+        link: `http://www.item${i}.com`,
+        ownerId: user.user_id
       });
       pouch.itemIds.push(item._id);
       items.push(item);
