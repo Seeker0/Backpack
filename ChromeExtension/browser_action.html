@@ -1,0 +1,53 @@
+<!doctype html>
+<style type="text/css">
+	#mainPopup {
+		padding: 10px;
+		height: 100px;
+		width: 300px;
+		font-family: Helvetica, Ubuntu, Arial, sans-serif;
+	}
+	h1 {
+		font-size: 2em;
+	}
+</style>
+
+<div id="mainPopup">
+<h1>Hi!</h1>
+<p>Your backpack has unlimited space for all of your media discoveries!</p>
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                min-width: 320px;
+                overflow-x: hidden;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+            }
+            input, textarea {
+                width: 320px;
+            }
+            input#save {
+                font-weight: bold; width: auto;
+            }
+        </style>
+        <script src="storelinks.js"></script>
+    </head>
+    <body>
+        <form id="addbookmark">
+            <p><label for="title">Title</label><br />
+            <input type="text" id="name" name="name" size="50" value="" /></p>
+            <p><label for="url">Url</label><br />
+            <input type="text" id="link" name="link" size="50" value="" /></p>
+            <p><label for="summary">Summary</label><br />
+            <textarea id="summary" name="summary" rows="6" cols="35"></textarea></p>
+            <p><label for="tags">Tags</label><br />
+            <input type="text" id="tags" name="tags" size="50" value="" /></p>
+            <p>
+                <input id="save" type="submit" value="Save Bookmark" />
+                <span id="status-display"></span>
+            </p>
+        </form>
+    </body>
+</html>
+</div>
