@@ -90,8 +90,6 @@ export function newPouch(data) {
       })
       .then(json => {
         dispatch(newPouchSuccess(json));
-        console.log("JSON");
-        console.log(json);
         dispatch(getUserPouches({ _id: json.ownerId }));
       })
       .catch(error => {
@@ -175,7 +173,7 @@ export function updatePouch(data) {
 }
 
 export function setCurrentPouch(data) {
-  let pouchId = data.pouchId;
+  let pouchId = data._id;
   return dispatch => {
     dispatch(setCurrentPouchRequest());
 
@@ -241,7 +239,7 @@ export function deletePouch(data) {
       })
       .then(json => {
         dispatch(deletePouchSuccess(json));
-        dispatch(getUserPouches());
+        dispatch(getUserPouches({ _id: data.ownerId }));
       })
       .catch(error => {
         dispatch(deletePouchFailure(error));

@@ -53,7 +53,7 @@ class TopNavBar extends PureComponent {
                   <div className="dropdown dropdown-lg">
                     <button
                       type="button"
-                      class="btn btn-default dropdown-toggle"
+                      className="btn btn-default dropdown-toggle"
                       data-toggle="dropdown"
                       aria-expanded="false"
                     >
@@ -65,7 +65,7 @@ class TopNavBar extends PureComponent {
                     >
                       <form className="form-horizontal" role="form">
                         <div className="form-group">
-                          <label for="filter">Filter by</label>
+                          <label htmlFor="filter">Filter by</label>
                           <select className="form-control">
                             <option value="0" selected>
                               All Pouches
@@ -82,7 +82,7 @@ class TopNavBar extends PureComponent {
                       </form>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     <i className="fas fa-search" />
                   </button>
                 </div>
@@ -97,7 +97,7 @@ class TopNavBar extends PureComponent {
                   alt="default user"
                   className="profile-icon"
                 />{" "}
-                Username <i className="fa fa-bars" />
+                {this.props.username} <i className="fa fa-bars" />
               </h3>
             </NavbarToggler>
           </Col>
