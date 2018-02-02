@@ -33,13 +33,10 @@ const SignUp = ({
   return (
     <Modal className="modal-form" isOpen={isOpen} toggle={toggle}>
       <ModalHeader>Sign Up</ModalHeader>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} className="extra-padding">
         <SuccessMessage success={success} />
         <ErrorMessage errors={errors} />
-        <FormGroup
-          className="SignUpPadding"
-          color={getColorFromError(errors.fname)}
-        >
+        <FormGroup color={getColorFromError(errors.fname)}>
           <Label for="fname">First Name:</Label>
           <Input
             type="fname"
@@ -50,10 +47,7 @@ const SignUp = ({
           />
           <ValidationErrorMessage message={errors.fname} />
         </FormGroup>
-        <FormGroup
-          className="SignUpPadding"
-          color={getColorFromError(errors.lname)}
-        >
+        <FormGroup color={getColorFromError(errors.lname)}>
           <Label for="lname">Last Name:</Label>
           <Input
             type="lname"
@@ -64,10 +58,7 @@ const SignUp = ({
           />
           <ValidationErrorMessage message={errors.lname} />
         </FormGroup>
-        <FormGroup
-          className="SignUpPadding"
-          color={getColorFromError(errors.email)}
-        >
+        <FormGroup color={getColorFromError(errors.email)}>
           <Label for="email">Email:</Label>
           <Input
             type="email"
@@ -78,10 +69,7 @@ const SignUp = ({
           />
           <ValidationErrorMessage message={errors.email} />
         </FormGroup>
-        <FormGroup
-          className="SignUpPadding"
-          color={getColorFromError(errors.username)}
-        >
+        <FormGroup color={getColorFromError(errors.username)}>
           <Label for="username">Username:</Label>
           <Input
             type="username"
@@ -92,10 +80,7 @@ const SignUp = ({
           />
           <ValidationErrorMessage message={errors.username} />
         </FormGroup>
-        <FormGroup
-          className="SignUpPadding"
-          color={getColorFromError(errors.password)}
-        >
+        <FormGroup color={getColorFromError(errors.password)}>
           <Label for="password">Password:</Label>
           <Input
             type="password"
