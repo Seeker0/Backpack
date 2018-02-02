@@ -2,7 +2,6 @@ import Actions from "./actions";
 
 const initialState = {
   pouches: [],
-  unsortedItems: { name: "Unsorted Items", items: [] },
   currentPouch: null,
   currentItems: [],
   isFetching: {
@@ -20,7 +19,6 @@ const initialState = {
 export function currentUser(state = initialState, action) {
   let pouch;
   let currentPouch;
-  let unsortedItems;
   let currentItems;
   switch (action.type) {
     case Actions.GET_USER_POUCHES_REQUEST:
@@ -30,11 +28,7 @@ export function currentUser(state = initialState, action) {
       };
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
-      currentPouch = state.currentPouch;
-      if (!state.currentPouch) {
-        currentPouch = { ...state.user.unsortedItems };
-        console.log("currentPouch should be=>", currentPouch);
-      }
+      currentPouch = pouches[0];
       return {
         ...state,
         pouches,
@@ -151,7 +145,7 @@ export function currentUser(state = initialState, action) {
     case Actions.DELETE_POUCH_SUCCESS:
       return {
         ...state,
-        currentPouch: state.user.unsortedItems,
+        currentPouch: state.pouches[0],
         isFetching: { ...state.isFetching, pouch: false },
         error: null
       };
@@ -206,31 +200,15 @@ export function currentUser(state = initialState, action) {
       };
 
     case Actions.LOGIN_SUCCESS:
-      unsortedItems = action.data.unsortedItems;
-      if (!unsortedItems || !unsortedItems.items) {
-        currentItems = [];
-      } else {
-        currentItems = unsortedItems.items;
-      }
       return {
         ...state,
-        user: action.data,
-        currentPouch: action.data.unsortedItems,
-        currentItems: currentItems
+        user: action.data
       };
 
     case Actions.GET_USER_SUCCESS:
-      unsortedItems = action.data.unsortedItems;
-      if (!unsortedItems || !unsortedItems.items) {
-        currentItems = [];
-      } else {
-        currentItems = unsortedItems.items;
-      }
       return {
         ...state,
-        user: action.data,
-        currentPouch: action.data.unsortedItems,
-        currentItems: currentItems
+        user: action.data
       };
 
     default:
