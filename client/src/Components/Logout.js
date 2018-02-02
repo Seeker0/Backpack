@@ -2,7 +2,13 @@ import React from "react";
 import { Button } from "reactstrap";
 
 const Logout = props => {
-  return <Button onClick={props.logout}>Log Out</Button>;
+  return (
+    <div style={{ textAlign: "right" }}>
+      <Button onClick={props.logout}>
+        Log Out<i className="fa fa-hand-peace icon" />
+      </Button>
+    </div>
+  );
 };
 
 export default Logout;

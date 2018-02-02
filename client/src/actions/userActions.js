@@ -4,6 +4,10 @@ export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
 export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
 
+export const GET_USER_REQUEST = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAILURE = "GET_USER_FAILURE";
+
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
@@ -126,9 +130,57 @@ export function login(user) {
       })
       .then(user => {
         dispatch(getUserPouches(user));
-        dispatch(setCurrentPouch({ pouchId: user.pouches[0] }));
+        dispatch(loginSuccess(user));
+      });
+  };
+}
+
+export function loginSuccess(data) {
+  return {
+    type: LOGIN_SUCCESS,
+    data
+  };
+}
+
+export function getUser() {
+  return dispatch => {
+    const requestOptions = {
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors"
+    };
+    return fetch(`${server}/currentUser`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        console.log("RESPONSE=>", response);
+        console.log("BODY=>", response.body);
+        return response.json();
       })
-      .catch(console.error);
+      .then(user => {
+        console.log("USER IS");
+        dispatch(getUserPouches(user));
+        dispatch(getUserSuccess(user));
+      })
+      .catch(err => {
+        console.error(err);
+        dispatch(getUserFailure(err));
+      });
+  };
+}
+
+export function getUserSuccess(data) {
+  return {
+    type: GET_USER_SUCCESS,
+    data
+  };
+}
+
+export function getUserFailure(err) {
+  return {
+    type: GET_USER_FAILURE,
+    err
   };
 }
 

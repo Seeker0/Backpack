@@ -3,48 +3,42 @@ let router = express.Router();
 let mongoose = require("mongoose");
 var models = require("./../models");
 var Pouch = mongoose.model("Pouch");
+var User = mongoose.model("User");
 
-router.get("/:currentUser", async (req, res, next) => {
+router.get("/:userId", async (req, res, next) => {
+  console.log("IM HERE");
   try {
-    let pouches = await Pouch.find({ ownerId: req.params.currentUser });
+    let pouches = await Pouch.find({ ownerId: req.params.userId });
     if (!pouches) {
       res.send(404);
     }
-    pouches = pouches.map(pouch => ({
-      _id: pouch._id,
-      name: pouch.pouchName
-    }));
+    console.log(pouches);
     res.json(pouches);
   } catch (e) {
-    next(e);
-  }
-});
-
-router.get("/:id", async (req, res, next) => {
-  try {
-    let pouch = await Pouch.findOne({ _id: req.params.id });
-    if (!pouch) {
-      res.send(404);
-    }
-    res.json(pouch);
-  } catch (e) {
+    console.error(e);
     next(e);
   }
 });
 
 router.post("/", async (req, res, next) => {
   try {
-    let { name, userId } = req.body;
-    let pouch = await Pouch.create({
-      ownerId: userId,
-      pouchName: name,
+    let { name, ownerId } = req.body;
+    let pouch = await new Pouch({
+      ownerId: ownerId,
+      name: name,
       itemIds: []
     });
+
+    pouch = await pouch.save();
     if (!pouch) {
       res.send(500);
     }
+    let user = await User.findById(ownerId);
+    user.pouches.push(pouch._id);
+    await user.save();
     res.json(pouch);
   } catch (e) {
+    console.error(e);
     next(e);
   }
 });
@@ -52,7 +46,7 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     var pouchParams = {
-      pouchName: req.body.name,
+      name: req.body.name,
       ownerId: req.body.userId,
       itemIds: req.body.itemIds
     };
