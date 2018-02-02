@@ -65,6 +65,7 @@ export function getUserPouches(user) {
       })
       .then(json => {
         dispatch(getUserPouchesSuccess(json));
+        dispatch(setCurrentPouch({ _id: json[0]._id }));
       })
       .catch(error => {
         dispatch(getUserPouchesFailure(error));
@@ -113,6 +114,8 @@ export function logoutRequest() {
 
 export function login(user) {
   return dispatch => {
+    console.log("TRYING TO LOG IN WITH");
+    console.log(user);
     const requestOptions = {
       credentials: "same-origin",
       method: "POST",
@@ -131,6 +134,7 @@ export function login(user) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
+        //dispatch(setCurrentPouch(user.pouches[0]));
       });
   };
 }
@@ -154,12 +158,9 @@ export function getUser() {
         if (!response.ok) {
           return Promise.reject(response.statusText);
         }
-        console.log("RESPONSE=>", response);
-        console.log("BODY=>", response.body);
         return response.json();
       })
       .then(user => {
-        console.log("USER IS");
         dispatch(getUserPouches(user));
         dispatch(getUserSuccess(user));
       })
@@ -262,7 +263,10 @@ export function registerUser(data) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
 
-        dispatch(login(response));
+        return response.json();
+      })
+      .then(json => {
+        dispatch(login({ username, password }));
       })
       .catch(error => {
         dispatch(registerFailure(error));

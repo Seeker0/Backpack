@@ -23,21 +23,33 @@ class DeleteItem extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" size="sm" onClick={this.toggle}>
-          Delete Item
-        </Button>
+        <div className="other-button">
+          <Button color="danger" size="sm" onClick={this.toggle}>
+            Delete Item
+          </Button>
+        </div>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}
           className="modal-form"
         >
-          <ModalHeader>Delete Pouch</ModalHeader>
+          <ModalHeader>Delete Item</ModalHeader>
           <p className="extra-padding">
-            Are you sure you want to delete this pouch and all its items?
+            Are you sure you want to delete this item?
           </p>
           <ModalFooter>
-            <Button color="danger" onClick={this.deleteItem}>
-              Delete Pouch
+            <Button
+              color="danger"
+              onClick={() => {
+                this.props.deleteItem({
+                  id: this.props.id,
+                  ownerId: this.props.ownerId,
+                  pouchId: this.props.pouchId
+                });
+                this.toggle();
+              }}
+            >
+              Delete Item
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel
