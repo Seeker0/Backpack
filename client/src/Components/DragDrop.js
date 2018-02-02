@@ -8,7 +8,7 @@ import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
 import AddPouchContainer from "../Containers/AddPouchContainer";
 import DeleteItem from "./DeleteItem";
 import DeletePouchContainer from "../Containers/DeletePouchContainer";
-import AddItem from "./AddItem";
+import AddItemContainer from "../Containers/AddItemContainer";
 
 const DragDrop = props => {
   let draggableItems = props.currentItems.map(item => {
@@ -16,6 +16,7 @@ const DragDrop = props => {
       <Draggable type="item" data={item.link} itemid={item._id}>
         <div className="item-box">
           <h3>{item.name}</h3>
+          <h3>{item.link}</h3>
           <div>
             <DeleteItem />
           </div>
@@ -51,7 +52,7 @@ const DragDrop = props => {
       <div className="current-pouch-container">
         <Container>
           <Col xs="12">
-            <div className="box1">
+            <div className="box1 item-box">
               {props.currentPouch ? (
                 <h1 id="current-pouch-title">{props.currentPouch.name}</h1>
               ) : null}
@@ -61,7 +62,7 @@ const DragDrop = props => {
               ) : (
                 <div>No Items in this Pouch</div>
               )}
-              <AddItem />
+              <AddItemContainer />
             </div>
           </Col>
         </Container>

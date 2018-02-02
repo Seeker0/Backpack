@@ -157,7 +157,6 @@ app.use("/logout", loggedInOnly, logout);
 app.use("/register", loggedOutOnly, register);
 
 app.get("/currentUser", loggedInOnly, async (req, res, next) => {
-  console.log("DID I EVEN GET HERE?");
   try {
     let currentUser = await User.findById(req.session.passport.user);
     res.json(currentUser);
