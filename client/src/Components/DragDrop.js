@@ -28,8 +28,7 @@ const DragDrop = props => {
     return (
       <Droppable
         types={["item"]} // <= allowed drop types
-        //onDrop={props.onDrop.bind(this)}
-
+        onDrop={props.onDrop.bind(this)}
         onClick={() => {
           props.setCurrentPouch(pouch._id);
         }}
@@ -70,8 +69,8 @@ const DragDrop = props => {
     </div>
   );
 };
-// onDrop(data) {
-//   console.log(data);
+// onDrop(data){
+//   console.log("Dropeed item: ", data);
 //   // => banana
 // }
 
