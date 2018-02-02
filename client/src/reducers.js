@@ -211,6 +211,7 @@ export function currentUser(state = initialState, action) {
       return {
         ...state,
         currentItems: items,
+        currentPouch: null,
         isFetching: { ...state.isFetching, items: null },
         error: null
       };

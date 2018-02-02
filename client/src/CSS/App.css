@@ -87,6 +87,11 @@ body {
   font-family: "Kalam", cursive;
 }
 
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .links li {
   text-align: right;
 }

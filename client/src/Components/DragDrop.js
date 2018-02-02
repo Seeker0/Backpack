@@ -9,16 +9,17 @@ import AddPouchContainer from "../Containers/AddPouchContainer";
 import DeleteItemContainer from "../Containers/DeleteItemContainer";
 import DeletePouchContainer from "../Containers/DeletePouchContainer";
 import AddItemContainer from "../Containers/AddItemContainer";
+import RenamePouchContainer from "../Containers/RenamePouchContainer";
 
 const DragDrop = props => {
   let draggableItems = props.currentItems.map(item => {
     return (
-      <Draggable type="item" data={item.link} itemid={item._id}>
+      <Draggable type="item" data={item.link} itemID={item._id}>
         <div className="item-box">
           <h3>{item.name}</h3>
           <h3>{item.link}</h3>
           <div>
-            <DeleteItemContainer itemid={item._id} />
+            <DeleteItemContainer itemID={item._id} />
           </div>
         </div>
       </Draggable>
@@ -29,7 +30,7 @@ const DragDrop = props => {
       <Droppable
         types={["item"]} // <= allowed drop types
         //onDrop={props.onDrop.bind(this)}
-
+        key={pouch._id}
         onClick={() => {
           props.setCurrentPouch(pouch._id);
         }}
@@ -56,7 +57,10 @@ const DragDrop = props => {
               {props.currentPouch ? (
                 <h1 id="current-pouch-title">{props.currentPouch.name}</h1>
               ) : null}
-              <DeletePouchContainer />
+              <div className="edit-buttons">
+                <RenamePouchContainer />
+                <DeletePouchContainer />
+              </div>
               {props.currentItems.length > 0 ? (
                 <div>{draggableItems}</div>
               ) : (

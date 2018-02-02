@@ -14,16 +14,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Col,
-  InputGroup,
-  Label,
-  Input,
-  Form,
-  FormGroup,
-  Button,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu
+  Col
 } from "reactstrap";
 
 class TopNavBar extends PureComponent {
@@ -66,51 +57,6 @@ class TopNavBar extends PureComponent {
           </Col>
           <Col xs={{ size: 6, offset: 1 }}>
             <SearchContainer />
-            {/* <InputGroup onSubmit={this.onSubmit} id="adv-search">
-              <Input
-                type="text"
-                name="searchString"
-                value={this.state.searchString}
-                id="searchString"
-                className="form-control"
-                placeholder="Search for items"
-              />
-              <div className="btn-group" role="group">
-                <Dropdown
-                  className="dropdown dropdown-lg"
-                  isOpen={this.state.dropdownOpen}
-                  toggle={this.toggleDropdown}
-                >
-                  <DropdownToggle caret />
-                  <DropdownMenu>
-                    <Form onSubmit={this.onSubmit} className="form-horizontal">
-                      <FormGroup>
-                        <Label for="filter">Filter by</Label>
-                        <select className="form-control">
-                          <option value="0" selected>
-                            All Pouches
-                          </option>
-                          <option value="1">Pouch1</option>
-                          <option value="2">Pouch2</option>
-                          <option value="3">Pouch3</option>
-                          <option value="4">Pouch4</option>
-                        </select>
-                      </FormGroup>
-                      <Button
-                        type="submit"
-                        color="primary"
-                        onClick={this.onSubmit}
-                      >
-                        <i className="fas fa-search" />
-                      </Button>
-                    </Form>
-                  </DropdownMenu>
-                  <Button type="submit" color="primary" onClick={this.onSubmit}>
-                    <i className="fas fa-search" />
-                  </Button>
-                </Dropdown>
-              </div>
-            </InputGroup> */}
           </Col>
           <Col xs="3">
             <NavbarToggler onClick={this.toggleNavbar} className="align-right">

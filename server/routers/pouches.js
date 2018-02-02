@@ -44,14 +44,12 @@ router.post("/", async (req, res, next) => {
 });
 
 router.put("/:id", async (req, res, next) => {
+  console.log("HERE I AM");
   try {
-    var pouchParams = {
-      name: req.body.name,
-      ownerId: req.body.userId,
-      itemIds: req.body.itemIds
-    };
-
-    let pouch = await Pouch.findByIdAndUpdate(req.params.id, pouchParams);
+    let pouch = await Pouch.findById(req.params.id);
+    pouch.name = req.body.name;
+    pouch = await pouch.save();
+    console.log(pouch);
     res.json(pouch);
   } catch (e) {
     res.status(500);
