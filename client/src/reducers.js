@@ -211,6 +211,11 @@ export function currentUser(state = initialState, action) {
         user: action.data
       };
 
+    case Actions.LOGOUT_SUCCESS:
+      return {
+        ...initialState
+      };
+
     default:
       return state;
   }

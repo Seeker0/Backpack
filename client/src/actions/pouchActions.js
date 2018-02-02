@@ -239,7 +239,7 @@ export function deletePouch(data) {
       })
       .then(json => {
         dispatch(deletePouchSuccess(json));
-        dispatch(getUserPouches({ _id: data.ownerId }));
+        dispatch(getUserPouches({ _id: json.ownerId }));
       })
       .catch(error => {
         dispatch(deletePouchFailure(error));

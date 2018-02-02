@@ -1,4 +1,5 @@
 import { setCurrentPouch } from "./pouchActions";
+import { getUser } from "./userActions";
 
 export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
 export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
@@ -45,7 +46,7 @@ export function newItem(data) {
   return dispatch => {
     dispatch(newItemRequest());
 
-    fetch(`${server}/items/`, {
+    fetch(`${server}/items`, {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -62,7 +63,11 @@ export function newItem(data) {
       })
       .then(json => {
         dispatch(newItemSuccess(json));
-        dispatch(setCurrentPouch({ pouchId }));
+        if (pouchId) {
+          dispatch(setCurrentPouch({ _id: pouchId }));
+        } else {
+          dispatch(getUser());
+        }
       })
       .catch(error => {
         dispatch(newItemFailure(error));
