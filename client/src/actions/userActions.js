@@ -4,6 +4,10 @@ export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
 export const GET_USER_POUCHES_FAILURE = "GET_USER_POUCHES_FAILURE";
 
+export const GET_USER_REQUEST = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAILURE = "GET_USER_FAILURE";
+
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
@@ -61,6 +65,7 @@ export function getUserPouches(user) {
       })
       .then(json => {
         dispatch(getUserPouchesSuccess(json));
+        dispatch(setCurrentPouch({ _id: json[0]._id }));
       })
       .catch(error => {
         dispatch(getUserPouchesFailure(error));
@@ -109,6 +114,8 @@ export function logoutRequest() {
 
 export function login(user) {
   return dispatch => {
+    console.log("TRYING TO LOG IN WITH");
+    console.log(user);
     const requestOptions = {
       credentials: "same-origin",
       method: "POST",
@@ -126,9 +133,55 @@ export function login(user) {
       })
       .then(user => {
         dispatch(getUserPouches(user));
-        dispatch(setCurrentPouch({ pouchId: user.pouches[0] }));
+        dispatch(loginSuccess(user));
+        //dispatch(setCurrentPouch(user.pouches[0]));
+      });
+  };
+}
+
+export function loginSuccess(data) {
+  return {
+    type: LOGIN_SUCCESS,
+    data
+  };
+}
+
+export function getUser() {
+  return dispatch => {
+    const requestOptions = {
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors"
+    };
+    return fetch(`${server}/currentUser`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
       })
-      .catch(console.error);
+      .then(user => {
+        dispatch(getUserPouches(user));
+        dispatch(getUserSuccess(user));
+      })
+      .catch(err => {
+        console.error(err);
+        dispatch(getUserFailure(err));
+      });
+  };
+}
+
+export function getUserSuccess(data) {
+  return {
+    type: GET_USER_SUCCESS,
+    data
+  };
+}
+
+export function getUserFailure(err) {
+  return {
+    type: GET_USER_FAILURE,
+    err
   };
 }
 
@@ -210,7 +263,10 @@ export function registerUser(data) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
 
-        dispatch(login(response));
+        return response.json();
+      })
+      .then(json => {
+        dispatch(login({ username, password }));
       })
       .catch(error => {
         dispatch(registerFailure(error));

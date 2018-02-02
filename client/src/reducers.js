@@ -2,7 +2,6 @@ import Actions from "./actions";
 
 const initialState = {
   pouches: [],
-
   currentPouch: null,
   currentItems: [],
   isFetching: {
@@ -13,24 +12,27 @@ const initialState = {
     item: null,
     newPouch: null
   },
-  error: null
+  error: null,
+  user: null
 };
 
 export function currentUser(state = initialState, action) {
   let pouch;
+  let currentPouch;
+  let currentItems;
   switch (action.type) {
     case Actions.GET_USER_POUCHES_REQUEST:
-      //data is list of pouches {_id,name}
       return {
         ...state,
-
         isFetching: { ...state.isFetching, pouches: true }
       };
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
+      currentPouch = pouches[0];
       return {
         ...state,
         pouches,
+        currentPouch,
         isFetching: { ...state.isFetching, pouches: null },
         error: null
       };
@@ -143,6 +145,7 @@ export function currentUser(state = initialState, action) {
     case Actions.DELETE_POUCH_SUCCESS:
       return {
         ...state,
+        currentPouch: state.pouches[0],
         isFetching: { ...state.isFetching, pouch: false },
         error: null
       };
@@ -194,6 +197,23 @@ export function currentUser(state = initialState, action) {
         ...state,
         isFetching: { ...state.isFetching, item: false },
         error: action.error
+      };
+
+    case Actions.LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.data
+      };
+
+    case Actions.GET_USER_SUCCESS:
+      return {
+        ...state,
+        user: action.data
+      };
+
+    case Actions.LOGOUT_SUCCESS:
+      return {
+        ...initialState
       };
 
     default:

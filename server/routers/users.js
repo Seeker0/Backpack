@@ -1,12 +1,12 @@
-let express = require('express');
+let express = require("express");
 let router = express.Router();
-let mongoose = require('mongoose');
-var models = require('./../models');
-var User = mongoose.model('User');
+let mongoose = require("mongoose");
+var models = require("./../models");
+var User = mongoose.model("User");
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    let user = await User.findOne({ _id: req.session.user._id });
+    let user = await User.findById({ _id: req.session.passport.user });
     if (!user) {
       res.send(404);
     }
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     let user = await User.findOne({ _id: req.params.id });
     if (!user) {
@@ -28,11 +28,11 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     let user = await User.findById(req.params.id);
     let pouches = await Pouch.find()
-      .where('_id')
+      .where("_id")
       .in(user.pouches)
       .remove();
     if (pouches) {

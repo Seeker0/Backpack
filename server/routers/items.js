@@ -4,6 +4,7 @@ let mongoose = require("mongoose");
 var models = require("./../models");
 var Item = mongoose.model("Item");
 var Pouch = mongoose.model("Pouch");
+var User = mongoose.model("User");
 
 router.get("/list/:pouchId", async (req, res, next) => {
   try {
@@ -35,12 +36,21 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    let { itemName, link } = req.body;
-    let pouch = await Pouch.findById(req.body.pouchId);
-    let item = await new Item({ itemName, link });
-    item = await Item.save();
-    pouch.itemIds.push(item._id);
-    await pouch.save();
+    let { name, link } = req.body;
+    let userId = req.session.passport.user;
+    let item = await new Item({ name, link, ownerId: userId });
+    item = await item.save();
+    if (req.body.pouchId) {
+      let pouch = await Pouch.findById(req.body.pouchId);
+      pouch.itemIds.push(item._id);
+      await pouch.save();
+    } else {
+      let user = await User.findById(userId);
+      let unsortedItems = await Pouch.findById(user.pouches[0]);
+      unsortedItems.itemIds.push(item._id);
+      await unsortedItems.save();
+      user = await user.save();
+    }
     res.json(item);
   } catch (e) {
     res.status(500);
@@ -51,8 +61,13 @@ router.post("/", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     let pouch = await Pouch.findById(req.body.pouchId);
-    pouch.itemIds = pouch.itemIds.filter(id => id !== req.params.id);
-    pouch = await Pouch.save();
+    pouch.itemIds = pouch.itemIds.filter(id => {
+      return id.toString() !== req.params.id;
+    });
+
+    pouch = await pouch.save();
+    let item = await Item.findById(req.params.id);
+    await item.remove();
     res.json(pouch);
   } catch (e) {
     res.status(500);

@@ -2,11 +2,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let User = require("./user");
-let Item = require("./item");
+// let User = require("./user");
+// let Item = require("./item");
 
 var PouchSchema = new Schema({
-  pouchName: String,
+  name: String,
   ownerId: { type: Schema.Types.ObjectId, ref: "User" },
   itemIds: [{ type: Schema.Types.ObjectId, ref: "Item" }]
 });

@@ -1,4 +1,5 @@
 import { setCurrentPouch } from "./pouchActions";
+import { getUser } from "./userActions";
 
 export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
 export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
@@ -38,7 +39,6 @@ export function newItemRequest() {
 }
 
 export function newItem(data) {
-  let item = data.item;
   let pouchId = data.pouchId;
   var myHeaders = new Headers();
 
@@ -46,7 +46,7 @@ export function newItem(data) {
   return dispatch => {
     dispatch(newItemRequest());
 
-    fetch(`${server}/items/`, {
+    fetch(`${server}/items`, {
       method: "POST",
       headers: myHeaders,
       mode: "cors",
@@ -63,7 +63,11 @@ export function newItem(data) {
       })
       .then(json => {
         dispatch(newItemSuccess(json));
-        dispatch(setCurrentPouch({ pouchId }));
+        if (pouchId) {
+          dispatch(setCurrentPouch({ _id: pouchId }));
+        } else {
+          dispatch(getUser());
+        }
       })
       .catch(error => {
         dispatch(newItemFailure(error));
@@ -74,10 +78,11 @@ export function newItem(data) {
 export function deleteItem(data) {
   return dispatch => {
     dispatch(deleteItemRequest());
-    let { itemId, pouchId } = data;
-    fetch(`${server}/items/${itemId}`, {
+    let { id, pouchId, ownerId } = data;
+    fetch(`${server}/items/${id}`, {
       method: "DELETE",
-      body: JSON.stringify({ pouchId }),
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ pouchId, ownerId }),
       mode: "cors",
       credentials: "same-origin"
     })
@@ -90,7 +95,7 @@ export function deleteItem(data) {
       })
       .then(json => {
         dispatch(deleteItemSuccess(json));
-        dispatch(setCurrentPouch({ pouchId }));
+        dispatch(setCurrentPouch({ _id: pouchId }));
       })
       .catch(error => {
         dispatch(deleteItemFailure(error));
