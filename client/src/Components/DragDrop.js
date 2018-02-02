@@ -1,7 +1,7 @@
-//Make item move from one pouch to another in database
-//The same above action should be reflected in state in react
-//Visually, it should disappear from one pouch and appear in the other one
-
+// //Make item move from one pouch to another in database
+// //The same above action should be reflected in state in react
+// //Visually, it should disappear from one pouch and appear in the other one
+//
 import React, { Component } from "react";
 import { Draggable, Droppable } from "react-drag-and-drop";
 import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
@@ -11,6 +11,7 @@ import DeletePouchContainer from "../Containers/DeletePouchContainer";
 import AddItemContainer from "../Containers/AddItemContainer";
 
 const DragDrop = props => {
+  const { onDragLeave } = props;
   let draggableItems = props.currentItems.map(item => {
     return (
       <Draggable type="item" data={item.link} itemid={item._id}>
@@ -28,8 +29,8 @@ const DragDrop = props => {
     return (
       <Droppable
         types={["item"]} // <= allowed drop types
-        onDrop={props.onDrop.bind(this)}
-        onClick={() => {
+        //onDrop={props.onDrop.bind(this)}
+        onDrop={() => {
           props.setCurrentPouch(pouch._id);
         }}
       >
@@ -69,9 +70,5 @@ const DragDrop = props => {
     </div>
   );
 };
-// onDrop(data){
-//   console.log("Dropeed item: ", data);
-//   // => banana
-// }
 
 export default DragDrop;
