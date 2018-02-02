@@ -45,13 +45,8 @@ router.post("/", async (req, res, next) => {
       pouch.itemIds.push(item._id);
       await pouch.save();
     } else {
-      console.log("Made it into else");
-      console.log(req.body);
-      console.log(userId);
       let user = await User.findById(userId);
       let unsortedItems = await Pouch.findById(user.pouches[0]);
-      console.log("POUCH IS ");
-      console.log(unsortedItems);
       unsortedItems.itemIds.push(item._id);
       await unsortedItems.save();
       user = await user.save();
