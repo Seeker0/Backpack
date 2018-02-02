@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import SignUp from "../Components/SignUp";
 import { registerUser } from "../actions/userActions";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class SignUpContainer extends Component {
   constructor(props) {
@@ -92,6 +93,7 @@ class SignUpContainer extends Component {
       };
       this.formSuccess();
       this.props.register(user);
+      this.props.toggle();
     } else {
       this.formError();
     }
@@ -140,14 +142,15 @@ class SignUpContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     register: user => {
       dispatch(registerUser(user));
+      ownProps.history.push("/dashboard");
     }
   };
 };
 
 SignUpContainer = connect(null, mapDispatchToProps)(SignUpContainer);
 
-export default SignUpContainer;
+export default withRouter(SignUpContainer);
