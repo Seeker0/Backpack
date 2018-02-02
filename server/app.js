@@ -136,11 +136,11 @@ passport.deserializeUser((id, done) => {
 const loggedInOnly = (req, res, next) => {
   return req.session.passport && req.session.passport.user
     ? next()
-    : res.status(401);
+    : res.status(401).send();
 };
 
 const loggedOutOnly = (req, res, next) => {
-  return !req.user ? next() : res.status(403);
+  return !req.user ? next() : res.status(403).send();
 };
 
 // ----------------------------------------
@@ -208,7 +208,7 @@ app.use((err, req, res, next) => {
   if (err.stack) {
     err = err.stack;
   }
-  res.status(500).render("errors/500", { error: err });
+  res.status(500).send();
 });
 
 module.exports = app;
