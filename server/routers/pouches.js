@@ -35,6 +35,9 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     let { name, userId } = req.body;
+    let url = Object.keys(req.body)[0]
+    console.log("Expected Url")
+    console.log(url)
     let pouch = await Pouch.create({
       ownerId: userId,
       pouchName: name,

@@ -2,8 +2,6 @@
 
 
 
-
-
  chrome.runtime.sendMessage({
     'title': document.title,
     'url': "yahoo.com",

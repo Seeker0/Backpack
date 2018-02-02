@@ -12,8 +12,8 @@ function addBookmark() {
     // Cancel the form submit
     event.preventDefault();
 
-    // The URL to POST our data to
-    var postUrl = 'http://localhost:3001/items';
+   
+    var postUrl = 'http://localhost:3001/pouches';
 
     // Set up an asynchronous AJAX POST request
     var xhr = new XMLHttpRequest();
