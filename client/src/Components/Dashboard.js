@@ -1,6 +1,7 @@
 import React from "react";
 import DragDrop from "./DragDrop";
 import TopNavBar from "./TopNavBar";
+import { Redirect } from "react-router-dom";
 
 const Dashboard = ({
   pouches,
@@ -13,6 +14,7 @@ const Dashboard = ({
 }) => {
   return (
     <div>
+      {username ? null : <Redirect to="/" />}
       <TopNavBar username={username} />
       <DragDrop
         pouches={pouches}
