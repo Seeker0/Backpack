@@ -43,7 +43,7 @@ mongooseeder.seed({
       let user = users[i % users.length];
       let pouch = pouches[i % pouches.length];
       const item = new Item({
-        itemName: `item${i}`,
+        name: `item${i}`,
         link: `http://www.item${i}.com`,
         ownerId: user.user_id
       });
