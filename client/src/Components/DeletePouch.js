@@ -45,6 +45,7 @@ class DeletePouch extends React.Component {
                   id: this.props.id,
                   ownerId: this.props.ownerId
                 });
+                this.toggle();
               }}
             >
               Delete Pouch

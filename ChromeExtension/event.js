@@ -23,7 +23,10 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
+  // Replace any instances of the URLEncoded space char with +
   var link = info.linkUrl;
+  var params = "link=" + link;
+  params = params.replace(/%20/g, "+");
   console.log(link);
   var postUrl = "http://localhost:3001/items";
 
@@ -53,6 +56,6 @@ function onClickHandler(info, tab) {
   };
 
   // Send the request and set status
-  xhr.send(link);
+  xhr.send(params);
   //statusDisplay.innerHTML = "Saving...";
 }

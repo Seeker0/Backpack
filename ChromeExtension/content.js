@@ -1,5 +1,5 @@
 chrome.runtime.sendMessage({
   name: document.title,
-  link: "yahoo.com",
+  link: window.location.href,
   summary: window.getSelection().toString()
 });
