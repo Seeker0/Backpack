@@ -13,7 +13,9 @@ const initialState = {
     newPouch: null
   },
   error: null,
-  user: null
+  user: null,
+  authorized: false,
+  authenticated: false
 };
 
 export function currentUser(state = initialState, action) {
@@ -226,18 +228,35 @@ export function currentUser(state = initialState, action) {
     case Actions.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.data
+        user: action.data,
+        authorized: true,
+        authenticated: true
       };
 
     case Actions.GET_USER_SUCCESS:
       return {
         ...state,
-        user: action.data
+        user: action.data,
+        authorized: true,
+        authenticated: true
       };
 
     case Actions.LOGOUT_SUCCESS:
       return {
-        ...initialState
+        ...initialState,
+        authenticated: true
+      };
+
+    case Actions.LOGIN_FAILURE:
+      return {
+        ...initialState,
+        authenticated: true
+      };
+
+    case Actions.GET_USER_FAILURE:
+      return {
+        ...initialState,
+        authenticated: true
       };
 
     default:

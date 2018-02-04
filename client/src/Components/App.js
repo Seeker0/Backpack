@@ -9,15 +9,34 @@ import {
   DashboardContainer
 } from "../Containers";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 class App extends PureComponent {
   componentDidMount() {
     this.props.getUser();
+    this.url = this.props.location.pathname;
   }
+
   render() {
+    let authenticated = this.props.authenticated;
+    let authorized = this.props.authorized;
+    let unprotectRoutes = ["/", "/learn"];
+
+    if (!authenticated) {
+      return <h2>Loading</h2>;
+    }
+    let redirect = null;
+    if (!authorized && !unprotectRoutes.includes(this.url)) {
+      redirect = <Redirect to="/" />;
+    }
+    if (authorized && this.url) {
+      redirect = <Redirect to={this.url} />;
+      this.url = null;
+    }
+
     return (
-      <Router>
+      <div>
+        {redirect}
         <Switch>
           <Route exact path="/" component={WelcomeContainer} />
           <Route exact path="/learn" component={LearnContainer} />
@@ -26,9 +45,9 @@ class App extends PureComponent {
             render={() => (
               <img id="not-found" src={img404} alt="404 page not found" />
             )}
-          />
+          />: <LearnContainer />
         </Switch>
-      </Router>
+      </div>
     );
   }
 }
