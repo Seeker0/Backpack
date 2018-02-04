@@ -14,12 +14,12 @@ import RenamePouchContainer from "../Containers/RenamePouchContainer";
 const DragDrop = props => {
   let draggableItems = props.currentItems.map(item => {
     return (
-      <Draggable type="item" data={item.link} itemID={item._id}>
+      <Draggable type="item" data={item.link} itemid={item._id}>
         <div className="item-box">
           <h3>{item.name}</h3>
           <h3>{item.link}</h3>
           <div>
-            <DeleteItemContainer itemID={item._id} />
+            <DeleteItemContainer itemid={item._id} />
           </div>
         </div>
       </Draggable>

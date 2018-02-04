@@ -136,11 +136,11 @@ passport.deserializeUser((id, done) => {
 const loggedInOnly = (req, res, next) => {
   return req.session.passport && req.session.passport.user
     ? next()
-    : res.status(401);
+    : res.status(401).send();
 };
 
 const loggedOutOnly = (req, res, next) => {
-  return !req.user ? next() : res.status(403);
+  return !req.user ? next() : res.status(403).send();
 };
 
 // ----------------------------------------
