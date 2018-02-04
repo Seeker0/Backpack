@@ -13,7 +13,9 @@ const initialState = {
     newPouch: null
   },
   error: null,
-  user: null
+  user: null,
+  authorized: false,
+  authenticated: false
 };
 
 export function currentUser(state = initialState, action) {
@@ -199,21 +201,62 @@ export function currentUser(state = initialState, action) {
         error: action.error
       };
 
+    case Actions.SEARCH_REQUEST:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, items: true },
+        error: null
+      };
+
+    case Actions.SEARCH_SUCCESS:
+      items = action.data;
+      return {
+        ...state,
+        currentItems: items,
+        currentPouch: null,
+        isFetching: { ...state.isFetching, items: null },
+        error: null
+      };
+
+    case Actions.SEARCH_FAILURE:
+      return {
+        ...state,
+        isFetching: { ...state.isFetching, items: null },
+        error: action.error
+      };
+
     case Actions.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.data
+        user: action.data,
+        authorized: true,
+        authenticated: true
       };
 
     case Actions.GET_USER_SUCCESS:
       return {
         ...state,
-        user: action.data
+        user: action.data,
+        authorized: true,
+        authenticated: true
       };
 
     case Actions.LOGOUT_SUCCESS:
       return {
-        ...initialState
+        ...initialState,
+        authenticated: true
+      };
+
+    case Actions.LOGIN_FAILURE:
+      return {
+        ...initialState,
+        authenticated: true
+      };
+
+    case Actions.GET_USER_FAILURE:
+      return {
+        ...initialState,
+        authenticated: true
       };
 
     default:

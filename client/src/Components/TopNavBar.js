@@ -4,6 +4,7 @@ import logo from "../images/header.png";
 import backpackIcon from "../images/backpack-icon.png";
 import defaultUser from "../images/defaultUser.png";
 import LogoutContainer from "../Containers/LogoutContainer";
+import SearchContainer from "../Containers/SearchContainer";
 
 import {
   Collapse,
@@ -21,8 +22,11 @@ class TopNavBar extends PureComponent {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: true,
+      dropdownOpen: false,
+      searchString: ""
     };
   }
 
@@ -31,6 +35,16 @@ class TopNavBar extends PureComponent {
       collapsed: !this.state.collapsed
     });
   }
+
+  toggleDropdown() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
+  onSubmit = e => {
+    e.preventDefault();
+  };
 
   render() {
     return (
@@ -42,52 +56,7 @@ class TopNavBar extends PureComponent {
             </NavbarBrand>
           </Col>
           <Col xs={{ size: 6, offset: 1 }}>
-            <div className="input-group" id="adv-search">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search for snippets"
-              />
-              <div className="input-group-btn">
-                <div className="btn-group" role="group">
-                  <div className="dropdown dropdown-lg">
-                    <button
-                      type="button"
-                      className="btn btn-default dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <span className="caret" />
-                    </button>
-                    <div
-                      className="dropdown-menu dropdown-menu-right"
-                      role="menu"
-                    >
-                      <form className="form-horizontal" role="form">
-                        <div className="form-group">
-                          <label htmlFor="filter">Filter by</label>
-                          <select className="form-control">
-                            <option value="0" selected>
-                              All Pouches
-                            </option>
-                            <option value="1">Pouch1</option>
-                            <option value="2">Pouch2</option>
-                            <option value="3">Pouch3</option>
-                            <option value="4">Pouch4</option>
-                          </select>
-                        </div>
-                        <button type="submit" className="btn btn-primary">
-                          <i className="fas fa-search" />
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                  <button type="button" className="btn btn-primary">
-                    <i className="fas fa-search" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <SearchContainer />
           </Col>
           <Col xs="3">
             <NavbarToggler onClick={this.toggleNavbar} className="align-right">

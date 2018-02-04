@@ -87,6 +87,11 @@ body {
   font-family: "Kalam", cursive;
 }
 
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .links li {
   text-align: right;
 }
@@ -253,7 +258,7 @@ footer {
 .dropdown.dropdown-lg .dropdown-menu {
   margin-top: -1px;
   padding: 6px 20px;
-  min-width: 500px;
+  min-width: 200px;
 }
 .input-group-btn .btn-group {
   display: flex !important;

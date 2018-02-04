@@ -114,8 +114,6 @@ export function logoutRequest() {
 
 export function login(user) {
   return dispatch => {
-    console.log("TRYING TO LOG IN WITH");
-    console.log(user);
     const requestOptions = {
       credentials: "same-origin",
       method: "POST",
@@ -135,8 +133,15 @@ export function login(user) {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
         //dispatch(setCurrentPouch(user.pouches[0]));
+      })
+      .catch(e => {
+        dispatch(loginFailure(e));
       });
   };
+}
+
+export function loginFailure(err) {
+  type: LOGIN_FAILURE, err;
 }
 
 export function loginSuccess(data) {
