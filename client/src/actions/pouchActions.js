@@ -140,18 +140,18 @@ export function updatePouchRequest() {
 
 export function updatePouch(data) {
   var myHeaders = new Headers();
-  let { name, userId, itemIds } = data;
+  let { name, id, userId, itemIds } = data;
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
     dispatch(updatePouchRequest());
 
-    fetch(`${server}/pouches`, {
+    fetch(`${server}/pouches/${id}`, {
       method: "PUT",
       headers: myHeaders,
       mode: "cors",
       cache: "default",
-      body: JSON.stringify({ name, userId, itemIds }),
+      body: JSON.stringify({ name, id, userId, itemIds }),
       credentials: "same-origin"
     })
       .then(response => {

@@ -22,6 +22,18 @@ router.get("/list/:pouchId", async (req, res, next) => {
   }
 });
 
+router.get("/search", async function(req, res, next) {
+  try {
+    let result = await Item.find({
+      name: new RegExp(req.query.name),
+      ownerId: req.session.passport.user.toString()
+    });
+    res.json(result);
+  } catch (e) {
+    res.status(500).send(e.stack);
+  }
+});
+
 router.get("/:id", async (req, res, next) => {
   try {
     let pouch = await Pouch.findOne({ _id: req.params.id });

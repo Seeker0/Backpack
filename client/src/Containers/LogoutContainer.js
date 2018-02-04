@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import Logout from "../Components/Logout";
 import { logout } from "../actions/userActions";
