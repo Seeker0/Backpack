@@ -83,7 +83,7 @@ class TopNavBar extends PureComponent {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="" className="links">
+                <NavLink href="/settings" className="links">
                   Settings <i className="fa fa-cog icon" />
                 </NavLink>
               </NavItem>

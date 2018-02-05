@@ -4,6 +4,7 @@ import LearnContainer from "./LearnContainer";
 import WelcomeContainer from "./WelcomeContainer";
 import DashboardContainer from "./DashboardContainer";
 import LogoutContainer from "./LogoutContainer";
+import SettingsContainer from "./SettingsContainer";
 
 //import DashboardContainer from "./DashboardContainer";
 
@@ -13,5 +14,6 @@ export {
   LearnContainer,
   WelcomeContainer,
   DashboardContainer,
-  LogoutContainer
+  LogoutContainer,
+  SettingsContainer
 };

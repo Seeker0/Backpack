@@ -47,7 +47,7 @@ class AddPouch extends React.Component {
           <ModalHeader>New Item</ModalHeader>
           <Form className="extra-padding">
             <FormGroup>
-              <Label for="title">Name:</Label>
+              <Label for="name">Name: </Label>
               <div>
                 <input
                   type="text"
@@ -59,7 +59,7 @@ class AddPouch extends React.Component {
                   }}
                 />
               </div>
-              <Label for="link">Link:</Label>
+              <Label for="link">Link: </Label>
               <input
                 type="text"
                 name="link"
