@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard";
 import Logout from "./Logout";
 import AddPouch from "./AddPouch";
 import Search from "./Search";
+import DragDrop from "./DragDrop";
 
 //state
 
@@ -21,5 +22,6 @@ export {
   Dashboard,
   Logout,
   AddPouch,
-  Search
+  Search,
+  DragDrop
 };

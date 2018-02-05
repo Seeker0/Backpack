@@ -17,7 +17,7 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_FAILURE = "SEARCH_FAILURE";
 export const SEARCH_REQUEST = "SEARCH_REQUEST";
 
-const querystring = require('querystring');
+const querystring = require("querystring");
 
 let server =
   process.env.NODE_ENV === "production"
@@ -45,8 +45,12 @@ export function newItemRequest() {
 }
 
 export function newItem(data) {
+  /*
+  data = {pouchId, link, name, ownerId}
+  */
   let pouchId = data.pouchId;
   var myHeaders = new Headers();
+  console.log("This is the data being put on drop:", data);
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
@@ -192,7 +196,7 @@ export function searchFailure(error) {
 }
 
 export function search(data) {
-  let searchData = { name: data};
+  let searchData = { name: data };
   let query = querystring.stringify(searchData);
   return dispatch => {
     dispatch(searchRequest());
@@ -200,13 +204,13 @@ export function search(data) {
     fetch(`${server}/items/search/?${query}`, {
       mode: "cors",
       credentials: "same-origin",
-      headers: { "content-type": "application/json"}
+      headers: { "content-type": "application/json" }
     })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-        return response.json()
+        return response.json();
       })
       .then(response => {
         dispatch(searchSuccess(response));
