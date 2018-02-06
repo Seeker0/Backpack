@@ -137,7 +137,7 @@ app.get('/currentUser', loggedInOnly, async (req, res, next) => {
 });
 
 app.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname + '../client/build/index.html'));
+  res.sendFile('app/client/build/index.html');
 });
 
 // ----------------------------------------
