@@ -94,8 +94,7 @@ app.use(cors());
 // ----------------------------------------
 // Passport
 // ----------------------------------------
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+const passport = require("./config/passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -103,31 +102,6 @@ app.use(passport.session());
 // Routes
 // Local Strategy
 // ----------------------------------------
-passport.use(
-  new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
-      if (err) return done(err);
-      if (!user) {
-        return done(null, false, { message: "Invalid Username!" });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: "Invalid Password!" });
-      }
-
-      return done(null, user);
-    });
-  })
-);
-
-passport.serializeUser((user, done) => {
-  done(null, user._id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
 
 // ----------------------------------------
 // login/logout Middlewares

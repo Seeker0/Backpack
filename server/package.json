@@ -35,7 +35,10 @@
     "morgan": "^1.9.0",
     "morgan-toolkit": "^1.2.2",
     "node-fetch": "^1.7.3",
+    "open-graph": "^0.2.3",
+    "open-graph-scraper": "^3.1.4",
     "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0"
   }
 }
