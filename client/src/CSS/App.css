@@ -196,7 +196,7 @@ footer {
   margin: auto;
   margin-top: 40px;
   margin-bottom: 40px;
-  width: 70%;
+  width: 85%;
   height: 120px;
   background-color: #94651b;
   border-bottom-right-radius: 50px;
@@ -207,16 +207,19 @@ footer {
   box-shadow: 10px 10px 20px;
 }
 
-.pouch:hover .pouch-name,
 .pouch:hover {
   background-color: #c98c38;
-  font-size: 35px;
   cursor: pointer;
+}
+
+.pouch:hover .pouch-name {
+  font-size: 35px;
 }
 
 .pouch-name {
   font-size: 30px;
   padding-top: 15px;
+  background-color: none;
 }
 
 .box1 {

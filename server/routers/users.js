@@ -29,6 +29,9 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.put("/:id", async (req, res, next) => {
+  console.log("+++++++++++++++");
+  console.log(req.params);
+  console.log("+++++++++++++++");
   try {
     let user = await User.findById(req.params.id);
     if (req.params.password) {

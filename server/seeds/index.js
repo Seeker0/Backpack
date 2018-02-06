@@ -21,7 +21,8 @@ mongooseeder.seed({
         username: `hooligan${i}`,
         email: `${i}is@nobodycares.com`,
         passwordHash: "",
-        pouches: []
+        pouches: [],
+        privacy: 1
       });
       const pouch = new Pouch({
         ownerId: user._id,

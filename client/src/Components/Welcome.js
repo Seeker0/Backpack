@@ -3,8 +3,7 @@ import React, { PureComponent } from "react";
 import Header from "./Header";
 import {
   LoginContainer,
-  SignUpContainer,
-  LogoutContainer
+  SignUpContainer
 } from "../Containers";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -16,29 +15,20 @@ class Welcome extends PureComponent {
       modalSignUp: false,
       modalLogin: false
     };
-
-    this.toggleLogin = this.toggleLogin.bind(this);
-    this.toggleSignUp = this.toggleSignUp.bind(this);
-    //this.create = this.create.bind(this);
   }
 
-  toggleLogin() {
+  toggleLogin = () => {
     this.setState({
       modalLogin: !this.state.modalLogin
     });
   }
 
-  toggleSignUp() {
+  toggleSignUp = () => {
     this.setState({
       modalSignUp: !this.state.modalSignUp
     });
   }
 
-  // create() {
-  //   this.props.createBoard(this.props.user);
-  //   this.setState({
-  //     modal: !this.state.modal
-  //   });
   render() {
     return (
       <div className="App">

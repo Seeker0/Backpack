@@ -20,8 +20,6 @@ const initialState = {
 
 export function currentUser(state = initialState, action) {
   let pouch;
-  let currentPouch;
-  let currentItems;
   switch (action.type) {
     case Actions.GET_USER_POUCHES_REQUEST:
       return {
@@ -30,6 +28,7 @@ export function currentUser(state = initialState, action) {
       };
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
+      let currentPouch;
       currentPouch = pouches[0];
       return {
         ...state,
@@ -95,7 +94,7 @@ export function currentUser(state = initialState, action) {
     case Actions.SET_CURRENT_POUCH_SUCCESS:
       let pouchId = action.data.pouchId;
       let items = action.data.items;
-      let currentPouch = state.pouches.find(pouch => pouch._id === pouchId);
+      currentPouch = state.pouches.find(pouch => pouch._id === pouchId);
       return {
         ...state,
         currentItems: items,

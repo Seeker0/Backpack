@@ -20,9 +20,6 @@ import {
 class TopNavBar extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
     this.state = {
       collapsed: true,
       dropdownOpen: false,
@@ -30,13 +27,13 @@ class TopNavBar extends PureComponent {
     };
   }
 
-  toggleNavbar() {
+  toggleNavbar = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
 
-  toggleDropdown() {
+  toggleDropdown = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });

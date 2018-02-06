@@ -1,5 +1,4 @@
 import React from "react";
-import DragDrop from "./DragDrop";
 import TopNavBar from "./TopNavBar";
 import { Container, Row, Col, Button, ButtonGroup, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalFooter } from "reactstrap";
 
@@ -16,7 +15,7 @@ const Settings = ({
   toggle,
   errors,
   success,
-  onRadioBtnClick, username, email, privacy, modalPassword, togglePassword, modalDelete, toggleDelete
+  onRadioBtnClick, username, email, privacy, modalPassword, togglePassword, modalDelete, toggleDelete, emailModal, usernameModal, passwordModal, privacyModal, onChangeInputPassword
 }) => {
   return (
     <div>
@@ -57,7 +56,7 @@ const Settings = ({
             type="email"
             name="email"
             id="email"
-            placeholder={email}
+            placeholder={emailModal}
             onChange={onChangeInput}
           />
           <ValidationErrorMessage message={errors.email} />
@@ -68,15 +67,15 @@ const Settings = ({
             type="username"
             name="username"
             id="username"
-            placeholder={username}
+            placeholder={usernameModal}
             onChange={onChangeInput}
           />
           <ValidationErrorMessage message={errors.username} />
         </FormGroup>
         <h5>Who can see your pouches:</h5>
-        <ButtonGroup>
-          <Button color="info" name="privacy" id="privacy" onClick={() => onRadioBtnClick(1)} active={privacy === 1}>Only You</Button>
-          <Button color="info" name="privacy" id="privacy" onClick={() => onRadioBtnClick(2)} active={privacy === 2}>Everyone</Button>
+        <ButtonGroup id="privacy">
+          <Button color="info" name="privacy" onClick={() => onRadioBtnClick(1)} active={privacyModal === 1}>Only You</Button>
+          <Button color="info" name="privacy" onClick={() => onRadioBtnClick(2)} active={privacyModal === 2}>Everyone</Button>
         </ButtonGroup>
         <FormGroup color={getColorFromError(errors.password)}>
           <Label for="password">Password:</Label>
@@ -112,7 +111,7 @@ const Settings = ({
             name="password"
             id="password"
             placeholder="enter your current password"
-            onChange={onChangeInput}
+            onChange={onChangeInputPassword}
           />
           <ValidationErrorMessage message={errors.password} />
         </FormGroup>
@@ -123,7 +122,7 @@ const Settings = ({
             name="password"
             id="password"
             placeholder="enter your new password"
-            onChange={onChangeInput}
+            onChange={onChangeInputPassword}
           />
           <ValidationErrorMessage message={errors.password} />
         </FormGroup>
@@ -145,8 +144,9 @@ const Settings = ({
     >
       <ModalHeader>Delete Account</ModalHeader>
       <p className="extra-padding">
-        Are you sure you want to delete your account? THIS CANNOT BE UNDONE!
-      </p>
+        Are you sure you want to delete your account?</p>
+        <h3 className="extra-padding"><b>THIS CANNOT BE UNDONE!</b>
+      </h3>
       <ModalFooter>
         <Button
           color="danger"

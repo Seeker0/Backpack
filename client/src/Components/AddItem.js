@@ -3,12 +3,10 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
   ModalFooter,
   Label,
   FormGroup,
-  Form,
-  Input
+  Form
 } from "reactstrap";
 
 class AddPouch extends React.Component {
@@ -17,14 +15,9 @@ class AddPouch extends React.Component {
     this.state = {
       modal: false
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  submit() {
-    this.toggle;
-  }
-
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal
     });

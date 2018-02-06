@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalFooter, Form, FormGroup, Label } from "reactstrap";
 
 class RenamePouch extends React.Component {
   constructor(props) {
@@ -7,14 +7,9 @@ class RenamePouch extends React.Component {
     this.state = {
       modal: false
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  submit() {
-    this.toggle;
-  }
-
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal
     });

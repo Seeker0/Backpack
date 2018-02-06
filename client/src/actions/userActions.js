@@ -136,7 +136,6 @@ export function login(user) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
-        //dispatch(setCurrentPouch(user.pouches[0]));
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -145,7 +144,9 @@ export function login(user) {
 }
 
 export function loginFailure(err) {
-  type: LOGIN_FAILURE, err;
+  return {
+    type: LOGIN_FAILURE, err
+  };
 }
 
 export function loginSuccess(data) {
@@ -257,7 +258,7 @@ export function registerRequest() {
 
 export function registerUser(data) {
   return dispatch => {
-    let { username, email, password } = data;
+    let { username, password } = data;
     dispatch(registerRequest());
 
     fetch(`${server}/register`, {
@@ -305,9 +306,7 @@ export function updateRequest() {
 
 export function updateUser(data) {
   return dispatch => {
-    let { username, email, password, privacy } = data;
     dispatch(updateRequest());
-
     fetch(`${server}/users/${data._id}`, {
       method: "PUT",
       mode: "cors",

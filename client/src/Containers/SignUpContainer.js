@@ -36,16 +36,14 @@ class SignUpContainer extends Component {
         });
       }
     } else if (e.target.name === "password") {
-      if (e.target.name === "password") {
-        if (passwordField.length < 8 && passwordField.length > 0) {
-          this.setState({
-            errors: { type: "password" }
-          });
-        } else {
-          this.setState({
-            errors: {}
-          });
-        }
+      if (passwordField.length < 8 && passwordField.length > 0) {
+        this.setState({
+          errors: { type: "password" }
+        });
+      } else {
+        this.setState({
+          errors: {}
+        });
       }
     } else if (e.target.name === "fname") {
       if (fnameField === "") {

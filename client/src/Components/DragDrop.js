@@ -2,9 +2,9 @@
 //The same above action should be reflected in state in react
 //Visually, it should disappear from one pouch and appear in the other one
 
-import React, { Component } from "react";
+import React from "react";
 import { Draggable, Droppable } from "react-drag-and-drop";
-import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
+import { Container, Col } from "reactstrap";
 import AddPouchContainer from "../Containers/AddPouchContainer";
 import DeleteItemContainer from "../Containers/DeleteItemContainer";
 import DeletePouchContainer from "../Containers/DeletePouchContainer";
@@ -41,6 +41,8 @@ const DragDrop = props => {
       </Droppable>
     );
   });
+  console.log(props);
+  console.log("--------------");
   return (
     <div>
       <div id="pouch-side-bar">
@@ -59,7 +61,7 @@ const DragDrop = props => {
               ) : null}
               <div className="edit-buttons">
                 <RenamePouchContainer />
-                {/* {props.currentPouch.name !== "Unsorted Items" ? (<DeletePouchContainer/>) : (<div></div>)} */}
+                {props.currentPouch && (props.currentPouch.name !== "Unsorted Items") ? <DeletePouchContainer/> : null}
               </div>
               {props.currentItems.length > 0 ? (
                 <div>{draggableItems}</div>
