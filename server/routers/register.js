@@ -1,15 +1,15 @@
-let express = require("express");
+let express = require('express');
 let router = express.Router();
-let mongoose = require("mongoose");
-var models = require("./../models");
-var User = mongoose.model("User");
-var Pouch = mongoose.model("Pouch");
+let mongoose = require('mongoose');
+var models = require('./../models');
+var User = mongoose.model('User');
+var Pouch = mongoose.model('Pouch');
 
 // ----------------------------------------
 // Routes for /register
 // ----------------------------------------
 
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     let { username, email, password } = req.body;
     let user = await new User({
@@ -20,7 +20,7 @@ router.post("/", async (req, res, next) => {
     });
 
     let unsortedItems = await new Pouch({
-      name: "Unsorted Items",
+      name: 'Unsorted Items',
       itemIds: [],
       ownerId: user._id
     });

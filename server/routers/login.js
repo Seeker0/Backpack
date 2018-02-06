@@ -1,20 +1,21 @@
-let express = require("express");
+let express = require('express');
 let router = express.Router();
-let mongoose = require("mongoose");
-let models = require("./../models");
-let User = mongoose.model("User");
+let mongoose = require('mongoose');
+let models = require('./../models');
+let User = mongoose.model('User');
 
 // ----------------------------------------
 // Passport
 // ----------------------------------------
 
-const passport = require("../config/passport");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 // ----------------------------------------
 // Routes for /login
 // ----------------------------------------
 
-router.post("/facebook", async function(req, res) {
+router.post('/facebook', async function(req, res) {
   try {
     let user = await User.findOrCreate({
       email: req.body.email,
@@ -34,7 +35,7 @@ router.post("/facebook", async function(req, res) {
   }
 });
 
-router.post("/google", async function(req, res) {
+router.post('/google', async function(req, res) {
   try {
     let user = await User.findOrCreate({
       email: req.body.profileObj.email,
@@ -54,10 +55,21 @@ router.post("/google", async function(req, res) {
   }
 });
 
-router.post("/", passport.authenticate("local"), function(req, res) {
+router.post('/', passport.authenticate('local'), function(req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
   return res.json(req.user);
 });
+
+router.post(
+  '/',
+  passport.authenticate('local', (req, res, next) => {
+    try {
+      res.json(req.user);
+    } catch (e) {
+      next(e);
+    }
+  })
+);
 
 module.exports = router;
