@@ -8,8 +8,8 @@ import Dashboard from './Dashboard';
 import Logout from './Logout';
 import AddPouch from './AddPouch';
 import Search from './Search';
+import DragDrop from './DragDrop';
 import Item from './Item';
-//state
 
 export {
   ErrorMessage,
@@ -22,5 +22,6 @@ export {
   Logout,
   AddPouch,
   Search,
-  Item
+  Item,
+  DragDrop
 };

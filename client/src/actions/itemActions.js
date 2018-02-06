@@ -5,6 +5,10 @@ export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
 export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
 export const NEW_ITEM_FAILURE = "NEW_ITEM_FAILURE";
 
+export const DELETE_ITEM_BY_ID_SUCCESS = "DELETE_ITEM_BY_ID_SUCCESS";
+export const DELETE_ITEM_BY_ID_FAILURE = "DELETE_ITEM_BY_ID_FAILURE";
+export const DELETE_ITEM_BY_ID_REQUEST = "DELETE_ITEM_BY_ID_REQUEST";
+
 export const DELETE_ITEM_REQUEST = "DELETE_ITEM_REQUEST";
 export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
 export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
@@ -17,7 +21,7 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_FAILURE = "SEARCH_FAILURE";
 export const SEARCH_REQUEST = "SEARCH_REQUEST";
 
-const querystring = require('querystring');
+const querystring = require("querystring");
 
 let server =
   process.env.NODE_ENV === "production"
@@ -45,8 +49,12 @@ export function newItemRequest() {
 }
 
 export function newItem(data) {
+  /*
+  data = {pouchId, link, name, ownerId}
+  */
   let pouchId = data.pouchId;
   var myHeaders = new Headers();
+  console.log("This is the data being put on drop:", data);
 
   myHeaders.append("content-type", "application/json");
   return dispatch => {
@@ -129,6 +137,54 @@ export function deleteItemRequest() {
   };
 }
 
+export function deleteItemByIdRequest() {
+  return {
+    type: DELETE_ITEM_BY_ID_REQUEST
+  };
+}
+
+export function deleteItemByIdSuccess(id) {
+  return {
+    type: DELETE_ITEM_BY_ID_SUCCESS,
+    id
+  };
+}
+
+export function deleteItemByIdFailure(error) {
+  return {
+    type: DELETE_ITEM_BY_ID_FAILURE,
+    error
+  };
+}
+
+export function deleteItemById(id) {
+  console.log("Entered deleteItemById action:", id);
+  return dispatch => {
+    dispatch(deleteItemByIdRequest());
+    fetch(`${server}/items/${id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+      body: {},
+      mode: "cors",
+      credentials: "same-origin"
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        return response.json();
+      })
+      .then(json => {
+        dispatch(deleteItemByIdSuccess(json));
+        //dispatch(setCurrentPouch({ _id: pouchId }));
+      })
+      .catch(error => {
+        dispatch(deleteItemByIdFailure(error));
+      });
+  };
+}
+
 export function getItemRequest() {
   return {
     type: GET_ITEM_REQUEST
@@ -192,7 +248,7 @@ export function searchFailure(error) {
 }
 
 export function search(data) {
-  let searchData = { name: data};
+  let searchData = { name: data };
   let query = querystring.stringify(searchData);
   return dispatch => {
     dispatch(searchRequest());
@@ -200,13 +256,13 @@ export function search(data) {
     fetch(`${server}/items/search/?${query}`, {
       mode: "cors",
       credentials: "same-origin",
-      headers: { "content-type": "application/json"}
+      headers: { "content-type": "application/json" }
     })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-        return response.json()
+        return response.json();
       })
       .then(response => {
         dispatch(searchSuccess(response));
