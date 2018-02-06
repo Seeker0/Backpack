@@ -27,7 +27,7 @@ export const USER_DELETE_FAILURE = 'USER_DELETE_FAILURE';
 let server =
   process.env.NODE_ENV === 'production'
     ? 'https://appbackpack.herokuapp.com'
-    : 'http://localhost:3001';
+    : 'http://localhost:3001/';
 
 export function getUserPouchesSuccess(data) {
   return {
@@ -320,7 +320,7 @@ export function registerUser(data) {
     let { username, email, password } = data;
     dispatch(registerRequest());
 
-    fetch(`${server}/register`, {
+    fetch(`${server}register`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'same-origin',
