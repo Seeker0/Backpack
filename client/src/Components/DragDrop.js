@@ -2,22 +2,26 @@
 //The same above action should be reflected in state in react
 //Visually, it should disappear from one pouch and appear in the other one
 
-import React, { Component } from "react";
-import { Draggable, Droppable } from "react-drag-and-drop";
-import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
-import AddPouchContainer from "../Containers/AddPouchContainer";
-import DeleteItemContainer from "../Containers/DeleteItemContainer";
-import DeletePouchContainer from "../Containers/DeletePouchContainer";
-import AddItemContainer from "../Containers/AddItemContainer";
-import RenamePouchContainer from "../Containers/RenamePouchContainer";
+import React, { Component } from 'react';
+import { Draggable, Droppable } from 'react-drag-and-drop';
+import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
+import AddPouchContainer from '../Containers/AddPouchContainer';
+import DeleteItemContainer from '../Containers/DeleteItemContainer';
+import DeletePouchContainer from '../Containers/DeletePouchContainer';
+import AddItemContainer from '../Containers/AddItemContainer';
+import RenamePouchContainer from '../Containers/RenamePouchContainer';
+import Item from './Item';
 
 const DragDrop = props => {
   let draggableItems = props.currentItems.map(item => {
     return (
       <Draggable type="item" data={item.link} itemid={item._id}>
         <div className="item-box">
-          <h3>{item.name}</h3>
-          <h3>{item.link}</h3>
+          <a href={item.link}>
+            <h3>{item.name}</h3>
+          </a>
+          <Item item={item} />
+
           <div>
             <DeleteItemContainer itemid={item._id} />
           </div>
@@ -28,7 +32,7 @@ const DragDrop = props => {
   let droppableItems = props.pouches.map(pouch => {
     return (
       <Droppable
-        types={["item"]} // <= allowed drop types
+        types={['item']} // <= allowed drop types
         //onDrop={props.onDrop.bind(this)}
         key={pouch._id}
         onClick={() => {
