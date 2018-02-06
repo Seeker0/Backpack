@@ -12,12 +12,9 @@ const mongo = require("./mongo")();
 // ----------------------------------------
 // Model Schemas
 // ----------------------------------------
-<<<<<<< HEAD
-const { User } = require("./models");
-=======
 
-const User = require("./models");
->>>>>>> 41e72215a78b7823f6cda22fa4370ba9be82dbe7
+const { User } = require("./models");
+
 
 // ----------------------------------------
 // ENV
