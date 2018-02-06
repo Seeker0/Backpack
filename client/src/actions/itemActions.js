@@ -1,32 +1,32 @@
-import { setCurrentPouch } from "./pouchActions";
-import { getUser } from "./userActions";
+import { setCurrentPouch } from './pouchActions';
+import { getUser } from './userActions';
 
-export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
-export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
-export const NEW_ITEM_FAILURE = "NEW_ITEM_FAILURE";
+export const NEW_ITEM_REQUEST = 'NEW_ITEM_REQUEST';
+export const NEW_ITEM_SUCCESS = 'NEW_ITEM_SUCCESS';
+export const NEW_ITEM_FAILURE = 'NEW_ITEM_FAILURE';
 
-export const DELETE_ITEM_BY_ID_SUCCESS = "DELETE_ITEM_BY_ID_SUCCESS";
-export const DELETE_ITEM_BY_ID_FAILURE = "DELETE_ITEM_BY_ID_FAILURE";
-export const DELETE_ITEM_BY_ID_REQUEST = "DELETE_ITEM_BY_ID_REQUEST";
+export const DELETE_ITEM_BY_ID_SUCCESS = 'DELETE_ITEM_BY_ID_SUCCESS';
+export const DELETE_ITEM_BY_ID_FAILURE = 'DELETE_ITEM_BY_ID_FAILURE';
+export const DELETE_ITEM_BY_ID_REQUEST = 'DELETE_ITEM_BY_ID_REQUEST';
 
-export const DELETE_ITEM_REQUEST = "DELETE_ITEM_REQUEST";
-export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
-export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
+export const DELETE_ITEM_REQUEST = 'DELETE_ITEM_REQUEST';
+export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS';
+export const DELETE_ITEM_FAILURE = 'DELETE_ITEM_FAILURE';
 
-export const GET_ITEM_SUCCESS = "GET_ITEM_SUCCESS";
-export const GET_ITEM_FAILURE = "GET_ITEM_FAILURE";
-export const GET_ITEM_REQUEST = "GET_ITEM_REQUEST";
+export const GET_ITEM_SUCCESS = 'GET_ITEM_SUCCESS';
+export const GET_ITEM_FAILURE = 'GET_ITEM_FAILURE';
+export const GET_ITEM_REQUEST = 'GET_ITEM_REQUEST';
 
-export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
-export const SEARCH_FAILURE = "SEARCH_FAILURE";
-export const SEARCH_REQUEST = "SEARCH_REQUEST";
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+export const SEARCH_FAILURE = 'SEARCH_FAILURE';
+export const SEARCH_REQUEST = 'SEARCH_REQUEST';
 
-const querystring = require("querystring");
+const querystring = require('querystring');
 
 let server =
-  process.env.NODE_ENV === "production"
-    ? "https://app-Name.herokuapp.com"
-    : "http://localhost:3000";
+  process.env.NODE_ENV === 'production'
+    ? 'https://appbackpack.herokuapp.com/'
+    : 'http://localhost:3001';
 
 export function newItemSuccess(data) {
   return {
@@ -54,19 +54,19 @@ export function newItem(data) {
   */
   let pouchId = data.pouchId;
   var myHeaders = new Headers();
-  console.log("This is the data being put on drop:", data);
+  console.log('This is the data being put on drop:', data);
 
-  myHeaders.append("content-type", "application/json");
+  myHeaders.append('content-type', 'application/json');
   return dispatch => {
     dispatch(newItemRequest());
 
     fetch(`${server}/items`, {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
-      mode: "cors",
-      cache: "default",
+      mode: 'cors',
+      cache: 'default',
       body: JSON.stringify(data),
-      credentials: "same-origin"
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -94,11 +94,11 @@ export function deleteItem(data) {
     dispatch(deleteItemRequest());
     let { id, pouchId, ownerId } = data;
     fetch(`${server}/items/${id}`, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ pouchId, ownerId }),
-      mode: "cors",
-      credentials: "same-origin"
+      mode: 'cors',
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -158,15 +158,15 @@ export function deleteItemByIdFailure(error) {
 }
 
 export function deleteItemById(id) {
-  console.log("Entered deleteItemById action:", id);
+  console.log('Entered deleteItemById action:', id);
   return dispatch => {
     dispatch(deleteItemByIdRequest());
     fetch(`${server}/items/${id}`, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
       body: {},
-      mode: "cors",
-      credentials: "same-origin"
+      mode: 'cors',
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -211,8 +211,8 @@ export function getItem(data) {
     dispatch(getItemRequest());
 
     fetch(`${server}/items/${itemId}`, {
-      mode: "cors",
-      credentials: "same-origin"
+      mode: 'cors',
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -254,9 +254,9 @@ export function search(data) {
     dispatch(searchRequest());
 
     fetch(`${server}/items/search/?${query}`, {
-      mode: "cors",
-      credentials: "same-origin",
-      headers: { "content-type": "application/json" }
+      mode: 'cors',
+      credentials: 'same-origin',
+      headers: { 'content-type': 'application/json' }
     })
       .then(response => {
         if (!response.ok) {

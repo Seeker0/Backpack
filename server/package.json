@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jasmine",
     "seed": "node seeds",
-    "seeds": "node seeds"
+    "seeds": "node seeds",
+    "start": "node ./app.js"
   },
   "author": "",
   "license": "ISC",
