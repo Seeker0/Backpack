@@ -9,36 +9,11 @@ import { getUser } from "../actions/userActions";
 import { newItem, deleteItem } from "../actions/itemActions";
 //import { getBoards, createBoard } from "../actions";
 
-class DashboardContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // onDrop = data => {
-  //   console.log(data);
-  // };
-
-  render() {
-    return (
-      <DragDrop
-        pouches={this.props.pouches}
-        currentItems={this.props.currentItems}
-        currentPouch={this.props.currentPouch}
-        setCurrentPouch={this.props.setCurrentPouch}
-        getUser={this.props.getUser}
-        onDrop={this.props.onDrop}
-        onDragEnd={this.props.onDragEnd}
-      />
-    );
-  }
-}
+class DashBoardContainer extends Component {}
 
 const mapStateToProps = state => {
   let username = state.user ? state.user.username : null;
   return {
-    pouches: state.pouches,
-    currentItems: state.currentItems,
-    currentPouch: state.currentPouch,
     username
   };
 };
@@ -50,18 +25,8 @@ const mapDispatchToProps = dispatch => {
     },
     getUser: () => {
       dispatch(getUser());
-    },
-    onDrop: (data, pouchId) => {
-      //console.log("Dropped Item:", data, pouchId);
-      data.pouchId = pouchId;
-      dispatch(newItem(data));
-    },
-    onDragEnd: (id, pouchId, ownerId) => {
-      let data = { id, pouchId, ownerId };
-      console.log("Dragged Item:", data);
-      dispatch(deleteItem(data));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

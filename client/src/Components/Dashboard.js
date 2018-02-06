@@ -1,21 +1,13 @@
 import React from "react";
 import DragDrop from "./DragDrop";
 import TopNavBar from "./TopNavBar";
-import DashboardContainer from "../Containers/DashboardContainer";
+import DragDropContainer from "../Containers/DragDropContainer";
 
-const Dashboard = ({
-  pouches,
-  currentItems,
-  currentPouch,
-  unsortedItems,
-  username,
-  setCurrentPouch,
-  getUser
-}) => {
+const Dashboard = ({ unsortedItems, username }) => {
   return (
     <div>
       <TopNavBar username={username} />
-      <DashboardContainer />
+      <DragDropContainer />
     </div>
   );
 };
