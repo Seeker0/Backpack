@@ -12,6 +12,10 @@ export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
+export const UPDATE_REQUEST = "UPDATE_REQUEST";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_FAILURE = "UPDATE_FAILURE";
+
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
@@ -275,6 +279,51 @@ export function registerUser(data) {
       })
       .catch(error => {
         dispatch(registerFailure(error));
+      });
+  };
+}
+
+export function updateSuccess(data) {
+  return {
+    type: UPDATE_SUCCESS,
+    data
+  };
+}
+
+export function updateFailure(error) {
+  return {
+    type: UPDATE_FAILURE,
+    error
+  };
+}
+
+export function updateRequest() {
+  return {
+    type: UPDATE_REQUEST
+  };
+}
+
+export function updateUser(data) {
+  return dispatch => {
+    let { username, email, password, privacy } = data;
+    dispatch(updateRequest());
+
+    fetch(`${server}/users/${data._id}`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        return response.json();
+      })
+      .catch(error => {
+        dispatch(updateFailure(error));
       });
   };
 }

@@ -11,15 +11,18 @@ class SettingsContainer extends Component {
     this.state = {
       success: false,
       errors: {},
-      email: "",
-      username: "",
-      password: "",
-      privacy: false,
       modal: false,
-      rSelected: 0
+      modalPassword: false,
+      modalDelete: false,
+      username: props.username,
+      email: props.email,
+      password: props.password,
+      privacy: props.privacy
     };
 
     this.toggle = this.toggle.bind(this);
+    this.togglePassword = this.togglePassword.bind(this);
+    this.toggleDelete = this.toggleDelete.bind(this);
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
   }
 
@@ -29,9 +32,20 @@ class SettingsContainer extends Component {
     });
   }
 
+  togglePassword() {
+    this.setState({
+      modalPassword: !this.state.modalPassword
+    });
+  }
 
-  onRadioBtnClick(rSelected) {
-    this.setState({ rSelected });
+  toggleDelete() {
+    this.setState({
+      modalDelete: !this.state.modalDelete
+    });
+  }
+
+  onRadioBtnClick(privacy) {
+    this.setState({ privacy });
   }
 
   onChangeInput = e => {
@@ -77,6 +91,7 @@ class SettingsContainer extends Component {
     });
   };
 
+
   onSubmit = e => {
     e.preventDefault();
     if (!Object.keys(this.state.errors).length) {
@@ -116,7 +131,7 @@ class SettingsContainer extends Component {
         username: "",
         password: "",
         email: "",
-        privacy: false
+        privacy: 1
       },
       () => console.log("Error in your form.")
     );
@@ -128,8 +143,9 @@ class SettingsContainer extends Component {
         onSubmit={this.onSubmit}
         onChangeInput={this.onChangeInput}
         onRadioBtnClick={this.onRadioBtnClick}
-        isOpen={this.isOpen}
         toggle={this.toggle}
+        togglePassword={this.togglePassword}
+        toggleDelete={this.toggleDelete}
         {...this.state}
       />
     );
@@ -139,7 +155,7 @@ class SettingsContainer extends Component {
 const mapStateToProps = state => {
   let username = state.user ? state.user.username : null;
   let email = state.user ? state.user.email : null;
-  let privacy = state.privacy ? state.user.privacy : null;
+  let privacy = state.user ? state.user.privacy : null;
   return {
     username,
     email,

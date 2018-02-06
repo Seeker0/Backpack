@@ -12,7 +12,7 @@ const Dashboard = ({
   getUser
 }) => {
   return (
-    <div>
+    <div className="testing">
       <TopNavBar username={username} />
       <DragDrop
         pouches={pouches}

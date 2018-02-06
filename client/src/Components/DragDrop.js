@@ -59,7 +59,7 @@ const DragDrop = props => {
               ) : null}
               <div className="edit-buttons">
                 <RenamePouchContainer />
-                <DeletePouchContainer />
+                {/* {props.currentPouch.name !== "Unsorted Items" ? (<DeletePouchContainer/>) : (<div></div>)} */}
               </div>
               {props.currentItems.length > 0 ? (
                 <div>{draggableItems}</div>

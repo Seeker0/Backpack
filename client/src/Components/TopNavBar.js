@@ -73,7 +73,7 @@ class TopNavBar extends PureComponent {
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href="" className="links">
+                <NavLink href="/dashboard" className="links">
                   Your Backpack{" "}
                   <img
                     src={backpackIcon}

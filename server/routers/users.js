@@ -28,6 +28,24 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  try {
+    let user = await User.findById(req.params.id);
+    if (req.params.password) {
+      user.password = req.params.password
+    } else {
+      user.username = req.body.name;
+      user.email = req.body.email;
+      user.privacy = req.body.privacy;
+    }
+    user = await user.save();
+    res.json(user);
+  } catch (e) {
+    res.status(500);
+    next(e);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
     let user = await User.findById(req.params.id);

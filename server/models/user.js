@@ -8,7 +8,7 @@ let UserSchema = new Schema({
   email: String,
   passwordHash: { type: String },
   pouches: [{ type: Schema.Types.ObjectId, ref: "Pouch" }],
-  privacy: { type: Boolean }
+  privacy: { type: Number }
 });
 
 UserSchema.plugin(uniqueValidator);

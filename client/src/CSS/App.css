@@ -4,8 +4,6 @@
 
 body {
   background: #908b94 url(../images/mountains.png) no-repeat fixed center top;
-  /* background-size: 100%;
-  background-repeat: no-repeat; */
 }
 .App {
   text-align: center;
@@ -61,10 +59,6 @@ body {
 
 .logo {
   height: 50px;
-}
-
-.navbar-toggler {
-  background-color: black;
 }
 
 .profile-icon {
@@ -305,6 +299,5 @@ footer {
   font-family: "Kalam", cursive;
 }
 #settings-title {
-  text-align: center;
   padding-top: 20px;
 }
