@@ -1,7 +1,7 @@
-//Make item move from one pouch to another in database
-//The same above action should be reflected in state in react
-//Visually, it should disappear from one pouch and appear in the other one
-
+// //Make item move from one pouch to another in database
+// //The same above action should be reflected in state in react
+// //Visually, it should disappear from one pouch and appear in the other one
+//
 import React, { Component } from "react";
 import { Draggable, Droppable } from "react-drag-and-drop";
 import { Container, Row, Col, ButtonGroup, Button } from "reactstrap";
@@ -12,9 +12,26 @@ import AddItemContainer from "../Containers/AddItemContainer";
 import RenamePouchContainer from "../Containers/RenamePouchContainer";
 
 const DragDrop = props => {
+  const {
+    pouches,
+    currentItems,
+    currentPouch,
+    setCurrentPouch,
+    getUser,
+    onDragLeave,
+    onDrop,
+    onDragEnd
+  } = props;
   let draggableItems = props.currentItems.map(item => {
     return (
-      <Draggable type="item" data={item.link} itemid={item._id}>
+      <Draggable
+        type="item"
+        data={JSON.stringify(item)}
+        itemid={item._id}
+        onDragEnd={e => {
+          props.onDragEnd(item._id, currentPouch._id, getUser._id);
+        }}
+      >
         <div className="item-box">
           <h3>{item.name}</h3>
           <h3>{item.link}</h3>
@@ -29,9 +46,15 @@ const DragDrop = props => {
     return (
       <Droppable
         types={["item"]} // <= allowed drop types
-        //onDrop={props.onDrop.bind(this)}
+        onDrop={data => {
+          console.log("Dropped data:", data.item);
+          data = JSON.parse(data.item);
+          props.onDrop(data, pouch._id);
+        }} //{props.onDrop.bind(this)}
+        //onDrop={() => onDrop()}
         key={pouch._id}
         onClick={() => {
+          console.log("Droppable makes triggers onClick!!!");
           props.setCurrentPouch(pouch._id);
         }}
       >
@@ -74,9 +97,5 @@ const DragDrop = props => {
     </div>
   );
 };
-// onDrop(data) {
-//   console.log(data);
-//   // => banana
-// }
 
 export default DragDrop;

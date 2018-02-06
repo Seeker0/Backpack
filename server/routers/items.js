@@ -70,6 +70,24 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.delete("/item/:itemId", async (req, res, next) => {
+  try {
+    //let pouch = await Pouch.findById(req.body.pouchId);
+    // pouch.itemIds = pouch.itemIds.filter(id => {
+    //   return id.toString() !== req.params.id;
+    // });
+
+    //pouch = await pouch.save();
+    let item = await Item.findById(req.params.itemId);
+    await item.remove();
+    res.json("hello");
+    //res.json(pouch);
+  } catch (e) {
+    res.status(500);
+    next(e);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
     let pouch = await Pouch.findById(req.body.pouchId);
