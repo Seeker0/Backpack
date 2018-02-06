@@ -25,9 +25,7 @@ export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS';
 export const USER_DELETE_FAILURE = 'USER_DELETE_FAILURE';
 
 let server =
-  process.env.NODE_ENV === 'production'
-    ? 'https://appbackpack.herokuapp.com'
-    : 'http://localhost:3001/';
+  process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001/';
 
 export function getUserPouchesSuccess(data) {
   return {
