@@ -16,8 +16,10 @@ const passport = require("../config/passport");
 
 router.post("/facebook", async function(req, res) {
   try {
-    let user = await User.findOrCreate({ email: req.body.email });
-    user.facebookId = req.body.id;
+    let user = await User.findOrCreate({
+      email: req.body.email,
+      facebookId: req.body.id
+    });
     user.username = req.body.name;
     user = await user.save();
     req.login(user, function(err) {
@@ -34,8 +36,10 @@ router.post("/facebook", async function(req, res) {
 
 router.post("/google", async function(req, res) {
   try {
-    let user = await User.findOrCreate({ email: req.body.profileObj.email });
-    user.googleId = req.body.profileObj.googleId;
+    let user = await User.findOrCreate({
+      email: req.body.profileObj.email,
+      googleId: req.body.profileObj.googleId
+    });
     user.username = req.body.profileObj.name;
     user = await user.save();
     req.login(user, function(err) {
