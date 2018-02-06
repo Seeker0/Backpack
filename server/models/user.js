@@ -28,12 +28,11 @@ UserSchema.virtual("password")
     this.passwordHash = bcrypt.hashSync(value, 8);
   });
 
-UserSchema.statics.findOrCreate = async function(query, username) {
+UserSchema.statics.findOrCreate = async function(query) {
   try {
     let user = await User.findOne(query);
     if (!user) {
       user = new User(query);
-      user.username = username;
       let unsortedItems = await new Pouch({
         name: "Unsorted Items",
         itemIds: [],
