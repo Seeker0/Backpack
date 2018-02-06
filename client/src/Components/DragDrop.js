@@ -26,13 +26,11 @@ const DragDrop = props => {
     return (
       <Draggable
         type="item"
-        data={item}
+        data={JSON.stringify(item)}
         itemid={item._id}
-        onDragEnd={onDragEnd(
-          item._id,
-          props.currentPouch._id,
-          props.getUser._id
-        )}
+        onDragEnd={e => {
+          props.onDragEnd(item._id, currentPouch._id, getUser._id);
+        }}
       >
         <div className="item-box">
           <h3>{item.name}</h3>
@@ -48,10 +46,15 @@ const DragDrop = props => {
     return (
       <Droppable
         types={["item"]} // <= allowed drop types
-        onDrop={props.onDrop.bind(this, pouch._id)}
+        onDrop={data => {
+          console.log("Dropped data:", data.item);
+          data = JSON.parse(data.item);
+          props.onDrop(data, pouch._id);
+        }} //{props.onDrop.bind(this)}
         //onDrop={() => onDrop()}
         key={pouch._id}
         onClick={() => {
+          console.log("Droppable makes triggers onClick!!!");
           props.setCurrentPouch(pouch._id);
         }}
       >

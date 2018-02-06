@@ -5,6 +5,10 @@ export const NEW_ITEM_REQUEST = "NEW_ITEM_REQUEST";
 export const NEW_ITEM_SUCCESS = "NEW_ITEM_SUCCESS";
 export const NEW_ITEM_FAILURE = "NEW_ITEM_FAILURE";
 
+export const DELETE_ITEM_BY_ID_SUCCESS = "DELETE_ITEM_BY_ID_SUCCESS";
+export const DELETE_ITEM_BY_ID_FAILURE = "DELETE_ITEM_BY_ID_FAILURE";
+export const DELETE_ITEM_BY_ID_REQUEST = "DELETE_ITEM_BY_ID_REQUEST";
+
 export const DELETE_ITEM_REQUEST = "DELETE_ITEM_REQUEST";
 export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
 export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
@@ -130,6 +134,54 @@ export function deleteItemFailure(error) {
 export function deleteItemRequest() {
   return {
     type: DELETE_ITEM_REQUEST
+  };
+}
+
+export function deleteItemByIdRequest() {
+  return {
+    type: DELETE_ITEM_BY_ID_REQUEST
+  };
+}
+
+export function deleteItemByIdSuccess(id) {
+  return {
+    type: DELETE_ITEM_BY_ID_SUCCESS,
+    id
+  };
+}
+
+export function deleteItemByIdFailure(error) {
+  return {
+    type: DELETE_ITEM_BY_ID_FAILURE,
+    error
+  };
+}
+
+export function deleteItemById(id) {
+  console.log("Entered deleteItemById action:", id);
+  return dispatch => {
+    dispatch(deleteItemByIdRequest());
+    fetch(`${server}/items/${id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+      body: {},
+      mode: "cors",
+      credentials: "same-origin"
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+
+        return response.json();
+      })
+      .then(json => {
+        dispatch(deleteItemByIdSuccess(json));
+        //dispatch(setCurrentPouch({ _id: pouchId }));
+      })
+      .catch(error => {
+        dispatch(deleteItemByIdFailure(error));
+      });
   };
 }
 

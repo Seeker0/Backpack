@@ -52,8 +52,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(getUser());
     },
     onDrop: (data, pouchId) => {
-      console.log("Dropped Item:", data);
-      //data.pouchId = pouchId;
+      //console.log("Dropped Item:", data, pouchId);
+      data.pouchId = pouchId;
       dispatch(newItem(data));
     },
     onDragEnd: (id, pouchId, ownerId) => {
