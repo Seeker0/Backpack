@@ -140,8 +140,72 @@ export function login(user) {
   };
 }
 
+export function facebookLogin(data) {
+  console.log(data);
+  return dispatch => {
+    const requestOptions = {
+      credentials: "same-origin",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify(data)
+    };
+    console.log(requestOptions);
+
+    return fetch(`${server}/login/facebook`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(user => {
+        dispatch(getUserPouches(user));
+        dispatch(loginSuccess(user));
+        //dispatch(setCurrentPouch(user.pouches[0]));
+      })
+      .catch(e => {
+        dispatch(loginFailure(e));
+      });
+  };
+}
+
+export function googleLogin(data) {
+  console.log(data);
+  return dispatch => {
+    const requestOptions = {
+      credentials: "same-origin",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify(data)
+    };
+    console.log(requestOptions);
+
+    return fetch(`${server}/login/google`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(user => {
+        dispatch(getUserPouches(user));
+        dispatch(loginSuccess(user));
+        //dispatch(setCurrentPouch(user.pouches[0]));
+      })
+      .catch(e => {
+        dispatch(loginFailure(e));
+      });
+  };
+}
+
 export function loginFailure(err) {
-  type: LOGIN_FAILURE, err;
+  return { type: LOGIN_FAILURE, err };
 }
 
 export function loginSuccess(data) {
