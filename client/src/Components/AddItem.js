@@ -3,12 +3,10 @@ import {
   Button,
   Modal,
   ModalHeader,
-  ModalBody,
   ModalFooter,
   Label,
   FormGroup,
-  Form,
-  Input
+  Form
 } from "reactstrap";
 
 class AddPouch extends React.Component {
@@ -17,14 +15,9 @@ class AddPouch extends React.Component {
     this.state = {
       modal: false
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  submit() {
-    this.toggle;
-  }
-
-  toggle() {
+  toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
@@ -47,7 +40,7 @@ class AddPouch extends React.Component {
           <ModalHeader>New Item</ModalHeader>
           <Form className="extra-padding">
             <FormGroup>
-              <Label for="title">Name:</Label>
+              <Label for="name">Name: </Label>
               <div>
                 <input
                   type="text"
@@ -59,7 +52,7 @@ class AddPouch extends React.Component {
                   }}
                 />
               </div>
-              <Label for="link">Link:</Label>
+              <Label for="link">Link: </Label>
               <input
                 type="text"
                 name="link"
