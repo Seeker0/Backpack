@@ -77,7 +77,7 @@ app.use((req, res, next) => {
 // Public
 // ----------------------------------------
 const path = require('path');
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 
 // ----------------------------------------
 // Logging
@@ -141,8 +141,7 @@ app.get('/currentUser', loggedInOnly, async (req, res, next) => {
 // });
 
 app.get('/', function(req, res) {
-  var testHtmlPath = path.resolve(__dirname, '..', '/client/build/index.html');
-  res.sendFile(testHtmlPath);
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 // ----------------------------------------
