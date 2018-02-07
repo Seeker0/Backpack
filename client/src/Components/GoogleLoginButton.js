@@ -1,16 +1,13 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-
-const responseGoogle = response => {
-  console.log(response);
-};
+import google_img from "../images/btn_google_signin_light_normal_web.png";
 
 const GoogleLoginButton = props => {
   return (
-    <GoogleLogin
-      clientId="1059973407731-77vgqju0ric1itqtuaol5mv65vvk3uet.apps.googleusercontent.com"
-      onSuccess={props.googleLogin}
-      onFailure={props.loginFailure}
+    <img
+      src={google_img}
+      className="google-button"
+      onClick={props.googleLogin}
     />
   );
 };
