@@ -27,7 +27,7 @@ export const USER_DELETE_FAILURE = 'USER_DELETE_FAILURE';
 let server =
   process.env.NODE_ENV === 'production'
     ? 'https://appbackpack.herokuapp.com/'
-    : 'http://localhost:3001';
+    : 'http://localhost:3000';
 
 export function getUserPouchesSuccess(data) {
   return {
@@ -50,6 +50,7 @@ export function getUserPouchesRequest() {
 }
 
 export function getUserPouches(user) {
+  console.log(user);
   return dispatch => {
     dispatch(getUserPouchesRequest());
     fetch(`${server}/pouches/${user._id}`, {

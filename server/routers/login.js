@@ -61,15 +61,4 @@ router.post('/', passport.authenticate('local'), function(req, res) {
   return res.json(req.user);
 });
 
-router.post(
-  '/',
-  passport.authenticate('local', (req, res, next) => {
-    try {
-      res.json(req.user);
-    } catch (e) {
-      next(e);
-    }
-  })
-);
-
 module.exports = router;
