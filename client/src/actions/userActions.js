@@ -148,17 +148,14 @@ export function login(user) {
   };
 }
 
-export function facebookLogin(data) {
-  console.log(data);
+export function facebookLogin() {
   return dispatch => {
     const requestOptions = {
       credentials: "same-origin",
-      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      mode: "cors",
-      body: JSON.stringify(data)
+      mode: "cors"
     };
     console.log(requestOptions);
 
@@ -179,17 +176,14 @@ export function facebookLogin(data) {
   };
 }
 
-export function googleLogin(data) {
-  console.log(data);
+export function googleLogin() {
   return dispatch => {
     const requestOptions = {
       credentials: "same-origin",
-      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      mode: "cors",
-      body: JSON.stringify(data)
+      mode: "cors"
     };
     console.log(requestOptions);
 
