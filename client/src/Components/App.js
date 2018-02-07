@@ -26,13 +26,18 @@ class App extends PureComponent {
     if (!authenticated) {
       return <h2>Loading</h2>;
     }
-    let redirect = null;
-    if (!authorized && !unprotectRoutes.includes(this.url)) {
-      redirect = <Redirect to="/" />;
+
+    let redirect = this.props.redirect;
+    if (redirect) {
+      redirect = <Redirect to={redirect} />;
+    } else {
+      redirect = null;
     }
-    if (authorized && this.url) {
-      redirect = <Redirect to={this.url} />;
-      this.url = null;
+    if (
+      !authorized &&
+      !unprotectRoutes.includes(this.props.location.pathname)
+    ) {
+      redirect = <Redirect to="/" />;
     }
 
     return (
