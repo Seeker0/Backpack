@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import { Alert } from "reactstrap";
 
 const Item = ({ item }) => {
   let meta = !item.meta ? (
     <img width="500px" height="auto" src={item.link} />
-  ) : item.meta.data.ogType === 'article' ? (
+  ) : item.meta.data.ogType === "article" ? (
     <div>
       <h3>{item.meta.data.ogSiteName}</h3>
       <a href={item.meta.data.ogUrl}>

@@ -1,0 +1,13 @@
+{
+  "name": "com.phonegap.backpack",
+  "version": "1.0.0",
+  "displayName": "Backpack",
+  "cordova": {
+    "platforms": [
+      "ios"
+    ]
+  },
+  "dependencies": {
+    "cordova-ios": "~4.5.4"
+  }
+}
