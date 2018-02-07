@@ -28,7 +28,7 @@ function onClickHandler(info, tab) {
   var params = "link=" + link;
   params = params.replace(/%20/g, "+");
   console.log(link);
-  var postUrl = "http://localhost:3001/items";
+  var postUrl = "https://appbackpack.herokuapp.com/items";
 
   // Set up an asynchronous AJAX POST request
   var xhr = new XMLHttpRequest();

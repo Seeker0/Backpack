@@ -12,20 +12,20 @@ let validUser = { username: "hooligan0", password: "password0" };
 const fetchRequest = (url, options) => {
   return fetch(url, options).then(response => {
     console.log(response.headers);
-    return response.json();
+    return response;
   });
 };
 
 describe("server", () => {
-  it("returns logged in only message for logged in only routes", async done => {
+  it("returns status 401 for logged in only routes", async done => {
     let response = await fetchRequest(baseURI + "/logout");
-    expect(response.message).toBe(loggedInOnlyMessage);
+    expect(response.status).toBe(401);
     response = await fetchRequest(baseURI + "/users");
-    expect(response.message).toBe(loggedInOnlyMessage);
+    expect(response.status).toBe(401);
     response = await fetchRequest(baseURI + "/items");
-    expect(response.message).toBe(loggedInOnlyMessage);
+    expect(response.status).toBe(401);
     response = await fetchRequest(baseURI + "/pouches");
-    expect(response.message).toBe(loggedInOnlyMessage);
+    expect(response.status).toBe(401);
     done();
   });
 
@@ -36,6 +36,7 @@ describe("server", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(validUser)
       });
+      response = await response.json();
       expect(response._id).toBeTruthy();
       expect(response.username).toBeTruthy();
       expect(response.email).toBeTruthy();

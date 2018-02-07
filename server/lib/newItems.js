@@ -2,6 +2,7 @@ const models = require('./../models');
 const mongoose = require('mongoose');
 const Item = require('../models/item');
 const ogs = require('open-graph-scraper');
+const urlRegex = require('url-regex');
 
 const picTester = link => {
   let images = ['.img', '.png', '.gif', '.jpeg', '.jpg', '.pdf'];
@@ -10,14 +11,29 @@ const picTester = link => {
     if (RegExp(images[i]).test(link)) {
       pic = true;
     }
-    return pic;
   }
+  return pic;
 };
 
 const itemGenerator = async (name, link, userId) => {
   let item;
-  if (picTester(link)) {
-    item = await new Item({ name, link, ownerId: userId, meta: {} });
+  if (!urlRegex({ exact: true, strict: false }).test(link)) {
+    console.log('is a string');
+    item = await new Item({
+      name,
+      link,
+      ownerId: userId,
+      meta: { data: { ogType: 'string', string: link } }
+    });
+    item = await item.save();
+    console.log(item);
+  } else if (picTester(link)) {
+    item = await new Item({
+      name,
+      link,
+      ownerId: userId,
+      meta: { data: { ogType: 'pic' } }
+    });
     item = await item.save();
   } else {
     item = await new Promise((resolve, reject) => {
@@ -25,9 +41,10 @@ const itemGenerator = async (name, link, userId) => {
         if (err) {
           console.log('rejecting');
           reject(err);
+        } else {
+          console.log('resolving');
+          resolve(meta);
         }
-        console.log('resolving');
-        resolve(meta);
       });
     })
       .then(async meta => {
