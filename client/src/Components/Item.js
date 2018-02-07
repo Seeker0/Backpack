@@ -1,9 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+import React from "react";
+import PropTypes from "prop-types";
+import { Alert } from "reactstrap";
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+
+configure({ adapter: new Adapter() });
 
 const Item = ({ item }) => {
   let meta = !item.meta ? (
+
     <div>
       <p>Invalid Item</p>
     </div>
