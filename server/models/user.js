@@ -2,12 +2,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const uniqueValidator = require("mongoose-unique-validator");
+const Pouch = require("./pouch");
 
 let UserSchema = new Schema({
   username: String,
   email: String,
   passwordHash: { type: String },
-  pouches: [{ type: Schema.Types.ObjectId, ref: "Pouch" }]
+  pouches: [{ type: Schema.Types.ObjectId, ref: "Pouch" }],
+  facebookId: String,
+  googleId: String
 });
 
 UserSchema.plugin(uniqueValidator);
@@ -25,12 +28,18 @@ UserSchema.virtual("password")
     this.passwordHash = bcrypt.hashSync(value, 8);
   });
 
-UserSchema.statics.findOrCreate = async function(query, username) {
+UserSchema.statics.findOrCreate = async function(query) {
   try {
     let user = await User.findOne(query);
     if (!user) {
       user = new User(query);
-      user.username = username;
+      let unsortedItems = await new Pouch({
+        name: "Unsorted Items",
+        itemIds: [],
+        ownerId: user._id
+      });
+      unsortedItems = await unsortedItems.save();
+      user.pouches.push(unsortedItems);
       await user.save();
     }
     return user;

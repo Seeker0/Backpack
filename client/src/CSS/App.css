@@ -87,6 +87,11 @@ body {
   font-family: "Kalam", cursive;
 }
 
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .links li {
   text-align: right;
 }
@@ -253,7 +258,7 @@ footer {
 .dropdown.dropdown-lg .dropdown-menu {
   margin-top: -1px;
   padding: 6px 20px;
-  min-width: 500px;
+  min-width: 200px;
 }
 .input-group-btn .btn-group {
   display: flex !important;
@@ -292,4 +297,18 @@ footer {
   text-align: center;
   padding: 15px;
   font-family: "Kalam", cursive;
+}
+
+.facebook-button {
+  background-color: rgb(76, 105, 186);
+  font-family: Helvetica;
+  font-size: 15px;
+  color: white;
+  padding: 16px 21px;
+  text-align: center;
+  border: none;
+}
+
+.facebook-button:hover {
+  cursor: pointer;
 }

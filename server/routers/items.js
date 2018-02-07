@@ -1,17 +1,19 @@
-let express = require("express");
-let router = express.Router();
-let mongoose = require("mongoose");
-var models = require("./../models");
-var Item = mongoose.model("Item");
-var Pouch = mongoose.model("Pouch");
-var User = mongoose.model("User");
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
+const models = require('./../models');
+const Item = mongoose.model('Item');
+const Pouch = mongoose.model('Pouch');
+const User = mongoose.model('User');
+const util = require('util');
+const itemGenerator = require('../lib/newItems');
 
-router.get("/list/:pouchId", async (req, res, next) => {
+router.get('/list/:pouchId', async (req, res, next) => {
   try {
     let pouchId = req.params.pouchId;
     let pouch = await Pouch.findById({ _id: pouchId });
     let items = await Item.find({})
-      .where("_id")
+      .where('_id')
       .in(pouch.itemIds);
     if (!items) {
       res.send(404);
@@ -22,7 +24,19 @@ router.get("/list/:pouchId", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get('/search', async function(req, res, next) {
+  try {
+    let result = await Item.find({
+      name: new RegExp(req.query.name),
+      ownerId: req.session.passport.user.toString()
+    });
+    res.json(result);
+  } catch (e) {
+    res.status(500).send(e.stack);
+  }
+});
+
+router.get('/:id', async (req, res, next) => {
   try {
     let pouch = await Pouch.findOne({ _id: req.params.id });
     if (!pouch) {
@@ -34,12 +48,12 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     let { name, link } = req.body;
     let userId = req.session.passport.user;
-    let item = await new Item({ name, link, ownerId: userId });
-    item = await item.save();
+    let item = await itemGenerator(name, link, userId);
+    console.log(item);
     if (req.body.pouchId) {
       let pouch = await Pouch.findById(req.body.pouchId);
       pouch.itemIds.push(item._id);
@@ -58,11 +72,16 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     let pouch = await Pouch.findById(req.body.pouchId);
-    pouch.itemIds = pouch.itemIds.filter(id => id !== req.params.id);
-    pouch = await Pouch.save();
+    pouch.itemIds = pouch.itemIds.filter(id => {
+      return id.toString() !== req.params.id;
+    });
+
+    pouch = await pouch.save();
+    let item = await Item.findById(req.params.id);
+    await item.remove();
     res.json(pouch);
   } catch (e) {
     res.status(500);

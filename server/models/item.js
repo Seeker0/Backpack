@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // let Pouch = require("./pouch");
@@ -7,7 +7,8 @@ const Schema = mongoose.Schema;
 let ItemSchema = new Schema({
   name: String,
   link: String,
-  ownerId: { type: Schema.Types.ObjectId, ref: "User" }
+  ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
+  meta: {}
 });
 
 ItemSchema.statics.findOrCreate = async function(query, name) {
@@ -24,5 +25,5 @@ ItemSchema.statics.findOrCreate = async function(query, name) {
   }
 };
 
-var Item = mongoose.model("Item", ItemSchema);
+var Item = mongoose.model('Item', ItemSchema);
 module.exports = Item;
