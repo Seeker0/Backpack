@@ -7,6 +7,7 @@ import {
   deleteUser,
   updatePassword
 } from "../actions/userActions";
+import { withRouter } from "react-router-dom";
 
 class SettingsContainer extends Component {
   constructor(props) {
@@ -23,8 +24,7 @@ class SettingsContainer extends Component {
       passwordNewModal: "",
       passwordOldModal: "",
       passwordOld2Modal: "",
-      passwordOld3Modal: "",
-      _id: props.user._id
+      passwordOld3Modal: ""
     };
   }
 
@@ -64,7 +64,7 @@ class SettingsContainer extends Component {
           errors: {}
         });
       }
-    } else if (e.target.name === "password") {
+    } else if (e.target.name === "passwordOld") {
       if (passwordField.length < 8 && passwordField.length > 0) {
         this.setState({
           errors: { type: "password" }
@@ -94,18 +94,16 @@ class SettingsContainer extends Component {
     e.preventDefault();
     if (!Object.keys(this.state.errors).length) {
       let user = {
-        _id: this.state._id,
-        username: this.state.usernameModal,
+        _id: this.props.user._id,
+        username: this.props.user.username,
+        newUsername: this.state.usernameModal,
         password: this.state.passwordOldModal,
         email: this.state.emailModal,
         privacy: this.state.privacyModal
       };
-      this.formSuccess();
       this.props.updateUser(user);
+      this.formSuccess();
       this.toggle();
-      this.setState({
-        passwordOldModal: ""
-      });
     } else {
       this.toggle();
       this.formError();
@@ -138,19 +136,16 @@ class SettingsContainer extends Component {
     e.preventDefault();
     if (!Object.keys(this.state.errors).length) {
       let user = {
-        _id: this.state._id,
-        username: this.state.usernameModal,
-        password: this.state.passwordOldModal2,
+        _id: this.props.user._id,
+        username: this.props.user.username,
+        password: this.state.passwordOld2Modal,
         newPassword: this.state.passwordNewModal,
-        email: this.state.emailModal,
-        privacy: this.state.privacyModal
+        email: this.props.user.email,
+        privacy: this.props.user.privacy
       };
-      this.formSuccess();
       this.props.updatePassword(user);
+      this.formSuccess();
       this.togglePassword();
-      this.setState({
-        passwordOld2Modal: ""
-      });
     } else {
       this.togglePassword();
       this.formError();
@@ -179,15 +174,14 @@ class SettingsContainer extends Component {
     e.preventDefault();
     if (!Object.keys(this.state.errors).length) {
       let user = {
-        _id: this.state._id,
-        password: this.state.passwordOldModal3
+        _id: this.props.user._id,
+        username: this.props.user.username,
+        password: this.state.passwordOld3Modal
       };
-      this.formSuccess();
       this.props.deleteUser(user);
+      this.formSuccess();
       this.toggleDelete();
-      this.setState({
-        passwordOld3Modal: ""
-      });
+      this.props.history.push("/");
     } else {
       this.toggleDelete();
       this.formError();
@@ -198,11 +192,18 @@ class SettingsContainer extends Component {
     this.setState(
       {
         errors: {},
-        username: "",
-        password: "",
-        email: ""
+        usernameModal: this.props.user.username,
+        emailModal: this.props.user.email,
+        privacyModal: this.props.user.privacy,
+        username: this.props.username,
+        email: this.props.user.email,
+        privacy: this.props.user.privacy,
+        passwordNewModal: "",
+        passwordOldModal: "",
+        passwordOld2Modal: "",
+        passwordOld3Modal: ""
       },
-      () => console.log("Success!")
+      () => console.log("Form sent successfully!")
     );
   };
 
@@ -211,9 +212,13 @@ class SettingsContainer extends Component {
       {
         success: false,
         errors: { type: "No username provided." },
-        username: "",
-        password: "",
-        email: ""
+        usernameModal: this.props.user.username,
+        emailModal: this.props.user.email,
+        privacyModal: this.props.user.privacy,
+        passwordNewModal: "",
+        passwordOldModal: "",
+        passwordOld2Modal: "",
+        passwordOld3Modal: ""
       },
       () => console.log("Error in your form.")
     );
@@ -221,20 +226,22 @@ class SettingsContainer extends Component {
 
   render() {
     return (
-      <Settings
-        onSubmit={this.onSubmit}
-        onPasswordSubmit={this.onPasswordSubmit}
-        onDeleteSubmit={this.onDeleteSubmit}
-        onChangeInput={this.onChangeInput}
-        onChangeInputPassword={this.onChangeInputPassword}
-        onChangeInputDelete={this.onChangeInputDelete}
-        onRadioBtnClick={this.onRadioBtnClick}
-        toggle={this.toggle}
-        togglePassword={this.togglePassword}
-        toggleDelete={this.toggleDelete}
-        {...this.state}
-        {...this.props}
-      />
+      <div>
+        <Settings
+          onSubmit={this.onSubmit}
+          onPasswordSubmit={this.onPasswordSubmit}
+          onDeleteSubmit={this.onDeleteSubmit}
+          onChangeInput={this.onChangeInput}
+          onChangeInputPassword={this.onChangeInputPassword}
+          onChangeInputDelete={this.onChangeInputDelete}
+          onRadioBtnClick={this.onRadioBtnClick}
+          toggle={this.toggle}
+          togglePassword={this.togglePassword}
+          toggleDelete={this.toggleDelete}
+          {...this.state}
+          {...this.props}
+        />
+      </div>
     );
   }
 }
@@ -265,4 +272,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);
+SettingsContainer = connect(mapStateToProps, mapDispatchToProps)(
+  SettingsContainer
+);
+
+export default withRouter(SettingsContainer);

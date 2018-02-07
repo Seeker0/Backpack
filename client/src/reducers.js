@@ -297,22 +297,22 @@ export function currentUser(state = initialState, action) {
         isFetching: true
       };
 
-    case Actions.DELETE_USER_REQUEST:
+    case Actions.USER_DELETE_REQUEST:
       return {
         ...state,
         isFetching: true
       };
 
-    case Actions.DELETE_USER_SUCCESS:
+    case Actions.USER_DELETE_SUCCESS:
       return {
-        ...state,
+        ...initialState,
         isFetching: false,
-        user: action.data,
         error: null,
-        verifyError: null
+        verifyError: null,
+        authenticated: true
       };
 
-    case Actions.DELETE_USER_FAILURE:
+    case Actions.USER_DELETE_FAILURE:
       return {
         ...state,
         isFetching: false,

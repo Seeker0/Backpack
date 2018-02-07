@@ -225,14 +225,15 @@ export function deleteUser(data) {
     fetch(`${server}/users/${data._id}`, {
       method: "DELETE",
       mode: "cors",
-      credentials: "same-origin"
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
     })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
         dispatch(userDeleteSuccess());
-        dispatch(logout());
       })
       .catch(error => {
         dispatch(userDeleteFailure(error));

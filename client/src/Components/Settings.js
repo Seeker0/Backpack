@@ -182,7 +182,7 @@ const Settings = ({
             toggle={togglePassword}
           >
             <ModalHeader>Change Password</ModalHeader>
-            <Form onSubmit={onSubmit} className="extra-padding">
+            <Form onSubmit={onPasswordSubmit} className="extra-padding">
               <SuccessMessage success={success} />
               <ErrorMessage errors={errors} />
               <FormGroup color={getColorFromError(errors.password)}>
@@ -211,7 +211,7 @@ const Settings = ({
               </FormGroup>
             </Form>
             <ModalFooter>
-              <Button color="primary" onClick={onSubmit}>
+              <Button color="primary" onClick={onPasswordSubmit}>
                 Submit Changes
               </Button>{" "}
               <Button color="secondary" onClick={togglePassword}>
