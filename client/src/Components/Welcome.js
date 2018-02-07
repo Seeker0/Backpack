@@ -71,6 +71,14 @@ class Welcome extends PureComponent {
                       Learn More
                     </Link>
                   </Col>
+                  <Col>
+                    <Button
+                      onclick="chrome.webstore.install()"
+                      id="install-button"
+                    >
+                      Add to Chrome
+                    </Button>
+                  </Col>
                 </Row>
               </div>
             </Col>

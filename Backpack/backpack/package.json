@@ -1,0 +1,38 @@
+{
+    "name": "com.phonegap.helloworld",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "dependencies": {
+        "babel-core": "^6.4.5",
+        "babel-loader": "^6.2.1",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-react": "^6.3.13",
+        "classnames": "^2.2.3",
+        "react": "^15.3.0",
+        "react-addons-css-transition-group": "^15.3.0",
+        "react-dom": "^15.3.0",
+        "react-tappable": "^0.8.3",
+        "webpack": "^1.12.12",
+        "webpack-dev-server": "^1.14.1"
+    },
+    "devDependencies": {
+        "babel-preset-react-hmre": "^1.0.1",
+        "css-loader": "^0.23.1",
+        "elementtree": "^0.1.6",
+        "replace": "^0.3.0",
+        "style-loader": "^0.13.0",
+        "webpack-merge": "^0.7.3"
+    },
+    "scripts": {
+        "android": "cordova run android",
+        "ios": "cordova run ios",
+        "prepare": "node config && webpack && cordova prepare",
+        "build": "node config && webpack && cordova build",
+        "start": "node config && HOST=0.0.0.0 webpack-dev-server",
+        "test": "echo \"No tests (yet!) -- submit a PR?\" && exit 0"
+    },
+    "keywords": [],
+    "author": "none specified",
+    "license": "none specified",
+    "displayName": "helloworld"
+}
