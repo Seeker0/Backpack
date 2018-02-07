@@ -58,6 +58,7 @@ export function getUserPouchesRequest() {
 }
 
 export function getUserPouches(user) {
+  console.log(user);
   return dispatch => {
     dispatch(getUserPouchesRequest());
     fetch(`${server}/pouches/${user._id}`, {

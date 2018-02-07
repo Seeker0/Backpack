@@ -53,7 +53,6 @@ router.post('/', async (req, res, next) => {
     let { name, link } = req.body;
     let userId = req.session.passport.user;
     let item = await itemGenerator(name, link, userId);
-    console.log(item);
     if (req.body.pouchId) {
       let pouch = await Pouch.findById(req.body.pouchId);
       pouch.itemIds.push(item._id);
