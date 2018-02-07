@@ -318,7 +318,7 @@ export function registerUser(data) {
     let { username, email, password } = data;
     dispatch(registerRequest());
 
-    fetch(`${server}register`, {
+    fetch(`${server}/register`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'same-origin',
