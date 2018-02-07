@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Search } from "../Components";
+//import { Search } from "../Components";
 import actions from "../actions";
 
 import {
@@ -19,14 +19,12 @@ let search = actions.search;
 class SearchContainer extends Component {
   constructor(props) {
     super(props);
-
-    this.toggleDropdown = this.toggleDropdown.bind(this);
     this.state = {
       dropdownOpen: false,
     };
   }
 
-  toggleDropdown() {
+  toggleDropdown = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
@@ -67,7 +65,7 @@ class SearchContainer extends Component {
                 <FormGroup>
                   <Label for="filter">Filter by</Label>
                   <select className="form-control">
-                    <option value="0" selected>
+                    <option defaultValue="0">
                       All Pouches
                     </option>
                     <option value="1">Pouch1</option>

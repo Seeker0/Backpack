@@ -5,7 +5,7 @@ const Logout = props => {
   return (
     <div style={{ textAlign: "right" }}>
       <Button onClick={props.logout}>
-        Log Out<i className="fa fa-hand-peace icon" />
+        Log Out <i className="fa fa-hand-peace icon" />
       </Button>
     </div>
   );
