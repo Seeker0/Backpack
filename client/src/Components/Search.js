@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 
 const Search = ({ onSubmit, dropdownOpen, toggleDropdown }) => {
+  let filterItems = "";
   return (
     <InputGroup onSubmit={onSubmit} id="adv-search">
       <input
@@ -19,7 +20,9 @@ const Search = ({ onSubmit, dropdownOpen, toggleDropdown }) => {
         id="searchString"
         className="form-control"
         placeholder="Search for items"
-        ref={(input) => {this.searchString = input}}
+        ref={input => {
+          this.searchString = input;
+        }}
       />
       <div className="btn-group" role="group">
         <Dropdown
