@@ -6,7 +6,6 @@
   },
   "scripts": {
     "postinstall": "npm install --prefix server && npm install --prefix client",
-    "heroku-postbuild":
-      "cd client && npm install && --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm run build"
   }
 }
