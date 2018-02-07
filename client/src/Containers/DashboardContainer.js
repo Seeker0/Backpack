@@ -1,14 +1,15 @@
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dashboard } from "../Components";
+import { DragDrop } from "../Components";
 import { setCurrentPouch } from "../actions/pouchActions";
 import { getUser } from "../actions/userActions";
+
+class DashBoardContainer extends Component {}
 
 const mapStateToProps = state => {
   let username = state.user ? state.user.username : null;
   return {
-    pouches: state.pouches,
-    currentItems: state.currentItems,
-    currentPouch: state.currentPouch,
     username
   };
 };
@@ -24,8 +25,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const DashboardContainer = connect(mapStateToProps, mapDispatchToProps)(
-  Dashboard
-);
-
-export default DashboardContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

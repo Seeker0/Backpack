@@ -7,6 +7,8 @@ import {
 } from "../Containers";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
+import FacebookContainer from "../Containers/FacebookContainer";
+import GoogleContainer from "../Containers/GoogleContainer";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -74,6 +76,8 @@ class Welcome extends PureComponent {
             </Col>
           </Row>
         </Container>
+        <FacebookContainer />
+        <GoogleContainer />
         <LoginContainer
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
@@ -83,6 +87,7 @@ class Welcome extends PureComponent {
           isOpen={this.state.modalSignUp}
           toggle={this.toggleSignUp}
         />
+
         <footer>
           <p>
             &#169; 2018 Backpack - Jeff Dederick, Elias Hantula, Sam Langenfeld,

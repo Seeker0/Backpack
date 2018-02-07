@@ -9,8 +9,8 @@ import Logout from "./Logout";
 import AddPouch from "./AddPouch";
 import Search from "./Search";
 import Settings from "./Settings";
-
-//state
+import DragDrop from "./DragDrop";
+import Item from "./Item";
 
 export {
   ErrorMessage,
@@ -23,5 +23,7 @@ export {
   Logout,
   AddPouch,
   Search,
-  Settings
+  Settings,
+  Item,
+  DragDrop
 };

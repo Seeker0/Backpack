@@ -311,3 +311,16 @@ footer {
   font-weight: bold;
   font-family: "Kalam", cursive;
 }
+.facebook-button {
+  background-color: rgb(76, 105, 186);
+  font-family: Helvetica;
+  font-size: 15px;
+  color: white;
+  padding: 16px 21px;
+  text-align: center;
+  border: none;
+}
+
+.facebook-button:hover {
+  cursor: pointer;
+}

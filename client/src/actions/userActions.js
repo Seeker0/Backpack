@@ -16,9 +16,9 @@ export const UPDATE_REQUEST = "UPDATE_REQUEST";
 export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_FAILURE = "UPDATE_FAILURE";
 
-export const UPDATE__PASSWORD_REQUEST = "UPDATE_REQUEST";
-export const UPDATE_PASSWORD_SUCCESS = "UPDATE_SUCCESS";
-export const UPDATE_PASSWORD_FAILURE = "UPDATE_FAILURE";
+export const UPDATE__PASSWORD_REQUEST = "UPDATE_PASSWORD_REQUEST";
+export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_ SUCCESS";
+export const UPDATE_PASSWORD_FAILURE = "UPDATE_PASSWORD_FAILURE";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -34,8 +34,8 @@ export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
 
 let server =
   process.env.NODE_ENV === "production"
-    ? "https://app-Name.herokuapp.com"
-    : "http://localhost:3000";
+    ? "https://appbackpack.herokuapp.com/"
+    : "http://localhost:3001";
 
 export function getUserPouchesSuccess(data) {
   return {
@@ -134,6 +134,68 @@ export function login(user) {
       .then(response => {
         if (!response.ok) {
           console.log(response.statusText);
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(user => {
+        dispatch(getUserPouches(user));
+        dispatch(loginSuccess(user));
+      })
+      .catch(e => {
+        dispatch(loginFailure(e));
+      });
+  };
+}
+
+export function facebookLogin(data) {
+  console.log(data);
+  return dispatch => {
+    const requestOptions = {
+      credentials: "same-origin",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify(data)
+    };
+    console.log(requestOptions);
+
+    return fetch(`${server}/login/facebook`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(user => {
+        dispatch(getUserPouches(user));
+        dispatch(loginSuccess(user));
+      })
+      .catch(e => {
+        dispatch(loginFailure(e));
+      });
+  };
+}
+
+export function googleLogin(data) {
+  console.log(data);
+  return dispatch => {
+    const requestOptions = {
+      credentials: "same-origin",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify(data)
+    };
+    console.log(requestOptions);
+
+    return fetch(`${server}/login/google`, requestOptions)
+      .then(response => {
+        if (!response.ok) {
           return Promise.reject(response.statusText);
         }
         return response.json();

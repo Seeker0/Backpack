@@ -1,29 +1,29 @@
-import { getUserPouches } from "./userActions";
+import { getUserPouches } from './userActions';
 
-export const GET_POUCH_REQUEST = "GET_POUCH_REQUEST";
-export const GET_POUCH_SUCCESS = "GET_POUCH_SUCCESS";
-export const GET_POUCH_FAILURE = "GET_POUCH_FAILURE";
+export const GET_POUCH_REQUEST = 'GET_POUCH_REQUEST';
+export const GET_POUCH_SUCCESS = 'GET_POUCH_SUCCESS';
+export const GET_POUCH_FAILURE = 'GET_POUCH_FAILURE';
 
-export const NEW_POUCH_REQUEST = "NEW_POUCH_REQUEST";
-export const NEW_POUCH_SUCCESS = "NEW_POUCH_SUCCESS";
-export const NEW_POUCH_FAILURE = "NEW_POUCH_FAILURE";
+export const NEW_POUCH_REQUEST = 'NEW_POUCH_REQUEST';
+export const NEW_POUCH_SUCCESS = 'NEW_POUCH_SUCCESS';
+export const NEW_POUCH_FAILURE = 'NEW_POUCH_FAILURE';
 
-export const UPDATE_POUCH_REQUEST = "UPDATE_POUCH_REQUEST";
-export const UPDATE_POUCH_SUCCESS = "UPDATE_POUCH_SUCCESS";
-export const UPDATE_POUCH_FAILURE = "UPDATE_POUCH_FAILURE";
+export const UPDATE_POUCH_REQUEST = 'UPDATE_POUCH_REQUEST';
+export const UPDATE_POUCH_SUCCESS = 'UPDATE_POUCH_SUCCESS';
+export const UPDATE_POUCH_FAILURE = 'UPDATE_POUCH_FAILURE';
 
-export const SET_CURRENT_POUCH_SUCCESS = "SET_CURRENT_POUCH_SUCCESS";
-export const SET_CURRENT_POUCH_REQUEST = "SET_CURRENT_POUCH_REQUEST";
-export const SET_CURRENT_POUCH_FAILURE = "SET_CURRENT_POUCH_FAILURE";
+export const SET_CURRENT_POUCH_SUCCESS = 'SET_CURRENT_POUCH_SUCCESS';
+export const SET_CURRENT_POUCH_REQUEST = 'SET_CURRENT_POUCH_REQUEST';
+export const SET_CURRENT_POUCH_FAILURE = 'SET_CURRENT_POUCH_FAILURE';
 
-export const DELETE_POUCH_REQUEST = "DELETE_POUCH_REQUEST";
-export const DELETE_POUCH_SUCCESS = "DELETE_POUCH_SUCCESS";
-export const DELETE_POUCH_FAILURE = "DELETE_POUCH_FAILURE";
+export const DELETE_POUCH_REQUEST = 'DELETE_POUCH_REQUEST';
+export const DELETE_POUCH_SUCCESS = 'DELETE_POUCH_SUCCESS';
+export const DELETE_POUCH_FAILURE = 'DELETE_POUCH_FAILURE';
 
 let server =
-  process.env.NODE_ENV === "production"
-    ? "https://app-Name.herokuapp.com"
-    : "http://localhost:3000";
+  process.env.NODE_ENV === 'production'
+    ? 'https://appbackpack.herokuapp.com/'
+    : 'http://localhost:3001';
 
 export function getPouchSuccess(data) {
   return {
@@ -49,7 +49,7 @@ export function getPouch(id) {
   return dispatch => {
     dispatch(getPouchRequest());
 
-    fetch(`/pouches/${id}`, { mode: "cors", credentials: "same-origin" })
+    fetch(`/pouches/${id}`, { mode: 'cors', credentials: 'same-origin' })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
@@ -69,17 +69,17 @@ export function getPouch(id) {
 export function newPouch(data) {
   var myHeaders = new Headers();
 
-  myHeaders.append("content-type", "application/json");
+  myHeaders.append('content-type', 'application/json');
   return dispatch => {
     dispatch(newPouchRequest());
 
     fetch(`${server}/pouches`, {
-      method: "POST",
+      method: 'POST',
       headers: myHeaders,
-      mode: "cors",
-      cache: "default",
+      mode: 'cors',
+      cache: 'default',
       body: JSON.stringify(data),
-      credentials: "same-origin"
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -142,17 +142,17 @@ export function updatePouch(data) {
   var myHeaders = new Headers();
   let { name, id, userId, itemIds } = data;
 
-  myHeaders.append("content-type", "application/json");
+  myHeaders.append('content-type', 'application/json');
   return dispatch => {
     dispatch(updatePouchRequest());
 
     fetch(`${server}/pouches/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: myHeaders,
-      mode: "cors",
-      cache: "default",
+      mode: 'cors',
+      cache: 'default',
       body: JSON.stringify({ name, id, userId, itemIds }),
-      credentials: "same-origin"
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -178,8 +178,8 @@ export function setCurrentPouch(data) {
     dispatch(setCurrentPouchRequest());
 
     fetch(`${server}/items/list/${pouchId}`, {
-      mode: "cors",
-      credentials: "same-origin"
+      mode: 'cors',
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
@@ -226,9 +226,9 @@ export function deletePouch(data) {
     dispatch(deletePouchRequest());
 
     fetch(`${server}/pouches/${id}`, {
-      method: "DELETE",
-      mode: "cors",
-      credentials: "same-origin"
+      method: 'DELETE',
+      mode: 'cors',
+      credentials: 'same-origin'
     })
       .then(response => {
         if (!response.ok) {
