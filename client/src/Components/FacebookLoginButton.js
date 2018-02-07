@@ -2,7 +2,6 @@ import React from "react";
 import FacebookLogin from "react-facebook-login";
 
 const FacebookLoginButton = props => {
-  console.log(props.facebookLogin);
   return (
     <FacebookLogin
       appId="1931646120486917"
