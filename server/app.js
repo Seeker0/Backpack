@@ -127,6 +127,10 @@ app.use('/login', loggedOutOnly, login);
 app.use('/logout', loggedInOnly, logout);
 app.use('/register', loggedOutOnly, register);
 
+app.get('/googleafe78dace4ca2ebf.html', (req, res) => {
+  res.render('/welcome/googleafe78dace4ca2ebf.html');
+});
+
 app.get('/currentUser', loggedInOnly, async (req, res, next) => {
   try {
     let currentUser = await User.findById(req.session.passport.user);
