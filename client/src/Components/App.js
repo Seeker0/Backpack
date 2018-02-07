@@ -6,7 +6,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import {
   WelcomeContainer,
   LearnContainer,
-  DashboardContainer
+  DashboardContainer,
+  SettingsContainer
 } from "../Containers";
 
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -41,6 +42,7 @@ class App extends PureComponent {
           <Route exact path="/" component={WelcomeContainer} />
           <Route exact path="/learn" component={LearnContainer} />
           <Route exact path="/dashboard" component={DashboardContainer} />
+          <Route exact path="/settings" component={SettingsContainer} />
           <Route
             render={() => (
               <img id="not-found" src={img404} alt="404 page not found" />

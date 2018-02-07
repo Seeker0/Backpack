@@ -16,6 +16,7 @@ router.post('/', async (req, res, next) => {
       username,
       email,
       password,
+      privacy: 1,
       pouches: []
     });
 
