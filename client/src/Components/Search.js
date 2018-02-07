@@ -10,7 +10,7 @@ import {
   DropdownMenu
 } from "reactstrap";
 
-const Search = ({ onSubmit, dropdownOpen, toggleDropdown }) => {
+const Search = ({ onSubmit, dropdownOpen, toggleDropdown, searchString }) => {
   return (
     <InputGroup onSubmit={onSubmit} id="adv-search">
       <input
@@ -19,7 +19,7 @@ const Search = ({ onSubmit, dropdownOpen, toggleDropdown }) => {
         id="searchString"
         className="form-control"
         placeholder="Search for items"
-        ref={(input) => {this.searchString = input}}
+        ref={(input) => {searchString = input}}
       />
       <div className="btn-group" role="group">
         <Dropdown
@@ -47,7 +47,7 @@ const Search = ({ onSubmit, dropdownOpen, toggleDropdown }) => {
               </Button>
             </Form>
           </DropdownMenu>
-          <Button color="primary" onClick={() => onSubmit(this.searchString)}>
+          <Button color="primary" onClick={() => onSubmit(searchString)}>
             <i className="fas fa-search" />
           </Button>
         </Dropdown>

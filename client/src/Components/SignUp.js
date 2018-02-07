@@ -15,7 +15,6 @@ import ErrorMessage from "../Components/ErrorMessage";
 import SuccessMessage from "../Components/SuccessMessage";
 import ValidationErrorMessage from "./ValidationErrorMessage";
 import { getColorFromError } from "../helpers";
-import "../index.css";
 
 const SignUp = ({
   isOpen,

@@ -22,8 +22,8 @@ export const DELETE_POUCH_FAILURE = 'DELETE_POUCH_FAILURE';
 
 let server =
   process.env.NODE_ENV === 'production'
-    ? 'https://appbackpack.herokuapp.com'
-    : 'http://localhost:3001';
+    ? 'https://appbackpack.herokuapp.com/'
+    : 'http://localhost:3000';
 
 export function getPouchSuccess(data) {
   return {

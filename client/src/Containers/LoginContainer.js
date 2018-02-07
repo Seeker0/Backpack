@@ -5,7 +5,6 @@ import actions from "../actions";
 import { withRouter } from "react-router-dom";
 
 let login = actions.login;
-//console.log(Object.keys(actions));
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -32,16 +31,14 @@ class LoginContainer extends Component {
         });
       }
     } else if (e.target.name === "password") {
-      if (e.target.name === "password") {
-        if (passwordField.length < 8 && passwordField.length > 0) {
-          this.setState({
-            errors: { type: "password" }
-          });
-        } else {
-          this.setState({
-            errors: {}
-          });
-        }
+      if (passwordField.length < 8 && passwordField.length > 0) {
+        this.setState({
+          errors: { type: "password" }
+        });
+      } else {
+        this.setState({
+          errors: {}
+        });
       }
     }
     this.setState({
@@ -62,14 +59,6 @@ class LoginContainer extends Component {
     } else {
       this.formError();
     }
-    // if (
-    //   e.target.username.value.length > 0 &&
-    //   e.target.password.value.length > 0
-    // ) {
-    //   this.formSuccess();
-    // } else {
-    //   this.formError();
-    // }
   };
 
   formSuccess = () => {

@@ -20,9 +20,6 @@ import {
 class TopNavBar extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
     this.state = {
       collapsed: true,
       dropdownOpen: false,
@@ -30,13 +27,13 @@ class TopNavBar extends PureComponent {
     };
   }
 
-  toggleNavbar() {
+  toggleNavbar = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
 
-  toggleDropdown() {
+  toggleDropdown = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
@@ -73,7 +70,7 @@ class TopNavBar extends PureComponent {
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href="" className="links">
+                <NavLink href="/dashboard" className="links">
                   Your Backpack{" "}
                   <img
                     src={backpackIcon}
@@ -83,7 +80,7 @@ class TopNavBar extends PureComponent {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="" className="links">
+                <NavLink href="/settings" className="links">
                   Settings <i className="fa fa-cog icon" />
                 </NavLink>
               </NavItem>

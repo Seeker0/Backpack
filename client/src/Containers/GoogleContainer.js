@@ -8,7 +8,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     googleLogin: data => {
       dispatch(googleLogin(data));
-      ownProps.history.push("/dashboard");
+      //ownProps.history.push("/dashboard");
     },
     loginFailure: err => {
       dispatch(loginFailure(err));

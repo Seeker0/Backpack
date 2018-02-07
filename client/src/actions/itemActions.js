@@ -25,8 +25,8 @@ const querystring = require('querystring');
 
 let server =
   process.env.NODE_ENV === 'production'
-    ? 'https://appbackpack.herokuapp.com'
-    : 'http://localhost:3001';
+    ? 'https://appbackpack.herokuapp.com/'
+    : 'http://localhost:3000';
 
 export function newItemSuccess(data) {
   return {

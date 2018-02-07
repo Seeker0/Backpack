@@ -130,18 +130,15 @@ app.use('/register', loggedOutOnly, register);
 app.get('/currentUser', loggedInOnly, async (req, res, next) => {
   try {
     let currentUser = await User.findById(req.session.passport.user);
+    delete currentUser.passwordHash;
     res.json(currentUser);
   } catch (err) {
     next(err);
   }
 });
 
-// app.get('/', (req, res, next) => {
-//   res.sendFile('/client/build/index.html', { root: './' });
-// });
-
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+app.get('/', (req, res, next) => {
+  res.sendFile('/client/build/index.html', { root: '../' });
 });
 
 // ----------------------------------------
