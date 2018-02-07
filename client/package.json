@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "enzyme": "^3.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-drag-and-drop": "^2.4.0",
@@ -24,5 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "enzyme-adapter-react-16": "^1.1.1"
   }
 }
