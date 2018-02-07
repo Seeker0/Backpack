@@ -12,7 +12,7 @@ function addBookmark() {
   // Cancel the form submit
   event.preventDefault();
 
-  var postUrl = "http://localhost:3001/items";
+  var postUrl = "https://appbackpack.herokuapp.com/items";
 
   // Set up an asynchronous AJAX POST request
   var xhr = new XMLHttpRequest();

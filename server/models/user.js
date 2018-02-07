@@ -9,6 +9,7 @@ let UserSchema = new Schema({
   email: String,
   passwordHash: { type: String },
   pouches: [{ type: Schema.Types.ObjectId, ref: "Pouch" }],
+  privacy: { type: Number },
   facebookId: String,
   googleId: String
 });

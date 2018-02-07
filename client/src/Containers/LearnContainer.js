@@ -1,8 +1,5 @@
 import { connect } from "react-redux";
-//import { bindActionCreators } from "redux";
-
 import { Learn } from "../Components";
-//import { getBoards, createBoard } from "../actions";
 
 const mapStateToProps = state => {
   return {
@@ -12,12 +9,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // getBoards: user => {
-    //   dispatch(getBoards(user));
-    // },
-    // createBoard: user => {
-    //   dispatch(createBoard(user.id));
-    // }
   };
 };
 

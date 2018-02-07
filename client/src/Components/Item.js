@@ -41,9 +41,6 @@ const Item = ({ item }) => {
       src={item.meta.data.twitterPlayer.url}
     />
   );
-  console.log('=======================');
-  console.log(item);
-  console.log('=======================');
   return meta;
 };
 
