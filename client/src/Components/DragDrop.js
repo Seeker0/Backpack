@@ -14,12 +14,12 @@ import RenamePouchContainer from "../Containers/RenamePouchContainer";
 const DragDrop = props => {
   let draggableItems = props.currentItems.map(item => {
     return (
-      <Draggable type="item" data={item.link} itemid={item._id}>
+      <Draggable type="item" data={item.link} key={item._id}>
         <div className="item-box">
           <h3>{item.name}</h3>
           <h3>{item.link}</h3>
           <div>
-            <DeleteItemContainer itemid={item._id} />
+            <DeleteItemContainer />
           </div>
         </div>
       </Draggable>
@@ -61,7 +61,10 @@ const DragDrop = props => {
               ) : null}
               <div className="edit-buttons">
                 <RenamePouchContainer />
-                {props.currentPouch && (props.currentPouch.name !== "Unsorted Items") ? <DeletePouchContainer/> : null}
+                {props.currentPouch &&
+                props.currentPouch.name !== "Unsorted Items" ? (
+                  <DeletePouchContainer />
+                ) : null}
               </div>
               {props.currentItems.length > 0 ? (
                 <div>{draggableItems}</div>

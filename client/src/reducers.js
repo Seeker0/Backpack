@@ -13,6 +13,7 @@ const initialState = {
     newPouch: null
   },
   error: null,
+  verifyError: null,
   user: null,
   authorized: false,
   authenticated: false
@@ -256,6 +257,67 @@ export function currentUser(state = initialState, action) {
       return {
         ...initialState,
         authenticated: true
+      };
+
+    case Actions.UPDATE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.data,
+        verifyError: null
+      };
+    case Actions.UPDATE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        verifyError: action.error
+      };
+    case Actions.UPDATE_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case Actions.UPDATE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.data,
+        verifyError: null
+      };
+    case Actions.UPDATE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        verifyError: action.error
+      };
+    case Actions.UPDATE_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case Actions.DELETE_USER_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case Actions.DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.data,
+        error: null,
+        verifyError: null
+      };
+
+    case Actions.DELETE_USER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
+        verifyError: action.error
       };
 
     default:

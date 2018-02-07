@@ -16,6 +16,10 @@ export const UPDATE_REQUEST = "UPDATE_REQUEST";
 export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_FAILURE = "UPDATE_FAILURE";
 
+export const UPDATE__PASSWORD_REQUEST = "UPDATE_REQUEST";
+export const UPDATE_PASSWORD_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_PASSWORD_FAILURE = "UPDATE_FAILURE";
+
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
@@ -129,6 +133,7 @@ export function login(user) {
     return fetch(`${server}/login`, requestOptions)
       .then(response => {
         if (!response.ok) {
+          console.log(response.statusText);
           return Promise.reject(response.statusText);
         }
         return response.json();
@@ -145,7 +150,8 @@ export function login(user) {
 
 export function loginFailure(err) {
   return {
-    type: LOGIN_FAILURE, err
+    type: LOGIN_FAILURE,
+    err
   };
 }
 
@@ -216,7 +222,6 @@ export function userDeleteFailure() {
 export function deleteUser(data) {
   return dispatch => {
     dispatch(userDeleteRequest());
-
     fetch(`${server}/users/${data._id}`, {
       method: "DELETE",
       mode: "cors",
@@ -226,7 +231,6 @@ export function deleteUser(data) {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-
         dispatch(userDeleteSuccess());
         dispatch(logout());
       })
@@ -318,8 +322,55 @@ export function updateUser(data) {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-
         return response.json();
+      })
+      .then(data => {
+        dispatch(updateSuccess(data));
+      })
+      .catch(error => {
+        dispatch(updateFailure(error));
+      });
+  };
+}
+
+export function updatePasswordSuccess(data) {
+  return {
+    type: UPDATE_PASSWORD_SUCCESS,
+    data
+  };
+}
+
+export function updatePasswordFailure(error) {
+  return {
+    type: UPDATE_PASSWORD_FAILURE,
+    error
+  };
+}
+
+export function updatePasswordRequest() {
+  return {
+    type: UPDATE__PASSWORD_REQUEST
+  };
+}
+
+export function updatePassword(data) {
+  return dispatch => {
+    dispatch(updateRequest());
+    fetch(`${server}/users/${data._id}/password`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        dispatch(updateSuccess(data));
       })
       .catch(error => {
         dispatch(updateFailure(error));
