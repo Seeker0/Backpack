@@ -2,15 +2,15 @@
 // //The same above action should be reflected in state in react
 // //Visually, it should disappear from one pouch and appear in the other one
 
-import React, { Component } from 'react';
-import { Draggable, Droppable } from 'react-drag-and-drop';
-import { Container, Row, Col, ButtonGroup, Button } from 'reactstrap';
-import AddPouchContainer from '../Containers/AddPouchContainer';
-import DeleteItemContainer from '../Containers/DeleteItemContainer';
-import DeletePouchContainer from '../Containers/DeletePouchContainer';
-import AddItemContainer from '../Containers/AddItemContainer';
-import RenamePouchContainer from '../Containers/RenamePouchContainer';
-import Item from './Item';
+import React from "react";
+import { Draggable, Droppable } from "react-drag-and-drop";
+import { Container, Col } from "reactstrap";
+import AddPouchContainer from "../Containers/AddPouchContainer";
+import DeleteItemContainer from "../Containers/DeleteItemContainer";
+import DeletePouchContainer from "../Containers/DeletePouchContainer";
+import AddItemContainer from "../Containers/AddItemContainer";
+import RenamePouchContainer from "../Containers/RenamePouchContainer";
+import Item from "./Item";
 
 const DragDrop = props => {
   const {
@@ -40,7 +40,7 @@ const DragDrop = props => {
           <Item item={item} />
 
           <div>
-            <DeleteItemContainer itemid={item._id} />
+            <DeleteItemContainer />
           </div>
         </div>
       </Draggable>
@@ -49,16 +49,16 @@ const DragDrop = props => {
   let droppableItems = props.pouches.map(pouch => {
     return (
       <Droppable
-        types={['item']} // <= allowed drop types
+        types={["item"]} // <= allowed drop types
         onDrop={data => {
-          console.log('Dropped data:', data.item);
+          console.log("Dropped data:", data.item);
           data = JSON.parse(data.item);
           props.onDrop(data, pouch._id);
         }} //{props.onDrop.bind(this)}
         //onDrop={() => onDrop()}
         key={pouch._id}
         onClick={() => {
-          console.log('Droppable makes triggers onClick!!!');
+          console.log("Droppable makes triggers onClick!!!");
           props.setCurrentPouch(pouch._id);
         }}
       >
@@ -86,7 +86,10 @@ const DragDrop = props => {
               ) : null}
               <div className="edit-buttons">
                 <RenamePouchContainer />
-                <DeletePouchContainer />
+                {props.currentPouch &&
+                props.currentPouch.name !== "Unsorted Items" ? (
+                  <DeletePouchContainer />
+                ) : null}
               </div>
               {props.currentItems.length > 0 ? (
                 <div>{draggableItems}</div>

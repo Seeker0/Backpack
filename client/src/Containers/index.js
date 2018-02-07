@@ -1,11 +1,10 @@
-import LoginContainer from './LoginContainer';
-import SignUpContainer from './SignUpContainer';
-import LearnContainer from './LearnContainer';
-import WelcomeContainer from './WelcomeContainer';
-import DashboardContainer from './DashboardContainer';
-import LogoutContainer from './LogoutContainer';
-
-//import DashboardContainer from "./DashboardContainer";
+import LoginContainer from "./LoginContainer";
+import SignUpContainer from "./SignUpContainer";
+import LearnContainer from "./LearnContainer";
+import WelcomeContainer from "./WelcomeContainer";
+import DashboardContainer from "./DashboardContainer";
+import LogoutContainer from "./LogoutContainer";
+import SettingsContainer from "./SettingsContainer";
 
 export {
   LoginContainer,
@@ -13,5 +12,6 @@ export {
   LearnContainer,
   WelcomeContainer,
   DashboardContainer,
-  LogoutContainer
+  LogoutContainer,
+  SettingsContainer
 };
