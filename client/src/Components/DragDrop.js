@@ -40,7 +40,7 @@ const DragDrop = props => {
           <Item item={item} />
 
           <div>
-            <DeleteItemContainer />
+            <DeleteItemContainer itemid={item._id} />
           </div>
         </div>
       </Draggable>
