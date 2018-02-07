@@ -13,6 +13,7 @@ const initialState = {
     newPouch: null
   },
   error: null,
+  verifyError: null,
   user: null,
   authorized: false,
   authenticated: false
@@ -20,8 +21,6 @@ const initialState = {
 
 export function currentUser(state = initialState, action) {
   let pouch;
-  let currentPouch;
-  let currentItems;
   switch (action.type) {
     case Actions.GET_USER_POUCHES_REQUEST:
       return {
@@ -30,6 +29,7 @@ export function currentUser(state = initialState, action) {
       };
     case Actions.GET_USER_POUCHES_SUCCESS:
       let pouches = action.data;
+      let currentPouch;
       currentPouch = pouches[0];
       return {
         ...state,
@@ -95,7 +95,7 @@ export function currentUser(state = initialState, action) {
     case Actions.SET_CURRENT_POUCH_SUCCESS:
       let pouchId = action.data.pouchId;
       let items = action.data.items;
-      let currentPouch = state.pouches.find(pouch => pouch._id === pouchId);
+      currentPouch = state.pouches.find(pouch => pouch._id === pouchId);
       return {
         ...state,
         currentItems: items,
@@ -257,6 +257,67 @@ export function currentUser(state = initialState, action) {
       return {
         ...initialState,
         authenticated: true
+      };
+
+    case Actions.UPDATE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.data,
+        verifyError: null
+      };
+    case Actions.UPDATE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        verifyError: action.error
+      };
+    case Actions.UPDATE_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case Actions.UPDATE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.data,
+        verifyError: null
+      };
+    case Actions.UPDATE_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        verifyError: action.error
+      };
+    case Actions.UPDATE_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case Actions.USER_DELETE_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      };
+
+    case Actions.USER_DELETE_SUCCESS:
+      return {
+        ...initialState,
+        isFetching: false,
+        error: null,
+        verifyError: null,
+        authenticated: true
+      };
+
+    case Actions.USER_DELETE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
+        verifyError: action.error
       };
 
     default:

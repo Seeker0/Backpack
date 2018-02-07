@@ -12,18 +12,15 @@ class Learn extends PureComponent {
       modalSignUp: false,
       modalLogin: false
     };
-
-    this.toggleLogin = this.toggleLogin.bind(this);
-    this.toggleSignUp = this.toggleSignUp.bind(this);
   }
 
-  toggleLogin() {
+  toggleLogin = () => {
     this.setState({
       modalLogin: !this.state.modalLogin
     });
   }
 
-  toggleSignUp() {
+  toggleSignUp = () => {
     this.setState({
       modalSignUp: !this.state.modalSignUp
     });

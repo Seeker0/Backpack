@@ -4,8 +4,6 @@
 
 body {
   background: #908b94 url(../images/mountains.png) no-repeat fixed center top;
-  /* background-size: 100%;
-  background-repeat: no-repeat; */
 }
 .App {
   text-align: center;
@@ -61,10 +59,6 @@ body {
 
 .logo {
   height: 50px;
-}
-
-.navbar-toggler {
-  background-color: black;
 }
 
 .profile-icon {
@@ -173,13 +167,12 @@ footer {
 }
 
 #pouch-side-bar {
-  height: 100%;
   width: 25%;
   position: fixed;
+  height: 100%;
   z-index: 1;
   right: 0;
   background-color: #7c8ba3;
-  padding-top: 20px;
   font-family: "Kalam", cursive;
   text-align: center;
   border-left: solid black 2px;
@@ -188,6 +181,7 @@ footer {
 #pouch-side-bar-title {
   font-family: "Indie Flower", cursive;
   font-weight: bold;
+  padding-top: 20px;
   font-size: 50px;
   color: #566a37;
   text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
@@ -202,7 +196,7 @@ footer {
   margin: auto;
   margin-top: 40px;
   margin-bottom: 40px;
-  width: 70%;
+  width: 85%;
   height: 120px;
   background-color: #94651b;
   border-bottom-right-radius: 50px;
@@ -213,16 +207,19 @@ footer {
   box-shadow: 10px 10px 20px;
 }
 
-.pouch:hover .pouch-name,
 .pouch:hover {
   background-color: #c98c38;
-  font-size: 35px;
   cursor: pointer;
+}
+
+.pouch:hover .pouch-name {
+  font-size: 35px;
 }
 
 .pouch-name {
   font-size: 30px;
   padding-top: 15px;
+  background-color: none;
 }
 
 .box1 {
@@ -290,7 +287,7 @@ footer {
 
 #pouch-side-bar {
   overflow-y: auto;
-  padding-bottom: 500px;
+  padding-bottom: 300px;
 }
 
 .other-button {
@@ -299,6 +296,21 @@ footer {
   font-family: "Kalam", cursive;
 }
 
+#settings-box {
+  border: solid black 2px;
+  text-align: center;
+  font-family: "Kalam", cursive;
+}
+#settings-title {
+  padding-top: 20px;
+}
+
+.error-message {
+  color: red;
+  size: 20px;
+  font-weight: bold;
+  font-family: "Kalam", cursive;
+}
 .facebook-button {
   background-color: rgb(76, 105, 186);
   font-family: Helvetica;

@@ -12,6 +12,14 @@ export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
+export const UPDATE_REQUEST = "UPDATE_REQUEST";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_FAILURE = "UPDATE_FAILURE";
+
+export const UPDATE__PASSWORD_REQUEST = "UPDATE_PASSWORD_REQUEST";
+export const UPDATE_PASSWORD_SUCCESS = "UPDATE_PASSWORD_ SUCCESS";
+export const UPDATE_PASSWORD_FAILURE = "UPDATE_PASSWORD_FAILURE";
+
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
@@ -125,6 +133,7 @@ export function login(user) {
     return fetch(`${server}/login`, requestOptions)
       .then(response => {
         if (!response.ok) {
+          console.log(response.statusText);
           return Promise.reject(response.statusText);
         }
         return response.json();
@@ -132,7 +141,6 @@ export function login(user) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
-        //dispatch(setCurrentPouch(user.pouches[0]));
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -161,7 +169,6 @@ export function facebookLogin() {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
-        //dispatch(setCurrentPouch(user.pouches[0]));
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -190,7 +197,6 @@ export function googleLogin() {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
-        //dispatch(setCurrentPouch(user.pouches[0]));
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -199,7 +205,10 @@ export function googleLogin() {
 }
 
 export function loginFailure(err) {
-  return { type: LOGIN_FAILURE, err };
+  return {
+    type: LOGIN_FAILURE,
+    err
+  };
 }
 
 export function loginSuccess(data) {
@@ -269,19 +278,18 @@ export function userDeleteFailure() {
 export function deleteUser(data) {
   return dispatch => {
     dispatch(userDeleteRequest());
-
     fetch(`${server}/users/${data._id}`, {
       method: "DELETE",
       mode: "cors",
-      credentials: "same-origin"
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
     })
       .then(response => {
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
-
         dispatch(userDeleteSuccess());
-        dispatch(logout());
       })
       .catch(error => {
         dispatch(userDeleteFailure(error));
@@ -311,7 +319,7 @@ export function registerRequest() {
 
 export function registerUser(data) {
   return dispatch => {
-    let { username, email, password } = data;
+    let { username, password } = data;
     dispatch(registerRequest());
 
     fetch(`${server}/register`, {
@@ -333,6 +341,96 @@ export function registerUser(data) {
       })
       .catch(error => {
         dispatch(registerFailure(error));
+      });
+  };
+}
+
+export function updateSuccess(data) {
+  return {
+    type: UPDATE_SUCCESS,
+    data
+  };
+}
+
+export function updateFailure(error) {
+  return {
+    type: UPDATE_FAILURE,
+    error
+  };
+}
+
+export function updateRequest() {
+  return {
+    type: UPDATE_REQUEST
+  };
+}
+
+export function updateUser(data) {
+  return dispatch => {
+    dispatch(updateRequest());
+    fetch(`${server}/users/${data._id}`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        dispatch(updateSuccess(data));
+      })
+      .catch(error => {
+        dispatch(updateFailure(error));
+      });
+  };
+}
+
+export function updatePasswordSuccess(data) {
+  return {
+    type: UPDATE_PASSWORD_SUCCESS,
+    data
+  };
+}
+
+export function updatePasswordFailure(error) {
+  return {
+    type: UPDATE_PASSWORD_FAILURE,
+    error
+  };
+}
+
+export function updatePasswordRequest() {
+  return {
+    type: UPDATE__PASSWORD_REQUEST
+  };
+}
+
+export function updatePassword(data) {
+  return dispatch => {
+    dispatch(updateRequest());
+    fetch(`${server}/users/${data._id}/password`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        dispatch(updateSuccess(data));
+      })
+      .catch(error => {
+        dispatch(updateFailure(error));
       });
   };
 }
