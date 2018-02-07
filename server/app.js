@@ -136,8 +136,13 @@ app.get('/currentUser', loggedInOnly, async (req, res, next) => {
   }
 });
 
-app.get('/', (req, res, next) => {
-  res.sendFile('/client/build/index.html', { root: '../' });
+// app.get('/', (req, res, next) => {
+//   res.sendFile('/client/build/index.html', { root: './' });
+// });
+
+app.get('/', function(req, res) {
+  var testHtmlPath = path.resolve(__dirname, '..', '/client/build/index.html');
+  res.sendFile(testHtmlPath);
 });
 
 // ----------------------------------------
