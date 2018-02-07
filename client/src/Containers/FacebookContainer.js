@@ -8,7 +8,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     facebookLogin: data => {
       dispatch(facebookLogin(data));
-      ownProps.history.push("/dashboard");
     }
   };
 };

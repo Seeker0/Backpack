@@ -324,3 +324,10 @@ footer {
 .facebook-button:hover {
   cursor: pointer;
 }
+
+.google-button {
+}
+
+.google-button:hover {
+  cursor: pointer;
+}
