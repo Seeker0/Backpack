@@ -20,22 +20,42 @@ const Item = ({ item }) => {
   ) : item.meta.data.ogType === 'article' ? (
     <div>
       <h3>{item.meta.data.ogSiteName}</h3>
-      <a href={item.meta.data.ogUrl}>
+      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
         <h2>{item.meta.data.ogTitle}</h2>
       </a>
       <p>{item.meta.data.ogDescription}</p>
-      <a href={item.meta.data.ogUrl}>
-        <img src={item.meta.data.ogImage.url} width="500px" height="auto" />
+      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+        <img
+          src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
+          width="500px"
+          height="auto"
+        />
       </a>
     </div>
   ) : item.meta.data.ogType === 'website' ? (
     <div>
-      <a href={item.meta.data.ogUrl}>
+      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+        <h2>{item.meta.data.ogTitle}</h2>
+      </a>
+      <p>
+        {item.meta.data.ogDescription ? item.meta.data.ogDescription : null}
+      </p>
+      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+        <img
+          src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
+          width="500px"
+          height="300"
+        />
+      </a>
+    </div>
+  ) : !item.meta.data.ogType ? (
+    <div>
+      <a href={item.meta.requestUrl}>
         <h2>{item.meta.data.ogTitle}</h2>
       </a>
       <p>{item.meta.data.ogDescription}</p>
-      <a href={item.meta.data.ogUrl}>
-        <img src={item.meta.data.ogImage.url} width="500px" height="300" />
+      <a href={item.meta.requestUrl}>
+        <img src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null} />
       </a>
     </div>
   ) : item.meta.data.twitterPlayer ? (

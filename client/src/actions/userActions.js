@@ -32,6 +32,8 @@ export const USER_DELETE_REQUEST = 'USER_DELETE_REQUEST';
 export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS';
 export const USER_DELETE_FAILURE = 'USER_DELETE_FAILURE';
 
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+
 let server =
   process.env.NODE_ENV === 'production'
     ? 'https://appbackpack.herokuapp.com'
@@ -329,7 +331,12 @@ export function registerUser(data) {
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' }
     })
-      .then(response => {
+      .then(async response => {
+        let json = await response.json();
+        console.log(json);
+        if (json.error) {
+          throw new Error(`${json.error.message}`);
+        }
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
@@ -340,6 +347,7 @@ export function registerUser(data) {
         dispatch(login({ username, password }));
       })
       .catch(error => {
+        console.log(error);
         dispatch(registerFailure(error));
       });
   };
@@ -432,5 +440,11 @@ export function updatePassword(data) {
       .catch(error => {
         dispatch(updateFailure(error));
       });
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR
   };
 }
