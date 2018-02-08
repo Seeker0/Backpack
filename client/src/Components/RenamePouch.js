@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalFooter, Form, FormGroup, Label } from "reactstrap";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalFooter,
+  Form,
+  FormGroup,
+  Label
+} from "reactstrap";
 
 class RenamePouch extends React.Component {
   constructor(props) {
@@ -13,13 +21,18 @@ class RenamePouch extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <div className="other-button">
-          <Button color="warning" size="sm" onClick={this.toggle}>
+          <Button
+            color="warning"
+            size="sm"
+            className="button-font"
+            onClick={this.toggle}
+          >
             Rename Pouch
           </Button>
         </div>

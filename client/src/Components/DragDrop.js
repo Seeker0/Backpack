@@ -69,12 +69,12 @@ const DragDrop = props => {
     );
   });
   return (
-    <div>
+    <div class="top-padding">
       <div id="pouch-side-bar">
         <p id="pouch-side-bar-title">Your Pouches</p>
         <div>
-          {droppableItems}
           <AddPouchContainer />
+          {droppableItems}
         </div>
       </div>
       <div className="current-pouch-container">
@@ -90,13 +90,13 @@ const DragDrop = props => {
                 props.currentPouch.name !== "Unsorted Items" ? (
                   <DeletePouchContainer />
                 ) : null}
+                <AddItemContainer />
               </div>
               {props.currentItems.length > 0 ? (
                 <div>{draggableItems}</div>
               ) : (
                 <div>No Items in this Pouch</div>
               )}
-              <AddItemContainer />
             </div>
           </Col>
         </Container>

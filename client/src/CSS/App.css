@@ -57,6 +57,14 @@ body {
   border-bottom: 2px solid black;
 }
 
+.top-padding {
+  padding-top: 85px;
+}
+
+.navbar-color {
+  background-color: rgba(255, 223, 224, 0.7);
+}
+
 .logo {
   height: 50px;
 }
@@ -224,7 +232,6 @@ footer {
 
 .box1 {
   padding-top: 20px;
-  border: solid black 1px;
 }
 
 .item-box {
@@ -234,7 +241,6 @@ footer {
   margin-right: auto;
   margin-left: auto;
   padding: 15px;
-  border: solid black 1px;
 }
 
 #current-pouch-title {
@@ -296,6 +302,11 @@ footer {
   font-family: "Kalam", cursive;
 }
 
+.button-font {
+  color: black !important;
+  border: solid black 1px !important;
+}
+
 #settings-box {
   border: solid black 2px;
   text-align: center;
@@ -330,4 +341,23 @@ footer {
 
 .google-button:hover {
   cursor: pointer;
+}
+
+.learn-button,
+.facebook-button {
+  font-family: "Kalam", cursive;
+}
+
+.learn-button {
+  margin-bottom: 10px;
+}
+
+.facebook-button,
+.google-button {
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.facebook-button {
+  height: 40px;
 }

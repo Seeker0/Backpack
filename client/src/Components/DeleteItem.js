@@ -19,7 +19,12 @@ class DeleteItem extends React.Component {
     return (
       <div>
         <div className="other-button">
-          <Button color="danger" size="sm" onClick={this.toggle}>
+          <Button
+            color="danger"
+            size="sm"
+            className="button-font"
+            onClick={this.toggle}
+          >
             Delete Item
           </Button>
         </div>
