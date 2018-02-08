@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Alert } from "reactstrap";
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Alert } from 'reactstrap';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
 const Item = ({ item }) => {
   let meta = !item.meta ? (
-
     <div>
       <p>Invalid Item</p>
     </div>
@@ -39,13 +38,13 @@ const Item = ({ item }) => {
         <img src={item.meta.data.ogImage.url} width="500px" height="300" />
       </a>
     </div>
-  ) : (
+  ) : item.meta.data.twitterPlayer ? (
     <iframe
       width="500px"
       height="auto"
       src={item.meta.data.twitterPlayer.url}
     />
-  );
+  ) : null;
   return meta;
 };
 
