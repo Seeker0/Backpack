@@ -8,43 +8,58 @@ configure({ adapter: new Adapter() });
 
 const Item = ({ item }) => {
   let meta = !item.meta ? (
-
     <div>
       <p>Invalid Item</p>
     </div>
-  ) : item.meta.data.ogType === 'string' ? (
+  ) : item.meta.data.ogType === "string" ? (
     <div>
-      <p>{item.link}</p>
+      <h3>{item.name}</h3>
+      <a href={item.link} target="_blank">
+        {item.link}
+      </a>
     </div>
-  ) : item.meta.data.ogType === 'pic' ? (
-    <img width="500px" height="300px" src={item.link} />
-  ) : item.meta.data.ogType === 'article' ? (
+  ) : item.meta.data.ogType === "pic" ? (
     <div>
+      <h3>{item.name}</h3>
+      <a href={item.link} target="_blank">
+        <img className="picture-item" src={item.link} />
+      </a>
+    </div>
+  ) : item.meta.data.ogType === "article" ? (
+    <div>
+      <h3>{item.name}</h3>
       <h3>{item.meta.data.ogSiteName}</h3>
-      <a href={item.meta.data.ogUrl}>
-        <h2>{item.meta.data.ogTitle}</h2>
+      <a href={item.meta.data.ogUrl} target="_blank">
+        <h3>{item.meta.data.ogTitle}</h3>
       </a>
       <p>{item.meta.data.ogDescription}</p>
-      <a href={item.meta.data.ogUrl}>
-        <img src={item.meta.data.ogImage.url} width="500px" height="auto" />
+      <a href={item.meta.data.ogUrl} target="_blank">
+        <img src={item.meta.data.ogImage.url} className="picture-item" />
       </a>
     </div>
-  ) : item.meta.data.ogType === 'website' ? (
+  ) : item.meta.data.ogType === "website" ? (
     <div>
-      <a href={item.meta.data.ogUrl}>
-        <h2>{item.meta.data.ogTitle}</h2>
+      <h3>{item.name}</h3>
+      <a href={item.meta.data.ogUrl} target="_blank">
+        <h3>{item.meta.data.ogTitle}</h3>
       </a>
       <p>{item.meta.data.ogDescription}</p>
-      <a href={item.meta.data.ogUrl}>
-        <img src={item.meta.data.ogImage.url} width="500px" height="300" />
+      <a href={item.meta.data.ogUrl} target="_blank">
+        <img src={item.meta.data.ogImage.url} className="picture-item" />
       </a>
     </div>
   ) : (
-    <iframe
-      width="500px"
-      height="auto"
-      src={item.meta.data.twitterPlayer.url}
-    />
+    <div>
+      <a href={item.meta.data.ogUrl} target="_blank">
+        <h3>{item.name}</h3>
+      </a>
+      <iframe
+        className="iframe-item picture-item"
+        src={item.meta.data.twitterPlayer.url}
+        frameBorder="0"
+        allowFullScreen="allowfullscreen"
+      />
+    </div>
   );
   return meta;
 };

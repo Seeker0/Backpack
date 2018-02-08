@@ -13,16 +13,7 @@ import RenamePouchContainer from "../Containers/RenamePouchContainer";
 import Item from "./Item";
 
 const DragDrop = props => {
-  const {
-    pouches,
-    currentItems,
-    currentPouch,
-    setCurrentPouch,
-    getUser,
-    onDragLeave,
-    onDrop,
-    onDragEnd
-  } = props;
+  const { currentPouch, getUser } = props;
   let draggableItems = props.currentItems.map(item => {
     return (
       <Draggable
@@ -34,9 +25,6 @@ const DragDrop = props => {
         }}
       >
         <div className="item-box">
-          <a href={item.link}>
-            <h3>{item.name}</h3>
-          </a>
           <Item item={item} />
 
           <div>

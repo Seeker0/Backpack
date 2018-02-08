@@ -61,6 +61,10 @@ body {
   padding-top: 85px;
 }
 
+.top-margin {
+  margin-top: 85px;
+}
+
 .navbar-color {
   background-color: rgba(255, 223, 224, 0.7);
 }
@@ -98,8 +102,9 @@ body {
   text-align: right;
 }
 
-.links:hover {
-  color: gray !important;
+.picture-item {
+  max-width: 500px;
+  max-height: 400px;
 }
 
 .backpack-icon {
