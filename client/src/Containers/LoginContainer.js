@@ -108,7 +108,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     login: user => {
       dispatch(login(user));
-      ownProps.history.push("/dashboard");
     }
   };
 };

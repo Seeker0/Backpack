@@ -74,7 +74,7 @@ export function getUserPouches(user) {
       })
       .then(json => {
         dispatch(getUserPouchesSuccess(json));
-        dispatch(setCurrentPouch({ _id: json[0]._id }));
+        //dispatch(setCurrentPouch({ _id: json[0]._id }));
       })
       .catch(error => {
         dispatch(getUserPouchesFailure(error));

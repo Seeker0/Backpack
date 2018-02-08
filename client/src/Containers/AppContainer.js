@@ -11,7 +11,8 @@ const mapStateToProps = state => {
   return {
     ownerId,
     authenticated: state.authenticated,
-    authorized: !!state.user
+    authorized: !!state.user,
+    redirect: state.redirect
   };
 };
 
