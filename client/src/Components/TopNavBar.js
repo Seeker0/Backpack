@@ -31,13 +31,13 @@ class TopNavBar extends PureComponent {
     this.setState({
       collapsed: !this.state.collapsed
     });
-  }
+  };
 
   toggleDropdown = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
-  }
+  };
 
   onSubmit = e => {
     e.preventDefault();
@@ -46,7 +46,7 @@ class TopNavBar extends PureComponent {
   render() {
     return (
       <div>
-        <Navbar className="navbar-border">
+        <Navbar className="navbar-border fixed-top top-navbar">
           <Col xs="2">
             <NavbarBrand href="/dashboard">
               <img src={logo} alt="logo" className="logo" />
