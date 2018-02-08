@@ -331,3 +331,12 @@ footer {
 .google-button:hover {
   cursor: pointer;
 }
+
+.margin-top {
+  margin-top: 50px;
+}
+
+.top-navbar {
+  z-index: 2;
+  background-color: #e2e4ff;
+}

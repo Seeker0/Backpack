@@ -69,7 +69,7 @@ const DragDrop = props => {
     );
   });
   return (
-    <div>
+    <div className="margin-top">
       <div id="pouch-side-bar">
         <p id="pouch-side-bar-title">Your Pouches</p>
         <div>
