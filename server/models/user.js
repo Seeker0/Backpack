@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
-const uniqueValidator = require("mongoose-unique-validator");
-const Pouch = require("./pouch");
+const bcrypt = require('bcrypt');
+const uniqueValidator = require('mongoose-unique-validator');
+const Pouch = require('./pouch');
 
 let UserSchema = new Schema({
-  username: String,
-  email: String,
+  username: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   passwordHash: { type: String },
-  pouches: [{ type: Schema.Types.ObjectId, ref: "Pouch" }],
+  pouches: [{ type: Schema.Types.ObjectId, ref: 'Pouch' }],
   privacy: { type: Number },
   facebookId: String,
   googleId: String
@@ -20,7 +20,7 @@ UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 };
 
-UserSchema.virtual("password")
+UserSchema.virtual('password')
   .get(function() {
     return this._password;
   })
@@ -35,7 +35,7 @@ UserSchema.statics.findOrCreate = async function(query) {
     if (!user) {
       user = new User(query);
       let unsortedItems = await new Pouch({
-        name: "Unsorted Items",
+        name: 'Unsorted Items',
         itemIds: [],
         ownerId: user._id
       });
@@ -49,5 +49,5 @@ UserSchema.statics.findOrCreate = async function(query) {
   }
 };
 
-var User = mongoose.model("User", UserSchema);
+var User = mongoose.model('User', UserSchema);
 module.exports = User;

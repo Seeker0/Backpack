@@ -8,6 +8,7 @@ let router = express.Router();
 const onLogout = async (req, res) => {
   req.logout();
   req.session.passport.user = null;
+  req.session.sessionId = null;
   res.status(200).send();
 };
 

@@ -1,14 +1,13 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 
 import Header from "./Header";
-import {
-  LoginContainer,
-  SignUpContainer
-} from "../Containers";
+import { LoginContainer, SignUpContainer } from "../Containers";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import FacebookContainer from "../Containers/FacebookContainer";
 import GoogleContainer from "../Containers/GoogleContainer";
+import UserBar from "./UserBar";
+
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -23,17 +22,32 @@ class Welcome extends PureComponent {
     this.setState({
       modalLogin: !this.state.modalLogin
     });
-  }
+  };
 
   toggleSignUp = () => {
     this.setState({
       modalSignUp: !this.state.modalSignUp
     });
-  }
+  };
+
+
+  errCatcher = err => {
+    alert(err);
+    this.props.clearError();
+  };
+
 
   render() {
+    let userWelcome = this.props.user ? (
+      <UserBar username={this.props.user.username} />
+    ) : null;
     return (
       <div className="App">
+
+        {userWelcome}
+
+        <p>{this.props.error ? this.errCatcher(this.props.error) : null}</p>
+
         <Header />
         <Container>
           <Row>
@@ -53,8 +67,8 @@ class Welcome extends PureComponent {
                       className="button"
                     >
                       Sign Up
-                    </Button>{" "}
-                    <i className="fas fa-map-signs" />{" "}
+                    </Button>{' '}
+                    <i className="fas fa-map-signs" />{' '}
                     <Button
                       color="success"
                       size="lg"
@@ -73,7 +87,7 @@ class Welcome extends PureComponent {
                   </Col>
                   <Col>
                     <Button
-                      onclick="chrome.webstore.install()"
+                      onClick="chrome.webstore.install()"
                       id="install-button"
                     >
                       Add to Chrome

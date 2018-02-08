@@ -46,7 +46,7 @@ const Login = ({
         <FormGroup color={getColorFromError(errors.password)}>
           <Label for="password">Password: </Label>
           <Input
-            type="text"
+            type="password"
             name="password"
             value={password}
             id="password"
