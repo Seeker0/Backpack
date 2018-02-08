@@ -49,7 +49,7 @@ const Settings = ({
   return (
     <div>
       <TopNavBar username={user.username} />
-      <Container id="settings-box">
+      <Container id="settings-box" className="top-padding">
         <Col xs="12">
           <Row>
             <h1 id="settings-title">Your Account Settings</h1>

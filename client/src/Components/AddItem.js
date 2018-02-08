@@ -21,16 +21,21 @@ class AddPouch extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <div className="other-button">
-        <Button color="info" size="sm" onClick={this.toggle}>
-          New Item
-        </Button>
-      </div>
+          <Button
+            color="info"
+            size="sm"
+            className="button-font"
+            onClick={this.toggle}
+          >
+            New Item
+          </Button>
+        </div>
 
         <Modal
           isOpen={this.state.modal}

@@ -1,10 +1,7 @@
 import React, { PureComponent } from "react";
 
 import Header from "./Header";
-import {
-  LoginContainer,
-  SignUpContainer
-} from "../Containers";
+import { LoginContainer, SignUpContainer } from "../Containers";
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import FacebookContainer from "../Containers/FacebookContainer";
@@ -23,13 +20,13 @@ class Welcome extends PureComponent {
     this.setState({
       modalLogin: !this.state.modalLogin
     });
-  }
+  };
 
   toggleSignUp = () => {
     this.setState({
       modalSignUp: !this.state.modalSignUp
     });
-  }
+  };
 
   render() {
     return (
@@ -67,25 +64,28 @@ class Welcome extends PureComponent {
                 </Row>
                 <Row>
                   <Col xs="12">
-                    <Link className="btn btn-info btn-lg" to="/learn">
+                    <Link
+                      className="btn btn-info btn-lg learn-button"
+                      to="/learn"
+                    >
                       Learn More
                     </Link>
-                  </Col>
-                  <Col>
-                    <Button
-                      onclick="chrome.webstore.install()"
-                      id="install-button"
-                    >
-                      Add to Chrome
-                    </Button>
                   </Col>
                 </Row>
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col xs="12">
+              <FacebookContainer />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="12">
+              <GoogleContainer />
+            </Col>
+          </Row>
         </Container>
-        <FacebookContainer />
-        <GoogleContainer />
         <LoginContainer
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}
