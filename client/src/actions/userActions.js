@@ -152,7 +152,6 @@ export function login(user) {
 export function facebookLogin() {
   return dispatch => {
     const requestOptions = {
-      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -180,7 +179,6 @@ export function facebookLogin() {
 export function googleLogin() {
   return dispatch => {
     const requestOptions = {
-      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json'
       },
