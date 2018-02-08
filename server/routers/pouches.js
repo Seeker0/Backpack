@@ -48,6 +48,7 @@ router.put("/:id", async (req, res, next) => {
     let pouch = await Pouch.findById(req.params.id);
     pouch.name = req.body.name;
     pouch = await pouch.save();
+    console.log(pouch);
     res.json(pouch);
   } catch (e) {
     res.status(500);
