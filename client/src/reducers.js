@@ -16,7 +16,8 @@ const initialState = {
   verifyError: null,
   user: null,
   authorized: false,
-  authenticated: false
+  authenticated: false,
+  redirect: null
 };
 
 export function currentUser(state = initialState, action) {
@@ -230,7 +231,8 @@ export function currentUser(state = initialState, action) {
         ...state,
         user: action.data,
         authorized: true,
-        authenticated: true
+        authenticated: true,
+        redirect: "/dashboard"
       };
 
     case Actions.GET_USER_SUCCESS:
