@@ -41,6 +41,7 @@ const mapStateToProps = state => {
 
 // Add our new getInitialBOARDS action dispatch to props
 const mapDispatchToProps = dispatch => {
+  let dataDelete;
   return {
     setCurrentPouch: id => {
       dispatch(setCurrentPouch({ _id: id }));
@@ -48,15 +49,15 @@ const mapDispatchToProps = dispatch => {
     getUser: () => {
       dispatch(getUser());
     },
+    onDragEnd: (id, pouchId, ownerId) => {
+      dataDelete = { id, pouchId, ownerId };
+      console.log("Dragged Item:", dataDelete);
+    },
     onDrop: (data, pouchId) => {
       //console.log("Dropped Item:", data, pouchId);
       data.pouchId = pouchId;
+      dispatch(deleteItem(dataDelete));
       dispatch(newItem(data));
-    },
-    onDragEnd: (id, pouchId, ownerId) => {
-      let data = { id, pouchId, ownerId };
-      console.log("Dragged Item:", data);
-      dispatch(deleteItem(data));
     }
   };
 };
