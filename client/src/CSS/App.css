@@ -326,6 +326,15 @@ footer {
 }
 
 .google-button {
+  background: rgb(209, 72, 54);
+  width: 190px;
+  padding: 10px 15px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Roboto";
+  color: white;
 }
 
 .google-button:hover {
