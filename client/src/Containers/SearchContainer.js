@@ -13,7 +13,6 @@ import {
   DropdownToggle,
   DropdownMenu
 } from "reactstrap";
-
 let search = actions.search;
 let getUser = actions.getUser;
 let setCurrentPouch = actions.setCurrentPouch;

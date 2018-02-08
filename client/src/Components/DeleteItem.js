@@ -13,7 +13,7 @@ class DeleteItem extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
 
   render() {
     return (
