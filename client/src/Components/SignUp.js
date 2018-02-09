@@ -68,10 +68,10 @@ const SignUp = ({
         </FormGroup>
       </Form>
       <ModalFooter>
-        <Button color="primary" onClick={onSubmit}>
+        <Button color="primary" className="button-font" onClick={onSubmit}>
           Sign Up
         </Button>{" "}
-        <Button color="secondary" onClick={toggle}>
+        <Button color="secondary" className="button-font" onClick={toggle}>
           Cancel
         </Button>
       </ModalFooter>

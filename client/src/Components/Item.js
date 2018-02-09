@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Alert } from "reactstrap";
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -22,7 +20,7 @@ const Item = ({ item }) => {
     <div>
       <h3>{item.name}</h3>
       <a href={item.link} target="_blank">
-        <img className="picture-item" src={item.link} />
+        <img alt="" className="picture-item" src={item.link} />
       </a>
     </div>
   ) : item.meta.data.ogType === "article" ? (
@@ -41,6 +39,7 @@ const Item = ({ item }) => {
         target="_blank"
       >
         <img
+          alt=""
           src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
           className="picture-item"
         />
@@ -63,6 +62,7 @@ const Item = ({ item }) => {
         target="_blank"
       >
         <img
+          alt=""
           src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
           className="picture-item"
         />
@@ -75,11 +75,16 @@ const Item = ({ item }) => {
       </a>
       <p>{item.meta.data.ogDescription}</p>
       <a href={item.meta.requestUrl} target="_blank">
-        <img src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null} />
+        <img
+          alt=""
+          src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
+        />
       </a>
     </div>
   ) : item.meta.data.twitterPlayer ? (
     <iframe
+      alt=""
+      title="iframe"
       frameBorder="0"
       allowFullScreen="allowfullscreen"
       className="picture-item"

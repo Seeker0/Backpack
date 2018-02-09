@@ -40,6 +40,7 @@ class DeleteItem extends React.Component {
           <ModalFooter>
             <Button
               color="danger"
+              className="button-font"
               onClick={() => {
                 this.props.deleteItem({
                   id: this.props.id,
@@ -51,7 +52,11 @@ class DeleteItem extends React.Component {
             >
               Delete Item
             </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
+            <Button
+              color="secondary"
+              className="button-font"
+              onClick={this.toggle}
+            >
               Cancel
             </Button>
           </ModalFooter>

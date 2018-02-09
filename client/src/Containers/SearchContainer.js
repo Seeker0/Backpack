@@ -3,19 +3,7 @@ import { connect } from "react-redux";
 import Search from "../Components/Search";
 import actions from "../actions";
 
-import {
-  InputGroup,
-  Label,
-  Form,
-  FormGroup,
-  Button,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu
-} from "reactstrap";
 let search = actions.search;
-let getUser = actions.getUser;
-let setCurrentPouch = actions.setCurrentPouch;
 
 class SearchContainer extends Component {
   constructor(props) {
