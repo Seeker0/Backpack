@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import React from "react";
+import PropTypes from "prop-types";
+import { Alert } from "reactstrap";
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
 
@@ -11,57 +11,78 @@ const Item = ({ item }) => {
     <div>
       <p>Invalid Item</p>
     </div>
-  ) : item.meta.data.ogType === 'string' ? (
+  ) : item.meta.data.ogType === "string" ? (
     <div>
-      <p>{item.link}</p>
+      <h3>{item.name}</h3>
+      <a href={item.link} target="_blank">
+        {item.link}
+      </a>
     </div>
-  ) : item.meta.data.ogType === 'pic' ? (
-    <img width="500px" height="300px" src={item.link} />
-  ) : item.meta.data.ogType === 'article' ? (
+  ) : item.meta.data.ogType === "pic" ? (
     <div>
+      <h3>{item.name}</h3>
+      <a href={item.link} target="_blank">
+        <img className="picture-item" src={item.link} />
+      </a>
+    </div>
+  ) : item.meta.data.ogType === "article" ? (
+    <div>
+      <h3>{item.name}</h3>
       <h3>{item.meta.data.ogSiteName}</h3>
-      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+      <a
+        href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}
+        target="_blank"
+      >
         <h2>{item.meta.data.ogTitle}</h2>
       </a>
       <p>{item.meta.data.ogDescription}</p>
-      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+      <a
+        href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}
+        target="_blank"
+      >
         <img
           src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
-          width="500px"
-          height="auto"
+          className="picture-item"
         />
       </a>
     </div>
-  ) : item.meta.data.ogType === 'website' ? (
+  ) : item.meta.data.ogType === "website" ? (
     <div>
-      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+      <h3>{item.name}</h3>
+      <a
+        href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}
+        target="_blank"
+      >
         <h2>{item.meta.data.ogTitle}</h2>
       </a>
       <p>
         {item.meta.data.ogDescription ? item.meta.data.ogDescription : null}
       </p>
-      <a href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}>
+      <a
+        href={item.meta.data.ogUrl ? item.meta.data.ogUrl : null}
+        target="_blank"
+      >
         <img
           src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null}
-          width="500px"
-          height="300"
+          className="picture-item"
         />
       </a>
     </div>
   ) : !item.meta.data.ogType ? (
     <div>
-      <a href={item.meta.requestUrl}>
+      <a href={item.meta.requestUrl} target="_blank">
         <h2>{item.meta.data.ogTitle}</h2>
       </a>
       <p>{item.meta.data.ogDescription}</p>
-      <a href={item.meta.requestUrl}>
+      <a href={item.meta.requestUrl} target="_blank">
         <img src={item.meta.data.ogImage ? item.meta.data.ogImage.url : null} />
       </a>
     </div>
   ) : item.meta.data.twitterPlayer ? (
     <iframe
-      width="500px"
-      height="auto"
+      frameBorder="0"
+      allowFullScreen="allowfullscreen"
+      className="picture-item"
       src={item.meta.data.twitterPlayer.url}
     />
   ) : null;

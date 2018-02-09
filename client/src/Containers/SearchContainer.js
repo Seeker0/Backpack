@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import { Search } from "../Components";
+import Search from "../Components/Search";
 import actions from "../actions";
 
 import {
@@ -13,14 +13,15 @@ import {
   DropdownToggle,
   DropdownMenu
 } from "reactstrap";
-
 let search = actions.search;
+let getUser = actions.getUser;
+let setCurrentPouch = actions.setCurrentPouch;
 
 class SearchContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dropdownOpen: false,
+      dropdownOpen: false
     };
   }
 
@@ -28,7 +29,7 @@ class SearchContainer extends Component {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
-  }
+  };
 
   onSubmit = input => {
     let data = input.value;
@@ -37,60 +38,21 @@ class SearchContainer extends Component {
 
   render() {
     return (
-      // <Search
-      //   onSubmit={this.onSubmit}
-      //   dropdownOpen={this.props.dropdownOpen}
-      //   searchString={this.props.searchString}
-      //   toggleDropdown={this.toggleDropdown}
-      //   {...this.state}
-      // />
-      <InputGroup onSubmit={this.onSubmit} id="adv-search">
-        <input
-          type="text"
-          name="searchString"
-          id="searchString"
-          className="form-control"
-          placeholder="Search for items"
-          ref={(input) => {this.searchString = input}}
-        />
-        <div className="btn-group" role="group">
-          <Dropdown
-            className="dropdown dropdown-lg"
-            isOpen={this.state.dropdownOpen}
-            toggle={this.toggleDropdown}
-          >
-            <DropdownToggle caret />
-            <DropdownMenu>
-              <Form onSubmit={this.onSubmit} className="form-horizontal">
-                <FormGroup>
-                  <Label for="filter">Filter by</Label>
-                  <select className="form-control">
-                    <option defaultValue="0">
-                      All Pouches
-                    </option>
-                    <option value="1">Pouch1</option>
-                    <option value="2">Pouch2</option>
-                    <option value="3">Pouch3</option>
-                    <option value="4">Pouch4</option>
-                  </select>
-                </FormGroup>
-                <Button type="submit" color="primary" onClick={this.onSubmit}>
-                  <i className="fas fa-search" />
-                </Button>
-              </Form>
-            </DropdownMenu>
-            <Button color="primary" onClick={() => this.onSubmit(this.searchString)}>
-              <i className="fas fa-search" />
-            </Button>
-          </Dropdown>
-        </div>
-      </InputGroup>
+      <Search
+        onSubmit={this.onSubmit}
+        dropdownOpen={this.props.dropdownOpen}
+        searchString={this.props.searchString}
+        toggleDropdown={this.toggleDropdown}
+        currentPouches={this.props.currentPouches}
+        {...this.state}
+      />
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
+    currentPouches: state.pouches
   };
 };
 
@@ -102,6 +64,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-SearchContainer = connect(mapStateToProps, mapDispatchToProps)(SearchContainer);
-
-export default SearchContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);

@@ -46,7 +46,7 @@ class TopNavBar extends PureComponent {
   render() {
     return (
       <div>
-        <Navbar className="navbar-border fixed-top top-navbar">
+        <Navbar className="navbar-border fixed-top navbar-color">
           <Col xs="2">
             <NavbarBrand href="/dashboard">
               <img src={logo} alt="logo" className="logo" />

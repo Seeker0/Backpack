@@ -61,7 +61,6 @@ export function getUserPouchesRequest() {
 }
 
 export function getUserPouches(user) {
-  console.log(user);
   return dispatch => {
     dispatch(getUserPouchesRequest());
     fetch(`${server}/pouches/${user._id}`, {
@@ -77,7 +76,7 @@ export function getUserPouches(user) {
       })
       .then(json => {
         dispatch(getUserPouchesSuccess(json));
-        //dispatch(setCurrentPouch({ _id: json[0]._id }));
+        dispatch(setCurrentPouch({ _id: json[json.length - 1]._id }));
       })
       .catch(error => {
         dispatch(getUserPouchesFailure(error));
@@ -145,6 +144,7 @@ export function login(user) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
+        dispatch(setCurrentPouch({ _id: user.pouches[0] }));
       })
       .catch(e => {
         dispatch(loginFailure(e));

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
 import Header from "./Header";
 import { LoginContainer, SignUpContainer } from "../Containers";
@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import FacebookContainer from "../Containers/FacebookContainer";
 import GoogleContainer from "../Containers/GoogleContainer";
 import UserBar from "./UserBar";
-
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -30,12 +29,10 @@ class Welcome extends PureComponent {
     });
   };
 
-
   errCatcher = err => {
     alert(err);
     this.props.clearError();
   };
-
 
   render() {
     let userWelcome = this.props.user ? (
@@ -43,7 +40,6 @@ class Welcome extends PureComponent {
     ) : null;
     return (
       <div className="App">
-
         {userWelcome}
 
         <p>{this.props.error ? this.errCatcher(this.props.error) : null}</p>
@@ -67,8 +63,8 @@ class Welcome extends PureComponent {
                       className="button"
                     >
                       Sign Up
-                    </Button>{' '}
-                    <i className="fas fa-map-signs" />{' '}
+                    </Button>{" "}
+                    <i className="fas fa-map-signs" />{" "}
                     <Button
                       color="success"
                       size="lg"
@@ -81,25 +77,28 @@ class Welcome extends PureComponent {
                 </Row>
                 <Row>
                   <Col xs="12">
-                    <Link className="btn btn-info btn-lg" to="/learn">
+                    <Link
+                      className="btn btn-info btn-lg learn-button"
+                      to="/learn"
+                    >
                       Learn More
                     </Link>
-                  </Col>
-                  <Col>
-                    <Button
-                      onClick="chrome.webstore.install()"
-                      id="install-button"
-                    >
-                      Add to Chrome
-                    </Button>
                   </Col>
                 </Row>
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col xs="12">
+              <FacebookContainer />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="12">
+              <GoogleContainer />
+            </Col>
+          </Row>
         </Container>
-        <FacebookContainer />
-        <GoogleContainer />
         <LoginContainer
           isOpen={this.state.modalLogin}
           toggle={this.toggleLogin}

@@ -91,6 +91,7 @@ export function newPouch(data) {
       .then(json => {
         dispatch(newPouchSuccess(json));
         dispatch(getUserPouches({ _id: json.ownerId }));
+        dispatch(setCurrentPouch({ _id: json._id }));
       })
       .catch(error => {
         dispatch(newPouchFailure(error));
@@ -164,6 +165,8 @@ export function updatePouch(data) {
       .then(json => {
         dispatch(updatePouchSuccess(json));
         dispatch(getUserPouches({ _id: json.ownerId }));
+      })
+      .then(json => {
         dispatch(setCurrentPouch({ _id: json._id }));
       })
       .catch(error => {

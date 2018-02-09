@@ -10,7 +10,20 @@ import {
   DropdownMenu
 } from "reactstrap";
 
-const Search = ({ onSubmit, dropdownOpen, toggleDropdown, searchString }) => {
+const Search = ({
+  onSubmit,
+  dropdownOpen,
+  toggleDropdown,
+  searchString,
+  currentPouches
+}) => {
+  let filterPouches = currentPouches.map(pouch => {
+    return (
+      <option value={pouch._id} key={pouch._id}>
+        {pouch.name}
+      </option>
+    );
+  });
   return (
     <InputGroup onSubmit={onSubmit} id="adv-search">
       <input
@@ -19,7 +32,9 @@ const Search = ({ onSubmit, dropdownOpen, toggleDropdown, searchString }) => {
         id="searchString"
         className="form-control"
         placeholder="Search for items"
-        ref={(input) => {searchString = input}}
+        ref={input => {
+          searchString = input;
+        }}
       />
       <div className="btn-group" role="group">
         <Dropdown
@@ -36,10 +51,7 @@ const Search = ({ onSubmit, dropdownOpen, toggleDropdown, searchString }) => {
                   <option value="0" selected>
                     All Pouches
                   </option>
-                  <option value="1">Pouch1</option>
-                  <option value="2">Pouch2</option>
-                  <option value="3">Pouch3</option>
-                  <option value="4">Pouch4</option>
+                  {filterPouches}
                 </select>
               </FormGroup>
               <Button type="submit" color="primary" onClick={onSubmit}>
