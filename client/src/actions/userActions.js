@@ -33,7 +33,7 @@ export const USER_DELETE_REQUEST = "USER_DELETE_REQUEST";
 export const USER_DELETE_SUCCESS = "USER_DELETE_SUCCESS";
 export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
 
-export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const CLEAR_ERROR = "CLEAR_ERROR";
 
 let server =
   process.env.NODE_ENV === "production"
@@ -358,7 +358,7 @@ export function registerUser(data) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
 
-        return response.json();
+        return json();
       })
       .then(json => {
         dispatch(login({ username, password }));

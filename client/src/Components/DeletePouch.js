@@ -40,6 +40,7 @@ class DeletePouch extends React.Component {
           <ModalFooter>
             <Button
               color="danger"
+              className="button-font"
               onClick={() => {
                 this.props.deletePouch({
                   id: this.props.id,
@@ -50,7 +51,11 @@ class DeletePouch extends React.Component {
             >
               Delete Pouch
             </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
+            <Button
+              color="secondary"
+              className="button-font"
+              onClick={this.toggle}
+            >
               Cancel
             </Button>
           </ModalFooter>

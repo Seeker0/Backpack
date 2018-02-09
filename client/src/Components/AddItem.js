@@ -51,18 +51,20 @@ class AddPouch extends React.Component {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="enter your new item name here"
+                  size="50"
                   ref={input => {
                     this.name = input;
                   }}
                 />
               </div>
+              <br />
               <Label for="link">Link: </Label>
+              <br />
               <input
                 type="text"
                 name="link"
                 id="link"
-                placeholder="enter your new item link here"
+                size="50"
                 ref={input => {
                   this.link = input;
                 }}
@@ -72,6 +74,7 @@ class AddPouch extends React.Component {
           <ModalFooter>
             <Button
               color="success"
+              className="button-font"
               onClick={() => {
                 this.toggle();
                 this.props.newItem({
@@ -84,7 +87,11 @@ class AddPouch extends React.Component {
             >
               Create Item
             </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
+            <Button
+              color="secondary"
+              className="button-font"
+              onClick={this.toggle}
+            >
               Cancel
             </Button>
           </ModalFooter>

@@ -58,15 +58,12 @@ body {
 }
 
 .top-padding {
-  padding-top: 85px;
-}
-
-.top-margin {
-  margin-top: 85px;
+  padding-top: 152px;
 }
 
 .navbar-color {
   background-color: rgba(255, 223, 224, 0.7);
+  min-height: 152px;
 }
 
 .logo {
@@ -309,6 +306,7 @@ footer {
 
 .button-font {
   color: black !important;
+  font-family: "Kalam", cursive;
   border: solid black 1px !important;
 }
 
@@ -329,12 +327,12 @@ footer {
 }
 .facebook-button {
   background-color: rgb(76, 105, 186);
-  font-family: Helvetica;
-  font-size: 15px;
-  color: white;
-  padding: 16px 21px;
+  font-size: 16px;
+  padding: 10px;
   text-align: center;
-  border: none;
+  color: black !important;
+  font-family: "Kalam", cursive;
+  border: solid black 1px !important;
 }
 
 .facebook-button:hover {
@@ -344,13 +342,14 @@ footer {
 .google-button {
   background: rgb(209, 72, 54);
   width: 190px;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 2px;
-  border: 1px solid transparent;
   font-size: 16px;
   font-weight: bold;
-  font-family: "Roboto";
-  color: white;
+  color: black !important;
+  font-family: "Kalam", cursive;
+  border: solid black 1px !important;
+  margin-top: 10px;
 }
 
 .google-button:hover {
