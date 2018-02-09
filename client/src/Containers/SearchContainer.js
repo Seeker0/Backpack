@@ -13,7 +13,6 @@ import {
   DropdownToggle,
   DropdownMenu
 } from "reactstrap";
-
 let search = actions.search;
 let getUser = actions.getUser;
 let setCurrentPouch = actions.setCurrentPouch;
@@ -44,6 +43,7 @@ class SearchContainer extends Component {
         dropdownOpen={this.props.dropdownOpen}
         searchString={this.props.searchString}
         toggleDropdown={this.toggleDropdown}
+        currentPouches={this.props.currentPouches}
         {...this.state}
       />
     );
@@ -52,7 +52,7 @@ class SearchContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: getUser
+    currentPouches: state.pouches
   };
 };
 
@@ -60,12 +60,6 @@ const mapDispatchToProps = dispatch => {
   return {
     search: data => {
       dispatch(search(data));
-    },
-    currentUser: () => {
-      dispatch(getUser());
-    },
-    setCurrentPouch: id => {
-      dispatch(setCurrentPouch({ _id: id }));
     }
   };
 };

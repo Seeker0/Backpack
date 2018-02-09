@@ -15,6 +15,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#da532c">
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/kbihpnahoklibdejjmnjndkidaklefgj">
     <meta name="theme-color" content="#da532c">
+    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -34,8 +35,13 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <button onclick="chrome.webstore.install()" id="install-button">Add to Chrome</button>
     <div id="root"></div>
+    <button onclick="chrome.webstore.install()" id="install-button" class="chrome btn btn-info" style="font-family: 'Kalam', cursive; z-index: 10; position: fixed; bottom: 20px; left: 20px; margin-bottom: 10px; border-radius: 10px; border: 1px solid black; color:black;">Add Chrome Extension<img src="/Google-Chrome-icon.png" height="35px" style="padding-left: 2px"></button>
+<script>
+if (chrome.app.isInstalled) {
+  document.getElementById("install-button").style.display = "none";
+}
+</script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

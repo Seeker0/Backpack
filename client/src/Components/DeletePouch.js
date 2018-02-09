@@ -13,13 +13,18 @@ class DeletePouch extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
 
   render() {
     return (
       <div>
         <div className="other-button">
-          <Button color="danger" size="sm" onClick={this.toggle}>
+          <Button
+            color="danger"
+            size="sm"
+            className="button-font"
+            onClick={this.toggle}
+          >
             Delete Pouch
           </Button>
         </div>

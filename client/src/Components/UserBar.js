@@ -17,7 +17,7 @@ import {
   Col
 } from "reactstrap";
 
-class TopNavBar extends PureComponent {
+class UserBar extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,14 +46,11 @@ class TopNavBar extends PureComponent {
   render() {
     return (
       <div>
-        <Navbar className="navbar-border fixed-top navbar-color">
+        <Navbar className="navbar-border">
           <Col xs="2">
             <NavbarBrand href="/dashboard">
               <img src={logo} alt="logo" className="logo" />
             </NavbarBrand>
-          </Col>
-          <Col xs={{ size: 6, offset: 1 }}>
-            <SearchContainer />
           </Col>
           <Col xs="3">
             <NavbarToggler onClick={this.toggleNavbar} className="align-right">
@@ -95,4 +92,4 @@ class TopNavBar extends PureComponent {
   }
 }
 
-export default TopNavBar;
+export default UserBar;

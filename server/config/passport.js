@@ -2,6 +2,8 @@ const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
+var GoogleTokenStrategy = require("passport-google-token").Strategy;
+var FacebookTokenStrategy = require("passport-facebook-token");
 
 const User = require("../models/user");
 
@@ -30,12 +32,12 @@ passport.use(
 );
 
 passport.use(
-  new FacebookStrategy(
+  new FacebookTokenStrategy(
     {
       clientID: process.env.FACEBOOK_APP_ID,
-      clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: `${server}/login/facebook/callback`,
-      profileFields: ["id", "displayName", "email"]
+      clientSecret: process.env.FACEBOOK_APP_SECRET
+      // callbackURL: `${server}/login/facebook/callback`,
+      // profileFields: ["id", "displayName", "email"]
     },
     async function(accessToken, refreshToken, profile, cb) {
       try {
@@ -58,14 +60,14 @@ passport.use(
 );
 
 passport.use(
-  new GoogleStrategy(
+  new GoogleTokenStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `${server}/login/google/callback`,
-      passReqToCallback: true
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      // callbackURL: `${server}/login/google/callback`,
+      // passReqToCallback: true
     },
-    async function(request, accessToken, refreshToken, profile, done) {
+    async function(accessToken, refreshToken, profile, done) {
       console.log("HIT GOOGLE CALLBACK");
       console.log("hit here?");
 

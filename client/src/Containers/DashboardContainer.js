@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dashboard } from "../Components";
-import { DragDrop } from "../Components";
 import { setCurrentPouch } from "../actions/pouchActions";
 import { getUser } from "../actions/userActions";
 
