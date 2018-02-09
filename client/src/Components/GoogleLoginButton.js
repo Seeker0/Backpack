@@ -8,7 +8,7 @@ const GoogleLoginButton = props => {
       buttonText="LOGIN WITH GOOGLE"
       onSuccess={props.googleLogin}
       onFailure={props.googleLogin}
-      clientId={process.env.GOOGLE_CLIENT_ID}
+      clientId="17204089583-su0tdc6ppndkf8eacncljcveuv6o1olo.apps.googleusercontent.com"
       className="google-button"
     />
   );
