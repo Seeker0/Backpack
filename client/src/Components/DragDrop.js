@@ -20,9 +20,9 @@ const DragDrop = props => {
         type="item"
         data={JSON.stringify(item)}
         itemid={item._id}
-        onDragEnd={e => {
-          props.onDragEnd(item._id, currentPouch._id, getUser._id);
-        }}
+        // onDragEnd={e => {
+        //   props.onDragEnd(item._id, currentPouch._id, getUser._id);
+        // }}
       >
         <div className="item-box">
           <Item item={item} />
@@ -40,7 +40,7 @@ const DragDrop = props => {
         onDrop={data => {
           console.log("Dropped data:", data.item);
           data = JSON.parse(data.item);
-          props.onDrop(data, pouch._id);
+          props.onDrop(data, pouch._id, props.currentPouch._id);
         }} //{props.onDrop.bind(this)}
         //onDrop={() => onDrop()}
         key={pouch._id}

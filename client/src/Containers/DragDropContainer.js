@@ -8,11 +8,18 @@ import { getUser } from "../actions/userActions";
 class DragDropContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      dataDelete: null
+    };
   }
 
   // onDrop = data => {
   //   console.log(data);
   // };
+
+  onDragData(data) {
+    this.setState("dataDelete", data);
+  }
 
   render() {
     return (
@@ -41,7 +48,6 @@ const mapStateToProps = state => {
 
 // Add our new getInitialBOARDS action dispatch to props
 const mapDispatchToProps = dispatch => {
-  let dataDelete;
   return {
     setCurrentPouch: id => {
       dispatch(setCurrentPouch({ _id: id }));
@@ -49,15 +55,16 @@ const mapDispatchToProps = dispatch => {
     getUser: () => {
       dispatch(getUser());
     },
-    onDragEnd: (id, pouchId, ownerId) => {
-      dataDelete = { id, pouchId, ownerId };
-      console.log("Dragged Item:", dataDelete);
-    },
-    onDrop: (data, pouchId) => {
-      //console.log("Dropped Item:", data, pouchId);
+
+    onDrop: (data, pouchId, oldPouchId) => {
+      //{ id, pouchId, ownerId } = data;
       data.pouchId = pouchId;
-      dispatch(deleteItem(dataDelete));
+      let id = data._id;
+      delete data._id;
+
       dispatch(newItem(data));
+      data = { id: id, pouchId: oldPouchId, ownerId: data.ownerId };
+      dispatch(deleteItem(data));
     }
   };
 };

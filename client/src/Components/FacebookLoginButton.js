@@ -8,6 +8,7 @@ const FacebookLoginButton = props => {
       autoLoad={true}
       fields="name,email,picture"
       callback={props.facebookLogin}
+      className="facebook-button"
     />
   );
 };
