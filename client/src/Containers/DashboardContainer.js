@@ -1,10 +1,7 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Dashboard } from "../Components";
 import { setCurrentPouch } from "../actions/pouchActions";
 import { getUser } from "../actions/userActions";
-
-class DashBoardContainer extends Component {}
 
 const mapStateToProps = state => {
   let username = state.user ? state.user.username : null;

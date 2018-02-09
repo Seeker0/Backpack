@@ -4,7 +4,6 @@ import logo from "../images/header.png";
 import backpackIcon from "../images/backpack-icon.png";
 import defaultUser from "../images/defaultUser.png";
 import LogoutContainer from "../Containers/LogoutContainer";
-import SearchContainer from "../Containers/SearchContainer";
 
 import {
   Collapse,

@@ -60,7 +60,7 @@ class Welcome extends PureComponent {
                       color="primary"
                       size="lg"
                       onClick={this.toggleSignUp}
-                      className="button"
+                      className="button button-font"
                     >
                       Sign Up
                     </Button>{" "}
@@ -69,7 +69,7 @@ class Welcome extends PureComponent {
                       color="success"
                       size="lg"
                       onClick={this.toggleLogin}
-                      className="button"
+                      className="button button-font"
                     >
                       Log In
                     </Button>
@@ -78,7 +78,7 @@ class Welcome extends PureComponent {
                 <Row>
                   <Col xs="12">
                     <Link
-                      className="btn btn-info btn-lg learn-button"
+                      className="btn btn-info btn-lg learn-button button-font"
                       to="/learn"
                     >
                       Learn More

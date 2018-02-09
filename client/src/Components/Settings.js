@@ -76,7 +76,7 @@ const Settings = ({
                 color="info"
                 size="lg"
                 onClick={toggle}
-                className="button"
+                className="button button-font"
               >
                 Update Settings
               </Button>
@@ -86,7 +86,7 @@ const Settings = ({
                 color="info"
                 size="lg"
                 onClick={togglePassword}
-                className="button"
+                className="button button-font"
               >
                 Change Password
               </Button>
@@ -96,7 +96,7 @@ const Settings = ({
                 color="danger"
                 size="lg"
                 onClick={toggleDelete}
-                className="button"
+                className="button button-font"
               >
                 Delete Account
               </Button>
@@ -141,6 +141,7 @@ const Settings = ({
                   name="privacy"
                   onClick={() => onRadioBtnClick(1)}
                   active={privacyModal === 1}
+                  className="button-font"
                 >
                   Only You
                 </Button>
@@ -149,6 +150,7 @@ const Settings = ({
                   name="privacy"
                   onClick={() => onRadioBtnClick(2)}
                   active={privacyModal === 2}
+                  className="button-font"
                 >
                   Everyone
                 </Button>
@@ -167,10 +169,18 @@ const Settings = ({
               </FormGroup>
             </Form>
             <ModalFooter>
-              <Button color="primary" onClick={onSubmit}>
+              <Button
+                color="primary"
+                className="button-font"
+                onClick={onSubmit}
+              >
                 Submit Changes
               </Button>{" "}
-              <Button color="secondary" onClick={toggle}>
+              <Button
+                color="secondary"
+                className="button-font"
+                onClick={toggle}
+              >
                 Cancel
               </Button>
             </ModalFooter>
@@ -211,10 +221,18 @@ const Settings = ({
               </FormGroup>
             </Form>
             <ModalFooter>
-              <Button color="primary" onClick={onPasswordSubmit}>
+              <Button
+                color="primary"
+                className="button-font"
+                onClick={onPasswordSubmit}
+              >
                 Submit Changes
               </Button>{" "}
-              <Button color="secondary" onClick={togglePassword}>
+              <Button
+                color="secondary"
+                className="button-font"
+                onClick={togglePassword}
+              >
                 Cancel
               </Button>
             </ModalFooter>
@@ -249,10 +267,18 @@ const Settings = ({
               </FormGroup>
             </Form>
             <ModalFooter>
-              <Button color="danger" onClick={onDeleteSubmit}>
+              <Button
+                color="danger"
+                className="button-font"
+                onClick={onDeleteSubmit}
+              >
                 Delete Account
               </Button>{" "}
-              <Button color="secondary" onClick={toggleDelete}>
+              <Button
+                color="secondary"
+                className="button-font"
+                onClick={toggleDelete}
+              >
                 Cancel
               </Button>
             </ModalFooter>

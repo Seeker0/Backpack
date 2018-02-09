@@ -44,12 +44,13 @@ class RenamePouch extends React.Component {
           <ModalHeader>Rename Pouch</ModalHeader>
           <Form>
             <FormGroup className="extra-padding">
-              <Label for="title">New Pouch Name:</Label>
+              <Label for="name">New Pouch Name:</Label>
+              <br />
               <input
                 type="text"
                 name="name"
                 id="name"
-                placeholder="enter your new pouch name here"
+                size="50"
                 ref={input => {
                   this.name = input;
                 }}
@@ -59,6 +60,7 @@ class RenamePouch extends React.Component {
           <ModalFooter>
             <Button
               color="success"
+              className="button-font"
               onClick={() => {
                 this.props.updatePouch({
                   name: this.name.value,
@@ -70,7 +72,11 @@ class RenamePouch extends React.Component {
             >
               Rename Pouch
             </Button>{" "}
-            <Button color="secondary" onClick={this.toggle}>
+            <Button
+              color="secondary"
+              className="button-font"
+              onClick={this.toggle}
+            >
               Cancel
             </Button>
           </ModalFooter>
