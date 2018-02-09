@@ -16,37 +16,42 @@ const passport = require("./../config/passport");
 
 router.get(
   "/facebook",
-  passport.authenticate("facebook", {
-    authType: "rerequest",
+  passport.authenticate("facebook-token", {
     scope: ["user_friends", "email", "public_profile"]
-  })
-);
-
-router.get(
-  "/facebook/callback",
-  passport.authenticate("facebook", { failureRedirect: "/login" }),
-  function(req, res) {
+  }),
+  (req, res) => {
     res.json(req.user);
   }
 );
 
+// router.get(
+//   "/facebook/callback",
+//   passport.authenticate("facebook", { failureRedirect: "/login" }),
+//   function(req, res) {
+//     res.json(req.user);
+//   }
+// );
+
 router.get(
   "/google",
-  passport.authenticate("google", {
+  passport.authenticate("google-token", {
     scope: [
       "https://www.googleapis.com/auth/plus.login",
       ,
       "https://www.googleapis.com/auth/plus.profile.emails.read"
     ]
-  })
+  }),
+  function(req, res) {
+    res.json(req.user);
+  }
 );
 
-router.get("/google/callback", passport.authenticate("google"), function(
-  req,
-  res
-) {
-  res.json(req.user);
-});
+// router.get("/google/callback", passport.authenticate("google-token"), function(
+//   req,
+//   res
+// ) {
+//   res.json(req.user);
+// });
 
 router.post("/", passport.authenticate("local"), function(req, res) {
   // If this function gets called, authentication was successful.

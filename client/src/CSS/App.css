@@ -57,6 +57,18 @@ body {
   border-bottom: 2px solid black;
 }
 
+.top-padding {
+  padding-top: 85px;
+}
+
+.top-margin {
+  margin-top: 85px;
+}
+
+.navbar-color {
+  background-color: rgba(255, 223, 224, 0.7);
+}
+
 .logo {
   height: 50px;
 }
@@ -90,8 +102,9 @@ body {
   text-align: right;
 }
 
-.links:hover {
-  color: gray !important;
+.picture-item {
+  max-width: 500px;
+  max-height: 400px;
 }
 
 .backpack-icon {
@@ -224,7 +237,6 @@ footer {
 
 .box1 {
   padding-top: 20px;
-  border: solid black 1px;
 }
 
 .item-box {
@@ -234,7 +246,6 @@ footer {
   margin-right: auto;
   margin-left: auto;
   padding: 15px;
-  border: solid black 1px;
 }
 
 #current-pouch-title {
@@ -296,6 +307,11 @@ footer {
   font-family: "Kalam", cursive;
 }
 
+.button-font {
+  color: black !important;
+  border: solid black 1px !important;
+}
+
 #settings-box {
   border: solid black 2px;
   text-align: center;
@@ -326,8 +342,36 @@ footer {
 }
 
 .google-button {
+  background: rgb(209, 72, 54);
+  width: 190px;
+  padding: 10px 15px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Roboto";
+  color: white;
 }
 
 .google-button:hover {
   cursor: pointer;
+}
+
+.learn-button,
+.facebook-button {
+  font-family: "Kalam", cursive;
+}
+
+.learn-button {
+  margin-bottom: 10px;
+}
+
+.facebook-button,
+.google-button {
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.facebook-button {
+  height: 40px;
 }

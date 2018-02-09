@@ -49,7 +49,7 @@ const Settings = ({
   return (
     <div>
       <TopNavBar username={user.username} />
-      <Container id="settings-box">
+      <Container id="settings-box" className="top-margin">
         <Col xs="12">
           <Row>
             <h1 id="settings-title">Your Account Settings</h1>
@@ -156,7 +156,7 @@ const Settings = ({
               <FormGroup color={getColorFromError(errors.password)}>
                 <Label for="passwordOld">Password:</Label>
                 <Input
-                  type="text"
+                  type="password"
                   name="passwordOld"
                   id="passwordOld"
                   value={passwordOldModal}
@@ -188,7 +188,7 @@ const Settings = ({
               <FormGroup color={getColorFromError(errors.password)}>
                 <Label for="passwordOld2">Current Password:</Label>
                 <Input
-                  type="text"
+                  type="password"
                   name="passwordOld2"
                   id="passwordOld2"
                   value={passwordOld2Modal}
@@ -200,7 +200,7 @@ const Settings = ({
               <FormGroup color={getColorFromError(errors.password)}>
                 <Label for="passwordNew">New Password:</Label>
                 <Input
-                  type="text"
+                  type="password"
                   name="passwordNew"
                   id="passwordNew"
                   value={passwordNewModal}
@@ -238,7 +238,7 @@ const Settings = ({
               <FormGroup color={getColorFromError(errors.password)}>
                 <Label for="passwordOld3">Password:</Label>
                 <Input
-                  type="text"
+                  type="password"
                   name="passwordOld3"
                   id="passwordOld3"
                   value={passwordOld3Modal}
