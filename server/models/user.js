@@ -5,7 +5,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const Pouch = require('./pouch');
 
 let UserSchema = new Schema({
-  username: { type: String, required: true },
+  username: { type: String },
   email: { type: String, required: true, unique: true },
   passwordHash: { type: String },
   pouches: [{ type: Schema.Types.ObjectId, ref: 'Pouch' }],
