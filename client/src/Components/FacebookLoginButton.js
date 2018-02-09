@@ -1,10 +1,10 @@
-import React from 'react';
-import FacebookLogin from 'react-facebook-login';
+import React from "react";
+import FacebookLogin from "react-facebook-login";
 
 const FacebookLoginButton = props => {
   return (
     <FacebookLogin
-      appId="2054896458089762"
+      appId="1931646120486917"
       autoLoad={true}
       fields="name,email,picture"
       callback={props.facebookLogin}
