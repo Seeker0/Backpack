@@ -61,7 +61,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// Map props and dispatch to ApodContainer which will
-// now render Apod itself.
+// Map props and dispatch to DragDropContainer which will
+// now render DragDrop itself
 // Export the result of `connect` directly.
 export default connect(mapStateToProps, mapDispatchToProps)(DragDrop);
