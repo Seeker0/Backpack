@@ -1,12 +1,12 @@
-import React from "react";
-import { GoogleLogin } from "react-google-login";
+import React from 'react';
+import { GoogleLogin } from 'react-google-login';
 
 const GoogleLoginButton = props => {
   return (
     <GoogleLogin
       onSuccess={props.googleLogin}
       onFailure={props.googleLogin}
-      clientId="1059973407731-77vgqju0ric1itqtuaol5mv65vvk3uet.apps.googleusercontent.com"
+      clientId="17204089583-su0tdc6ppndkf8eacncljcveuv6o1olo.apps.googleusercontent.com"
       className="google-button"
     />
   );
