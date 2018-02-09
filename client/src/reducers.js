@@ -1,4 +1,4 @@
-import Actions from "./actions";
+import Actions from './actions';
 
 const initialState = {
   pouches: [],
@@ -232,7 +232,7 @@ export function currentUser(state = initialState, action) {
         user: action.data,
         authorized: true,
         authenticated: true,
-        redirect: "/dashboard"
+        redirect: '/dashboard'
       };
 
     case Actions.GET_USER_SUCCESS:
@@ -320,6 +320,20 @@ export function currentUser(state = initialState, action) {
         isFetching: false,
         error: action.error,
         verifyError: action.error
+      };
+
+    case Actions.REGISTER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        authenticated: true,
+        error: action.error
+      };
+
+    case Actions.CLEAR_ERROR:
+      return {
+        ...state,
+        error: null
       };
 
     default:

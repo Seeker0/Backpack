@@ -6,6 +6,7 @@ import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import FacebookContainer from "../Containers/FacebookContainer";
 import GoogleContainer from "../Containers/GoogleContainer";
+import UserBar from "./UserBar";
 
 class Welcome extends PureComponent {
   constructor(props) {
@@ -28,9 +29,21 @@ class Welcome extends PureComponent {
     });
   };
 
+  errCatcher = err => {
+    alert(err);
+    this.props.clearError();
+  };
+
   render() {
+    let userWelcome = this.props.user ? (
+      <UserBar username={this.props.user.username} />
+    ) : null;
     return (
       <div className="App">
+        {userWelcome}
+
+        <p>{this.props.error ? this.errCatcher(this.props.error) : null}</p>
+
         <Header />
         <Container>
           <Row>

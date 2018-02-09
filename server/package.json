@@ -40,7 +40,9 @@
     "open-graph-scraper": "^3.1.4",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
+    "passport-facebook-token": "^3.3.0",
     "passport-google-oauth2": "^0.1.6",
+    "passport-google-token": "^0.1.2",
     "passport-local": "^1.0.0",
     "url-regex": "^4.1.1",
     "validate.js": "^0.12.0"

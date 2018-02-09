@@ -26,7 +26,6 @@ const DragDrop = props => {
       >
         <div className="item-box">
           <Item item={item} />
-
           <div>
             <DeleteItemContainer itemid={item._id} />
           </div>

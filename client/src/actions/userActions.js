@@ -1,4 +1,5 @@
 import { setCurrentPouch } from "./pouchActions";
+var querystring = require("querystring");
 
 export const GET_USER_POUCHES_REQUEST = "GET_USER_POUCHES_REQUEST";
 export const GET_USER_POUCHES_SUCCESS = "GET_USER_POUCHES_SUCCESS";
@@ -31,6 +32,8 @@ export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 export const USER_DELETE_REQUEST = "USER_DELETE_REQUEST";
 export const USER_DELETE_SUCCESS = "USER_DELETE_SUCCESS";
 export const USER_DELETE_FAILURE = "USER_DELETE_FAILURE";
+
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 let server =
   process.env.NODE_ENV === "production"
@@ -149,19 +152,25 @@ export function login(user) {
   };
 }
 
-export function facebookLogin() {
+export function facebookLogin(data) {
+  console.log(data);
   return dispatch => {
     const requestOptions = {
-      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "same-origin",
       mode: "cors"
     };
-    console.log(requestOptions);
 
-    return fetch(`${server}/login/facebook`, requestOptions)
+    return fetch(
+      `${server}/login/facebook?${querystring.stringify({
+        access_token: data.accessToken
+      })}`,
+      requestOptions
+    )
       .then(response => {
+        console.log(response);
         if (!response.ok) {
           return Promise.reject(response.statusText);
         }
@@ -177,18 +186,24 @@ export function facebookLogin() {
   };
 }
 
-export function googleLogin() {
+export function googleLogin(data) {
+  console.log(data);
   return dispatch => {
     const requestOptions = {
-      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "same-origin",
       mode: "cors"
     };
     console.log(requestOptions);
 
-    return fetch(`${server}/login/google`, requestOptions)
+    return fetch(
+      `${server}/login/google?${querystring.stringify({
+        access_token: data.accessToken
+      })}`,
+      requestOptions
+    )
       .then(response => {
         if (!response.ok) {
           return Promise.reject(response.statusText);
@@ -284,7 +299,10 @@ export function deleteUser(data) {
       mode: "cors",
       credentials: "same-origin",
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
     })
       .then(response => {
         if (!response.ok) {
@@ -330,7 +348,12 @@ export function registerUser(data) {
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     })
-      .then(response => {
+      .then(async response => {
+        let json = await response.json();
+        console.log(json);
+        if (json.error) {
+          throw new Error(`${json.error.message}`);
+        }
         if (!response.ok) {
           throw new Error(`${response.status} ${response.statusText}`);
         }
@@ -341,6 +364,7 @@ export function registerUser(data) {
         dispatch(login({ username, password }));
       })
       .catch(error => {
+        console.log(error);
         dispatch(registerFailure(error));
       });
   };
@@ -433,5 +457,11 @@ export function updatePassword(data) {
       .catch(error => {
         dispatch(updateFailure(error));
       });
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR
   };
 }
