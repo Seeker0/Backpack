@@ -1,5 +1,5 @@
-import React from "react";
-import FacebookLogin from "react-facebook-login";
+import React from 'react';
+import FacebookLogin from 'react-facebook-login';
 
 const FacebookLoginButton = props => {
   return (
