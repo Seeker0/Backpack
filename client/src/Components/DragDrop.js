@@ -11,6 +11,7 @@ import DeletePouchContainer from "../Containers/DeletePouchContainer";
 import AddItemContainer from "../Containers/AddItemContainer";
 import RenamePouchContainer from "../Containers/RenamePouchContainer";
 import Item from "./Item";
+import PropTypes from "prop-types";
 
 const DragDrop = props => {
   const { currentPouch, getUser } = props;
@@ -90,6 +91,24 @@ const DragDrop = props => {
       </div>
     </div>
   );
+};
+
+DragDrop.propTypes = {
+  currentPouch: PropTypes.object,
+  getUser: PropTypes.func,
+  currentItems: PropTypes.array,
+  pouches: PropTypes.array,
+  onDrop: PropTypes.func,
+  setCurrentPouch: PropTypes.func
+};
+
+DragDrop.defaultProps = {
+  currentPouch: {},
+  getUser: () => {},
+  currentItems: [],
+  pouches: [],
+  onDrop: () => {},
+  setCurrentPouch: () => {}
 };
 
 export default DragDrop;
