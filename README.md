@@ -2,7 +2,7 @@
 
 Backpack is a new way to collect and organize everything you love from the web.
 
-![welcome screenshot](https://github.com/Seeker0/Backpack/blob/master/public/welcome.png)
+![welcome screenshot](https://github.com/Seeker0/Backpack/blob/master/public/welcome_screenshot.png)
 
 Once you have an account on the [web app](https://appbackpack.herokuapp.com) you can start saving all your internet favorites. Backpack works with images, articles, videos, and more. You can create items to save on the website or quickly save them with a click if you install the [chrome extension](https://chrome.google.com/webstore/detail/backpack/kbihpnahoklibdejjmnjndkidaklefgj).
 
