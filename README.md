@@ -20,9 +20,9 @@ If you store media with Bakcpack, you can even play it in there in the app.
 
 Users with the Chrome web browser can quickly add the helpful extension by clicking the "Add Chrome Extension" button. With the extension installed all it takes to save an item is a right click on the link or media, and then a click on the Backpack icon.
 
-![media screenshot](https://github.com/Seeker0/Backpack/blob/master/public/use_extension.png)
+![use extension screenshot](https://github.com/Seeker0/Backpack/blob/master/public/use_extension.png)
 
-![media screenshot](hhttps://github.com/Seeker0/Backpack/blob/master/public/extension_works.png)
+![extension works screenshot](https://github.com/Seeker0/Backpack/blob/master/public/extension_works.png)
 
 ## Built With
 
