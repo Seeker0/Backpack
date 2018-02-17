@@ -123,7 +123,7 @@ export function logoutRequest() {
   };
 }
 
-export function login(user) {
+export function login(user, history) {
   return dispatch => {
     const requestOptions = {
       credentials: "same-origin",
@@ -136,7 +136,6 @@ export function login(user) {
     return fetch(`${server}/login`, requestOptions)
       .then(response => {
         if (!response.ok) {
-          console.log(response.statusText);
           return Promise.reject(response.statusText);
         }
         return response.json();
@@ -145,6 +144,7 @@ export function login(user) {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
         dispatch(setCurrentPouch({ _id: user.pouches[0] }));
+        history.push('/dashboard')
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -152,8 +152,7 @@ export function login(user) {
   };
 }
 
-export function facebookLogin(data) {
-  console.log(data);
+export function facebookLogin(data, history) {
   return dispatch => {
     const requestOptions = {
       headers: {
@@ -170,7 +169,6 @@ export function facebookLogin(data) {
       requestOptions
     )
       .then(response => {
-        console.log(response);
         if (!response.ok) {
           return Promise.reject(response.statusText);
         }
@@ -179,6 +177,7 @@ export function facebookLogin(data) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
+        history.push('/dashboard')
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -186,7 +185,7 @@ export function facebookLogin(data) {
   };
 }
 
-export function googleLogin(data) {
+export function googleLogin(data, history) {
   return dispatch => {
     const requestOptions = {
       headers: {
@@ -195,7 +194,6 @@ export function googleLogin(data) {
       credentials: "same-origin",
       mode: "cors"
     };
-    console.log(requestOptions);
 
     return fetch(
       `${server}/login/google?${querystring.stringify({
@@ -212,6 +210,7 @@ export function googleLogin(data) {
       .then(user => {
         dispatch(getUserPouches(user));
         dispatch(loginSuccess(user));
+        history.push('/dashboard')
       })
       .catch(e => {
         dispatch(loginFailure(e));
@@ -335,7 +334,7 @@ export function registerRequest() {
   };
 }
 
-export function registerUser(data) {
+export function registerUser(data, history) {
   return dispatch => {
     let { username, password } = data;
     dispatch(registerRequest());
@@ -349,7 +348,6 @@ export function registerUser(data) {
     })
       .then(async response => {
         let json = await response.json();
-        console.log(json);
         if (json.error) {
           throw new Error(`${json.error.message}`);
         }
@@ -360,10 +358,9 @@ export function registerUser(data) {
         return json;
       })
       .then(json => {
-        dispatch(login({ username, password }));
+        dispatch(login({ username, password }, history));
       })
       .catch(error => {
-        console.log(error);
         dispatch(registerFailure(error));
       });
   };
