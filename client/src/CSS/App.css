@@ -344,15 +344,14 @@ footer {
 }
 
 .google-button {
-  background: rgb(209, 72, 54);
-  width: 190px;
-  padding: 10px;
-  border-radius: 2px;
-  font-size: 16px;
-  font-weight: bold;
-  color: black !important;
-  font-family: "Kalam", cursive;
-  border: solid black 1px !important;
+  background-image:url('../images/btn_google_signin_dark_normal_web.png');
+  background-size:cover;
+  background-position: center;
+  background-color:transparent;
+  display:inline-block;
+  border:0px;
+  width: 191px;
+  height:46px;
   margin-top: 10px;
 }
 

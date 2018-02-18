@@ -13,7 +13,6 @@ const GoogleLoginButton = props => {
       onLoginFailure={props.googleLogin}
       className="google-button"
     >
-      Login with Google
     </SocialButton>
   );
 };
