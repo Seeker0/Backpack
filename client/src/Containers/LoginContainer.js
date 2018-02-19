@@ -106,6 +106,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    // Get user data from the store for this user.
     login: user => {
       dispatch(login(user));
     }

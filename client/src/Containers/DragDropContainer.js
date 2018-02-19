@@ -8,14 +8,7 @@ import { getUser } from "../actions/userActions";
 class DragDropContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      dataDelete: null
-    };
   }
-
-  // onDrop = data => {
-  //   console.log(data);
-  // };
 
   onDragData(data) {
     this.setState("dataDelete", data);
