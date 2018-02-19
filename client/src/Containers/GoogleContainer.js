@@ -7,8 +7,7 @@ import { withRouter } from "react-router-dom";
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     googleLogin: data => {
-      dispatch(googleLogin(data));
-      //ownProps.history.push("/dashboard");
+      dispatch(googleLogin(data, ownProps.history));
     },
     loginFailure: err => {
       dispatch(loginFailure(err));

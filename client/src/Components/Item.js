@@ -1,29 +1,32 @@
-import React from "react";
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-const Item = ({ item }) => {
-  let meta = !item.meta ? (
+const items = {
+  invalid: item => (
     <div>
       <p>Invalid Item</p>
     </div>
-  ) : item.meta.data.ogType === "string" ? (
+  ),
+  string: item => (
     <div>
       <h3>{item.name}</h3>
       <a href={item.link} target="_blank">
         {item.link}
       </a>
     </div>
-  ) : item.meta.data.ogType === "pic" ? (
+  ),
+  pic: item => (
     <div>
       <h3>{item.name}</h3>
       <a href={item.link} target="_blank">
         <img alt="" className="picture-item" src={item.link} />
       </a>
     </div>
-  ) : item.meta.data.ogType === "article" ? (
+  ),
+  article: item => (
     <div>
       <h3>{item.name}</h3>
       <h3>{item.meta.data.ogSiteName}</h3>
@@ -45,7 +48,8 @@ const Item = ({ item }) => {
         />
       </a>
     </div>
-  ) : item.meta.data.ogType === "website" ? (
+  ),
+  website: item => (
     <div>
       <h3>{item.name}</h3>
       <a
@@ -68,7 +72,18 @@ const Item = ({ item }) => {
         />
       </a>
     </div>
-  ) : !item.meta.data.ogType ? (
+  ),
+  media: item => (
+    <iframe
+      alt=""
+      title="iframe"
+      frameBorder="0"
+      allowFullScreen="allowfullscreen"
+      className="picture-item"
+      src={item.meta.data.twitterPlayer.url}
+    />
+  ),
+  noType: item => (
     <div>
       <a href={item.meta.requestUrl} target="_blank">
         <h2>{item.meta.data.ogTitle}</h2>
@@ -81,17 +96,34 @@ const Item = ({ item }) => {
         />
       </a>
     </div>
-  ) : item.meta.data.twitterPlayer ? (
-    <iframe
-      alt=""
-      title="iframe"
-      frameBorder="0"
-      allowFullScreen="allowfullscreen"
-      className="picture-item"
-      src={item.meta.data.twitterPlayer.url}
-    />
-  ) : null;
-  return meta;
+  ),
+  null: item => null
+};
+
+const itemTester = item => {
+  let type;
+  if (!item.meta) {
+    type = 'invalid';
+    return type;
+  }
+  if (item.meta.data) {
+    if (item.meta.data.ogType) {
+      if (item.meta.data.twitterPlayer) {
+        type = 'media';
+        return type;
+      }
+      type = items[item.meta.data.ogType] ? item.meta.data.ogType : 'website';
+      return type;
+    }
+    type = 'noType';
+    return type;
+  }
+  return type;
+};
+
+const Item = ({ item }) => {
+  const type = itemTester(item);
+  return items[type](item);
 };
 
 export default Item;

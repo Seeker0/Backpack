@@ -19,6 +19,7 @@ import ErrorMessage from "../Components/ErrorMessage";
 import SuccessMessage from "../Components/SuccessMessage";
 import ValidationErrorMessage from "./ValidationErrorMessage";
 import { getColorFromError } from "../helpers";
+import PropTypes from "prop-types";
 
 const Settings = ({
   user,
@@ -287,6 +288,60 @@ const Settings = ({
       </Container>
     </div>
   );
+};
+
+Settings.propTypes = {
+  user: PropTypes.object,
+  onSubmit: PropTypes.func,
+  onChangeInput: PropTypes.func,
+  modal: PropTypes.bool,
+  toggle: PropTypes.func,
+  errors: PropTypes.object,
+  success: PropTypes.bool,
+  onRadioBtnClick: PropTypes.func,
+  modalPassword: PropTypes.bool,
+  togglePassword: PropTypes.func,
+  modalDelete: PropTypes.bool,
+  toggleDelete: PropTypes.func,
+  emailModal: PropTypes.string,
+  usernameModal: PropTypes.string,
+  passwordNewModal: PropTypes.string,
+  passwordOldModal: PropTypes.string,
+  privacyModal: PropTypes.number,
+  onChangeInputPassword: PropTypes.func,
+  verifyError: PropTypes.bool,
+  onDeleteSubmit: PropTypes.func,
+  onPasswordSubmit: PropTypes.func,
+  passwordOld2Modal: PropTypes.string,
+  passwordOld3Modal: PropTypes.string,
+  onChangeInputDelete: PropTypes.func
+};
+
+Settings.defaultProps = {
+  user: {},
+  onSubmit: () => {},
+  onChangeInput: () => {},
+  modal: false,
+  toggle: () => {},
+  errors: {},
+  success: false,
+  onRadioBtnClick: () => {},
+  modalPassword: false,
+  togglePassword: () => {},
+  modalDelete: false,
+  toggleDelete: () => {},
+  emailModal: "",
+  usernameModal: "",
+  passwordNewModal: "",
+  passwordOldModal: "",
+  privacyModal: 1,
+  onChangeInputPassword: () => {},
+  verifyError: false,
+  onDeleteSubmit: () => {},
+  onPasswordSubmit: () => {},
+  passwordOld2Modal: "",
+  passwordOld3Modal: "",
+  onChangeInputDelete: () => {}
 };
 
 export default Settings;

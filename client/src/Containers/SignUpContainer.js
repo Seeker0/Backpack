@@ -115,7 +115,7 @@ class SignUpContainer extends Component {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     register: user => {
-      dispatch(registerUser(user));
+      dispatch(registerUser(user, ownProps.history));
     }
   };
 };

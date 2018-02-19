@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import {
   InputGroup,
   Label,
@@ -66,6 +68,22 @@ const Search = ({
       </div>
     </InputGroup>
   );
+};
+
+Search.propTypes = {
+  onSubmit: PropTypes.func,
+  dropdownOpen: PropTypes.bool,
+  toggleDropdown: PropTypes.func,
+  searchString: PropTypes.string,
+  currentPouches: PropTypes.array
+};
+
+Search.defaultProps = {
+  onSubmit: () => {},
+  dropdownOpen: false,
+  toggleDropdown: () => {},
+  searchString: "",
+  currentPouches: []
 };
 
 export default Search;
