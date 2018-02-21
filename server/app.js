@@ -192,6 +192,15 @@ if (require.main === module) {
 }
 
 // ----------------------------------------
+// Ping Heroku
+// ----------------------------------------
+
+var http = require("http");
+setInterval(function() {
+  http.get("https://appbackpack.herokuapp.com");
+}, 600000); // every 10 minutes (600000)
+
+// ----------------------------------------
 // Error Handling
 // ----------------------------------------
 app.use((err, req, res, next) => {
