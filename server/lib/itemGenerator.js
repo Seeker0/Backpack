@@ -18,7 +18,7 @@ const picTester = link => {
 const itemGenerator = async (name, link, userId) => {
   let item;
   if (!urlRegex({ exact: true, strict: false }).test(link)) {
-    console.log("is a string");
+    //console.log("is a string");
     item = await new Item({
       name,
       link,
@@ -26,7 +26,7 @@ const itemGenerator = async (name, link, userId) => {
       meta: { data: { ogType: "string", string: link } }
     });
     item = await item.save();
-    console.log(item);
+    //console.log(item);
   } else if (picTester(link)) {
     item = await new Item({
       name,
@@ -39,22 +39,24 @@ const itemGenerator = async (name, link, userId) => {
     item = await new Promise((resolve, reject) => {
       ogs({ url: link }, (err, meta) => {
         if (err) {
-          console.log("rejecting");
+          //console.log("rejecting");
           reject(err);
         } else {
-          console.log("resolving");
+          //console.log("resolving");
           resolve(meta);
         }
       });
     })
       .then(async meta => {
-        console.log(name, link, userId, meta);
+        //console.log(name, link, userId, meta);
         let newItem = await new Item({ name, link, ownerId: userId, meta });
-        console.log(newItem);
+        //console.log(newItem);
         newItem = await newItem.save();
         return newItem;
       })
-      .catch(e => console.error(e));
+      .catch(e => {
+        console.error(e);
+      });
   }
   return item;
 };

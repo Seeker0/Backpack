@@ -6,7 +6,7 @@ const Item = mongoose.model('Item');
 const Pouch = mongoose.model('Pouch');
 const User = mongoose.model('User');
 const util = require('util');
-const itemGenerator = require('../lib/newItems');
+const itemGenerator = require('../lib/itemGenerator');
 
 router.get('/list/:pouchId', async (req, res, next) => {
   try {
