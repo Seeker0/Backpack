@@ -2,7 +2,7 @@
 
 Backpack is a new way to collect and organize everything you love from the web.
 
-![welcome screenshot](https://github.com/Seeker0/Backpack/blob/master/public/welcome.png)
+![welcome screenshot](https://github.com/Seeker0/Backpack/blob/master/public/welcome_screenshot.png)
 
 Once you have an account on the [web app](https://appbackpack.herokuapp.com) you can start saving all your internet favorites. Backpack works with images, articles, videos, and more. You can create items to save on the website or quickly save them with a click if you install the [chrome extension](https://chrome.google.com/webstore/detail/backpack/kbihpnahoklibdejjmnjndkidaklefgj).
 
@@ -20,9 +20,9 @@ If you store media with Bakcpack, you can even play it in there in the app.
 
 Users with the Chrome web browser can quickly add the helpful extension by clicking the "Add Chrome Extension" button. With the extension installed all it takes to save an item is a right click on the link or media, and then a click on the Backpack icon.
 
-![media screenshot](https://github.com/Seeker0/Backpack/blob/master/public/use_extension.png)
+![use extension screenshot](https://github.com/Seeker0/Backpack/blob/master/public/use_extension.png)
 
-![media screenshot](hhttps://github.com/Seeker0/Backpack/blob/master/public/extension_works.png)
+![extension works screenshot](https://github.com/Seeker0/Backpack/blob/master/public/extension_works.png)
 
 ## Built With
 
