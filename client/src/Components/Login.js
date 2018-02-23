@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   Button,
   Form,
@@ -10,7 +11,8 @@ import {
   ModalFooter
 } from "reactstrap";
 
-import { ErrorMessage, SuccessMessage } from "../Components";
+import ErrorMessage from "../Components/SuccessMessage";
+import SuccessMessage from "../Components/SuccessMessage";
 import ValidationErrorMessage from "./ValidationErrorMessage";
 import { getColorFromError } from "../helpers";
 import "../index.css";
@@ -67,6 +69,28 @@ const Login = ({
       </ModalFooter>
     </Modal>
   );
+};
+
+Login.propTypes = {
+  isOpen: PropTypes.bool,
+  toggle: PropTypes.func,
+  onChangeInput: PropTypes.func,
+  onSubmit: PropTypes.func,
+  success: PropTypes.bool,
+  errors: PropTypes.object,
+  username: PropTypes.string,
+  password: PropTypes.string
+};
+
+Login.defaultProps = {
+  isOpen: false,
+  toggle: () => {},
+  onChangeInput: () => {},
+  onSubmit: () => {},
+  success: false,
+  errors: {},
+  username: "",
+  password: ""
 };
 
 export default Login;

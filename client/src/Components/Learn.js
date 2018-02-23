@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 
 import Header from "./Header";
-import { LoginContainer, SignUpContainer } from "../Containers";
+import SignUpContainer from "../Containers/SignUpContainer";
+import LoginContainer from "../Containers/LoginContainer";
 
 import { Button, Container, Row, Col } from "reactstrap";
 

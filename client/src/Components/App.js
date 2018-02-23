@@ -15,7 +15,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 class App extends PureComponent {
   componentDidMount() {
     this.props.getUser();
-    this.url = this.props.location.pathname;
   }
 
   render() {
@@ -27,12 +26,7 @@ class App extends PureComponent {
       return <h2>Loading</h2>;
     }
 
-    let redirect = this.props.redirect;
-    if (redirect) {
-      redirect = <Redirect to={redirect} />;
-    } else {
-      redirect = null;
-    }
+    let redirect = null;
     if (
       !authorized &&
       !unprotectRoutes.includes(this.props.location.pathname)

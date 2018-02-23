@@ -8,14 +8,7 @@ import { getUser } from "../actions/userActions";
 class DragDropContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      dataDelete: null
-    };
   }
-
-  // onDrop = data => {
-  //   console.log(data);
-  // };
 
   onDragData(data) {
     this.setState("dataDelete", data);
@@ -69,7 +62,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-// Map props and dispatch to ApodContainer which will
-// now render Apod itself.
+// Map props and dispatch to DragDropContainer which will
+// now render DragDrop itself
 // Export the result of `connect` directly.
 export default connect(mapStateToProps, mapDispatchToProps)(DragDrop);

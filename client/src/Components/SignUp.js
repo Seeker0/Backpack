@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import {
   Button,
   Form,
@@ -77,6 +77,30 @@ const SignUp = ({
       </ModalFooter>
     </Modal>
   );
+};
+
+SignUp.propTypes = {
+  isOpen: PropTypes.bool,
+  toggle: PropTypes.func,
+  onChangeInput: PropTypes.func,
+  onSubmit: PropTypes.func,
+  username: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  errors: PropTypes.object,
+  success: PropTypes.bool
+};
+
+SignUp.defaultProps = {
+  isOpen: false,
+  toggle: () => {},
+  onChangeInput: () => {},
+  onSubmit: () => {},
+  username: "",
+  email: "",
+  password: "",
+  errors: {},
+  success: false
 };
 
 export default SignUp;

@@ -123,8 +123,6 @@ const itemTester = item => {
 
 const Item = ({ item }) => {
   const type = itemTester(item);
-  console.log(type);
-  console.log(item);
   return items[type](item);
 };
 

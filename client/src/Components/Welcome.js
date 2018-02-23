@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react";
 
 import Header from "./Header";
-import { LoginContainer, SignUpContainer } from "../Containers";
+//import { LoginContainer, SignUpContainer } from "../Containers";
+import LoginContainer from "../Containers/LoginContainer";
+import SignUpContainer from "../Containers/SignUpContainer";
+
 import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import FacebookContainer from "../Containers/FacebookContainer";

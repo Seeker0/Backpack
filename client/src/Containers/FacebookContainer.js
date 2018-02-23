@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     facebookLogin: data => {
-      dispatch(facebookLogin(data));
+      dispatch(facebookLogin(data, ownProps.history));
     }
   };
 };
